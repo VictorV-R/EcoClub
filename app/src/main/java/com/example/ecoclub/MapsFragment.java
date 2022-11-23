@@ -31,9 +31,22 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+            LatLng sydney = new LatLng(-16.4008114, -71.5346801);
+            googleMap.addMarker(new MarkerOptions().position(sydney).title("Comunidad 1"));
+            LatLng com2 = new LatLng(-16.399305, -71.5360514);
+            googleMap.addMarker(new MarkerOptions().position(com2).title("Comunidad 2"));
+            LatLng com3 = new LatLng(-16.3990022, -71.5297739);
+            googleMap.addMarker(new MarkerOptions().position(com3).title("Comunidad 3"));
+            LatLng com4 = new LatLng(-16.3994988, -71.5356846);
+            googleMap.addMarker(new MarkerOptions().position(com4).title("Comunidad 4"));
+            LatLng com5 = new LatLng(-16.3986127, -71.5343126);
+            googleMap.addMarker(new MarkerOptions().position(com5).title("Comunidad 5"));
+            LatLng com6 = new LatLng(-16.3974163, -71.5369409);
+            googleMap.addMarker(new MarkerOptions().position(com6).title("Comunidad 6"));
+            LatLng com7 = new LatLng(-16.399289, -71.5389063);
+            googleMap.addMarker(new MarkerOptions().position(com7).title("Comunidad 7"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            googleMap.moveCamera(CameraUpdateFactory.zoomTo(15));
         }
     };
 
