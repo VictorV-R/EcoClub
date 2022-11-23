@@ -5,4 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycleviewofHome"
+        android:layout_margin="2dp"
+        android:fitsSystemWindows="true"
+        android:padding="2dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </RelativeLayout>
