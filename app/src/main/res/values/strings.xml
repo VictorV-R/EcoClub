@@ -15,4 +15,11 @@
     <string name="lbl_login">Iniciar Sesion</string>
     <string name="lbl_register">Registrar</string>
     <string name="name_loginfragment">LOGIN</string>
+    <string name="home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comunidades">Comunidades</string>
+    <string name="buscar">Buscar</string>
+    <string name="resultados">Resultados</string>
+    <string name="nombreComunidad">Comunidad Verde</string>
 </resources>
