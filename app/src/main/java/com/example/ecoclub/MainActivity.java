@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     ComunityFragment comunityFragment = new ComunityFragment();
     MapsFragment mapsFragment = new MapsFragment();
 
+    String api="18f1b34a081148119e242db1fb37a8e9";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
