@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
     Adapter adapter;
     String country="in";
     private RecyclerView recyclerViewofHome;
-    private String category="Ambiente";
+    private String category="environment";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void findNews() {
-        ApiUtilities.getApiInterface().getNews(country,100,api).enqueue(new Callback<mainNews>() {
+        ApiUtilities.getApiInterface().getCategoryNews(country,category,100,api).enqueue(new Callback<mainNews>() {
             @Override
             public void onResponse(Call<mainNews> call, Response<mainNews> response) {
                 if(response.isSuccessful())
