@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="color_principal">#0DE1EF</color>
-    <color name="color_secundario">#CC794D</color>
+    <color name="color_primary">#54DDDD</color>
+    <color name="color_secundary">#EE8B47</color>
+    <color name="color_tertiary">#FFE600</color>
+    <color name="color_quaternary">#EE4953</color>
+
 </resources>

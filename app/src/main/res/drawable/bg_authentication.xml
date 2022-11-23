@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_base"/>
+    <item android:height="300dp"
+        android:gravity="top">
+        <shape android:shape="rectangle">
+            <solid android:color="#F49553"/>
+        </shape>
+    </item>
+
+    <item android:gravity="center"
+        android:top="50dp"
+        android:bottom="50dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/>
+            <corners android:topLeftRadius="250dp"
+                android:bottomRightRadius="250dp"/>
+        </shape>
+    </item>
+
+    <item android:height="180dp"
+        android:width="180dp"
+        android:gravity="bottom"
+        android:start="-70dp"
+        android:bottom="-20dp">
+        <shape android:shape="oval">
+            <solid android:color="#EE4953"/>
+        </shape>
+    </item>
+
+    <item android:height="180dp"
+        android:width="180dp"
+        android:gravity="bottom"
+        android:start="60dp"
+        android:bottom="-90dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFE600"/>
+        </shape>
+    </item>
+
+</layer-list>
