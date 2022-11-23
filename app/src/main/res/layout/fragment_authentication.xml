@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_authentication"
+    android:background="@drawable/bg_desing_base"
     tools:context=".fragments.AuthenticationFragment">
 
     <ImageView
