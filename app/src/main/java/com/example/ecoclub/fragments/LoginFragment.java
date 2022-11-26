@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ecoclub.AuthenticationActivity;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.database.DBUsers;
@@ -48,11 +49,11 @@ public class LoginFragment extends Fragment {
                     checkEmptyFields(email, pass);
                     dbUsers.checkUserEmailPassword(email, pass);
                     clearFields();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                }
-                catch (BlankFieldsException b){}
-                catch (DataBasesException d){}
+                    Toast.makeText(getActivity(), "Login exitoso", Toast.LENGTH_SHORT).show();
+
+               }
+               catch (BlankFieldsException b){}
+               catch (DataBasesException d){}
 
             }
         });

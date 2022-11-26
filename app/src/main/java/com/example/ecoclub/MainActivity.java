@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.ecoclub.fragments.ComunityFragment;
+import com.example.ecoclub.fragments.HomeFragment;
+import com.example.ecoclub.fragments.MapsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
