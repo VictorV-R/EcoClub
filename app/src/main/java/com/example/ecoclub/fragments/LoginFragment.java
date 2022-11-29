@@ -1,8 +1,9 @@
 package com.example.ecoclub.fragments;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,24 +13,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
-import com.example.ecoclub.database.DBUsers;
 import com.example.ecoclub.exceptions.BlankFieldsException;
 import com.example.ecoclub.exceptions.DataBasesException;
+import com.example.ecoclub.interfaces.MainCallbacks;
 
-public class LoginFragment extends Fragment {
+import java.util.ArrayList;
+
+public class LoginFragment extends Fragment{
 
     private Button btn_login;
-    EditText edt_email, edt_password;
+    private EditText edt_email, edt_password;
+    private ArrayList<String> data;
 
-    public LoginFragment() {
-        // Required empty public constructor
-    }
+    private MainCallbacks mainCallbacks;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        data = new ArrayList<String>();
 
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         edt_email = view.findViewById(R.id.edt_mail);
@@ -39,35 +43,34 @@ public class LoginFragment extends Fragment {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = edt_email.getText().toString();
-                String pass = edt_password.getText().toString();
+               try {
+                    data.add(edt_email.getText().toString());
+                    data.add(edt_password.getText().toString());
 
-                DBUsers dbUsers = new DBUsers(getActivity());
-
-                try {
-                    checkEmptyFields(email, pass);
-                    dbUsers.checkUserEmailPassword(email, pass);
+                    mainCallbacks.checkEmptyFields(data);
+                    mainCallbacks.checkUserEmailPassword(data);
                     clearFields();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                }
-                catch (BlankFieldsException b){}
-                catch (DataBasesException d){}
+                    mainCallbacks.onLoadMainActivity();
 
+                }catch (BlankFieldsException b){}
+                catch (DataBasesException d){}
+                Toast.makeText(getActivity(), "Porque falla, pipipi", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
     }
 
-    private void clearFields(){
-        edt_email.setText("");
-        edt_password.setText("");
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainCallbacks){
+            mainCallbacks = (MainCallbacks) context;
+        }
     }
 
-    private void checkEmptyFields (String email, String pass) throws BlankFieldsException {
-        if(email.equals("") || pass.equals("")) throw new BlankFieldsException(getActivity(), "Complete todos los campos!!");
-
+    public void clearFields() {
+        edt_email.setText("");
+        edt_password.setText("");
     }
 }
 

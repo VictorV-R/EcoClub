@@ -1,4 +1,4 @@
-package com.example.ecoclub;
+package com.example.ecoclub.fragments;
 
 import android.os.Bundle;
 
@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ecoclub.R;
 import com.example.ecoclub.news.Adapter;
 import com.example.ecoclub.news.ApiUtilities;
 import com.example.ecoclub.news.NewsShowClass;
