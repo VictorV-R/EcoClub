@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
     Adapter adapter;
     String country="in";
     private RecyclerView recyclerViewofHome;
-    private String category="environment";
+    private String category="science";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
