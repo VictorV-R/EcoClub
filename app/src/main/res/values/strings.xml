@@ -9,6 +9,7 @@
 
     <!-- Strings related to Comunity Fragment -->
     <string name="buscar">Buscar</string>
+    <string name="buscar_auto_hint">Buscar</string>
     <string name="resultados">Resultados</string>
     <string name="nombreComunidad">Comunidad Verde</string>
 
