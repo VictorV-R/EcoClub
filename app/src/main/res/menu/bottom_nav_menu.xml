@@ -9,4 +9,7 @@
     <item android:id="@+id/maps"
         android:title="Maps"
         android:icon="@drawable/ic_baseline_map_24"/>
+    <item android:id="@+id/profile"
+        android:title="Perfil"
+        android:icon="@drawable/ic_profile"/>
 </menu>
