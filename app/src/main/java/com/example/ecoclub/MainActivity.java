@@ -5,18 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.ecoclub.fragments.CollaborateFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
 import com.example.ecoclub.fragments.HomeFragment;
 import com.example.ecoclub.fragments.MapsFragment;
+import com.example.ecoclub.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+
     HomeFragment homeFragment = new HomeFragment();
-    ComunityFragment comunityFragment = new ComunityFragment();
     MapsFragment mapsFragment = new MapsFragment();
+    ComunityFragment comunityFragment = new ComunityFragment();
+    CollaborateFragment collaborateFragment = new CollaborateFragment();
+    ProfileFragment profileFragment = new ProfileFragment();
 
     String api="18f1b34a081148119e242db1fb37a8e9";
     @Override
@@ -35,11 +40,17 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
+                    case R.id.maps:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, mapsFragment).commit();
+                        return true;
                     case R.id.comunity:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, comunityFragment).commit();
                         return true;
-                    case R.id.maps:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, mapsFragment).commit();
+                    case R.id.collaborate:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, collaborateFragment).commit();
+                        return true;
+                    case R.id.profile:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
                         return true;
                 }
                 return false;

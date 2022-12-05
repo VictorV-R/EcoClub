@@ -5,7 +5,10 @@
 
     <!-- Strings related to BottomNavigation -->
     <string name="home">Home</string>
+    <string name="mapa">Mapa</string>
     <string name="comunidades">Comunidades</string>
+    <string name="colabora">Colabora</string>
+    <string name="perfil">Pefil</string>
 
     <!-- Strings related to Comunity Fragment -->
     <string name="buscar">Buscar</string>
