@@ -1,5 +1,6 @@
 package com.example.ecoclub.comunity;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecoclub.R;
+import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 
 import java.util.ArrayList;
 
@@ -69,6 +71,11 @@ public class AdapterMyComunity extends RecyclerView.Adapter<AdapterMyComunity.Vi
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Ver Comunidad", Toast.LENGTH_LONG).show();
+
+                //BroadcastReceiver
+                Intent intent = new Intent("SOME_ACTION_DESCRIPTION_MY_COMUNITY");
+                intent.putExtra(ComunityDescriptionFragment.DESTINY, String.valueOf(id));
+                view.getContext().sendBroadcast(intent);
             }
         };
     }

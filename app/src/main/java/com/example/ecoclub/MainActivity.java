@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
             new ComunityBroadcastReceiver();
     protected IntentFilter intentFilterDescriptionComunity =
             new IntentFilter("SOME_ACTION_DESCRIPTION_COMUNITY");
+    protected IntentFilter intentFilterDescriptionMyComunity =
+            new IntentFilter("SOME_ACTION_DESCRIPTION_MY_COMUNITY");
 
     String api="18f1b34a081148119e242db1fb37a8e9";
     @Override
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         });
 
         //BROADCAST RECEIVER
+        //se utiliza en Comunity y MyComunity para acceder al fragment ComunityDescription
         broadcastReceiverComunity();
     }
 
@@ -111,11 +114,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     protected void onResume() {
         super.onResume();
         registerReceiver(myBroadcastReceiver, intentFilterDescriptionComunity);
+        registerReceiver(myBroadcastReceiver, intentFilterDescriptionMyComunity);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(myBroadcastReceiver);
         unregisterReceiver(myBroadcastReceiver);
     }
     //****************************************************************************************

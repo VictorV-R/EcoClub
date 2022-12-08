@@ -18,12 +18,17 @@ public class ComunityBroadcastReceiver extends BroadcastReceiver {
 
         String mensaje = "-1";
 
-        if(intent.getAction().equals("SOME_ACTION_DESCRIPTION_COMUNITY")) {
+        //Acciones Broadcast Receiver===============================================
+        if(intent.getAction().equals("SOME_ACTION_DESCRIPTION_COMUNITY") ||
+                intent.getAction().equals("SOME_ACTION_DESCRIPTION_MY_COMUNITY")) {
+
+            //DESTINO: Description Comunity
             mensaje = intent.getStringExtra(ComunityDescriptionFragment.DESTINY);
 
             intentActivityMain.putExtra("BroadcastReceiverDescriptionComunity", mensaje);
             context.startActivity(intentActivityMain);
         }
+        //===============================================================================
 
     }
 }
