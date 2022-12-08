@@ -12,10 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
-import com.example.ecoclub.fragments.ComunityFragment;
 
 import java.util.ArrayList;
 
@@ -69,7 +67,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             //buscando el item
             data = (TextView) itemView.findViewById(R.id.idDataComunity);
             btnAddComunity = (ImageButton) itemView.findViewById(R.id.imgBtnAddComunity);
-            btnComunity = (ImageButton) itemView.findViewById(R.id.imgBtnComunityPerson);
+            btnComunity = (ImageButton) itemView.findViewById(R.id.imgBtnComunityDescription);
         }
 
         public void cargarDatos(ComunityContent comunityContent) {

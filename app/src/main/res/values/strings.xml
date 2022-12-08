@@ -15,6 +15,7 @@
     <string name="buscar_auto_hint">Buscar</string>
     <string name="resultados">Resultados</string>
     <string name="nombreComunidad">Comunidad Verde</string>
+    <string name="misComunidades">Mis Comunidades</string>
 
     <!-- Strings related to authentication -->
     <string name="title_login">LOGIN</string>

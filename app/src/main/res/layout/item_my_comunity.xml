@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.example.ecoclub.View.Rectangulo
-        android:id="@+id/rectanguloC"
+        android:id="@+id/rectanguloMC"
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginLeft="80dp"
@@ -19,40 +19,26 @@
         app:layout_constraintVertical_bias="0.105" />
 
     <TextView
-        android:id="@+id/idDataComunity"
+        android:id="@+id/idDataMyComunity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Comunidad n"
-        app:layout_constraintBottom_toBottomOf="@+id/rectanguloC"
-        app:layout_constraintEnd_toEndOf="@+id/rectanguloC"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloMC"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloMC"
         app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toStartOf="@+id/rectanguloC"
-        app:layout_constraintTop_toTopOf="@+id/rectanguloC"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloMC"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloMC"
         app:layout_constraintVertical_bias="0.47" />
 
-    <ImageButton
-        android:id="@+id/imgBtnAddComunity"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:background="@color/color_content"
-        app:layout_constraintBottom_toBottomOf="@+id/rectanguloC"
-        app:layout_constraintEnd_toEndOf="@+id/rectanguloC"
-        app:layout_constraintHorizontal_bias="0.882"
-        app:layout_constraintStart_toEndOf="@+id/idDataComunity"
-        app:layout_constraintTop_toTopOf="@+id/rectanguloC"
-        app:layout_constraintVertical_bias="0.238"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        app:tint="#000000" />
-
     <Space
-        android:id="@+id/space"
+        android:id="@+id/spaceMC"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectanguloC" />
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloMC" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
@@ -60,15 +46,15 @@
         android:layout_height="wrap_content" />
 
     <ImageButton
-        android:id="@+id/imgBtnComunityDescription"
+        android:id="@+id/imgBtnMyComunityDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:background="#FBFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/rectanguloC"
-        app:layout_constraintEnd_toStartOf="@+id/idDataComunity"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloMC"
+        app:layout_constraintEnd_toStartOf="@+id/idDataMyComunity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rectanguloC"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloMC"
         app:layout_constraintVertical_bias="0.272"
         app:srcCompat="@drawable/idnp_person_8_small" />
 

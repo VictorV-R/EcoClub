@@ -59,7 +59,7 @@ public class ComunityFragment extends Fragment {
                 RecyclerView.VERTICAL, false));
         //llenando datos de comunidad
         listComunity = new ArrayList<>();
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 15; i++){
             listComunity.add(new ComunityContent((i+1),
                     "Comunidad "+ (i+1)));
         }
