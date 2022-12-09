@@ -1,10 +1,15 @@
 package com.example.ecoclub;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import com.example.ecoclub.fragments.CollaborateFragment;
@@ -17,6 +22,8 @@ import com.example.ecoclub.fragments.ProfileFragment;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
 
@@ -56,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
             new NavigationBarView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
-
             //limpiando back stack
             clearBackStack();
 
@@ -114,11 +120,68 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     //para limpiar el back stack*************************************************
     private void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
-        //solo dejamos el Home Fragment (> 1 e index 1)
+        //solo dejamos el Home Fragment(index 1)
         if (manager.getBackStackEntryCount() > 1) {
             FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(1);
             manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
+
     }
 
+    //boton de atras
+    // dialogo para salir de la app
+    // y actualizacion de icono de bottom navigation view
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        FragmentManager manager;
+        Fragment fragmentCurrent;
+
+        if (keyCode == event.KEYCODE_BACK)
+        {
+            //cambiamos el icono del bottom navigation================================
+            manager = getSupportFragmentManager();
+
+            if (bottomNavigationView.getSelectedItemId() == R.id.home) {
+                //Dialogo para salir de la app o no
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("¿Desea salir de NuNa?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Cerramos la aplicacion
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                //para que inicie con un fragment
+                                bottomNavigationView.setSelectedItemId(R.id.home);
+                            }
+                        });
+                builder.show();
+            }
+
+
+            //ACTIVAMOS EL ICONO DE HOME EN EL BOTTOM NAVIGATION
+            //con el boton de atras se limpia el back stack
+            fragmentCurrent = getSupportFragmentManager()
+                    .findFragmentById(R.id.container);
+            //Estos framgents se abren con el bottom navigation
+            //En caso de que se cambie algun fragment en el menu cambiar tambien este
+            if (fragmentCurrent instanceof ComunityFragment
+                    || fragmentCurrent instanceof MapsFragment
+                    || fragmentCurrent instanceof CollaborateFragment
+                    || fragmentCurrent instanceof ProfileFragment) {
+                bottomNavigationView.setSelectedItemId(R.id.home);
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
