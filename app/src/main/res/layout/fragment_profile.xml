@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_design_profile"
     tools:context=".fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RadioGroup
+        android:id="@+id/radioGroupBotones"
+        android:layout_width="290dp"
+        android:layout_height="52dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/radio_button_left_unchecked"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radioButtonLeft"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_left_selector"
+            android:button="@color/transparent"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/txt_rbtn_option1"
+            android:textColor="@color/black"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radioButtonRight"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_left_selector"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:text="@string/txt_rbtn_option2"
+            android:textColor="@color/black"/>
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_width="414dp"
+        android:layout_height="277dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="0dp">
+    </FrameLayout>
+
+</RelativeLayout>

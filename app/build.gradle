@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ecoclub"
-        minSdk 30
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -53,6 +53,10 @@ dependencies {
 
     // Amplify core dependency
     implementation 'com.amplifyframework:core:2.0.0'
+    implementation 'com.amplifyframework:aws-api:2.0.0'
+
+    //Data Storage Libraries:
+    implementation 'com.amplifyframework:aws-datastore:2.0.0'
 
     // Support for Java 8 features
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
