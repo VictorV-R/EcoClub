@@ -11,32 +11,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.ecoclub.Entities.Person;
 import com.example.ecoclub.R;
-import com.example.ecoclub.exceptions.BlankFieldsException;
-import com.example.ecoclub.exceptions.DataBasesException;
-import com.example.ecoclub.interfaces.MainCallbacks;
-
-import java.util.ArrayList;
+import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 public class RegisterFragment extends Fragment {
 
     private Button btn_register;
-    EditText edt_name, edt_lastName, edt_email, edt_phone, edt_password;
-    private ArrayList<String> data;
+    EditText edt_username, edt_name, edt_email, edt_phone, edt_password;
+    private Person person;
 
-    private MainCallbacks mainCallbacks;
+    private AuthenticationCognito authenticationCognito;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        data = new ArrayList<String>();
+        person = new Person();
 
         View view = inflater.inflate(R.layout.fragment_register, container, false);
+        edt_username = view.findViewById(R.id.edt_username);
         edt_name = view.findViewById(R.id.edt_name);
-        edt_lastName = view.findViewById(R.id.edt_lastName);
         edt_email = view.findViewById(R.id.edt_email);
         edt_phone = view.findViewById(R.id.edt_phone);
         edt_password = view.findViewById(R.id.edt_password);
@@ -46,23 +42,15 @@ public class RegisterFragment extends Fragment {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    data.add(edt_name.getText().toString());
-                    data.add(edt_lastName.getText().toString());
-                    data.add(edt_email.getText().toString());
-                    data.add(edt_phone.getText().toString());
-                    data.add(edt_password.getText().toString());
 
-                    //mainCallbacks.checkEmptyFields(data);
-                    mainCallbacks.checkUserEmail(data.get(2));
-                    mainCallbacks.insertUser(data);
-                    clearFields();
-                    mainCallbacks.onLoadMainActivity();
+                person.setUsername(edt_username.getText().toString());
+                person.setName(edt_name.getText().toString());
+                person.setEmail(edt_email.getText().toString());
+                person.setPhone(edt_phone.getText().toString());
+                person.setPassword(edt_password.getText().toString());
 
-                }//catch (BlankFieldsException b){}
-                catch (DataBasesException d){}
-                Toast.makeText(getActivity(), "Porque falla, pipipi", Toast.LENGTH_SHORT).show();
-
+                authenticationCognito.signUp(person);
+                clearFields();
             }
         });
 
@@ -71,14 +59,14 @@ public class RegisterFragment extends Fragment {
 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof MainCallbacks){
-             mainCallbacks = (MainCallbacks) context;
+        if (context instanceof AuthenticationCognito){
+             authenticationCognito = (AuthenticationCognito) context;
         }
     }
 
     public void clearFields() {
+        edt_username.setText("");
         edt_name.setText("");
-        edt_lastName.setText("");
         edt_email.setText("");
         edt_phone.setText("");
         edt_password.setText("");

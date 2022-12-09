@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.ecoclub.R;
-import com.example.ecoclub.interfaces.MainCallbacks;
+import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 public class AuthenticationFragment extends Fragment {
 
@@ -20,7 +20,7 @@ public class AuthenticationFragment extends Fragment {
 
     private Button btn_login;
     private Button btn_register;
-    private MainCallbacks mainCallbacks;
+    private AuthenticationCognito authenticationCognito;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,14 +34,14 @@ public class AuthenticationFragment extends Fragment {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainCallbacks.onReplaceFragmentAnotherFragment(NAME_FRAGMENT[0]);
+                authenticationCognito.replaceFragmentAnotherFragment(NAME_FRAGMENT[0]);
             }
         });
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainCallbacks.onReplaceFragmentAnotherFragment(NAME_FRAGMENT[1]);
+                authenticationCognito.replaceFragmentAnotherFragment(NAME_FRAGMENT[1]);
             }
         });
 
@@ -52,8 +52,8 @@ public class AuthenticationFragment extends Fragment {
 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof MainCallbacks){
-            mainCallbacks = (MainCallbacks) context;
+        if (context instanceof AuthenticationCognito){
+            authenticationCognito = (AuthenticationCognito) context;
         }
     }
 
