@@ -2,12 +2,12 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!--Cuando se presiona el icono del bottom navigation-->
     <item android:state_pressed="true"
-        android:color="@color/white" />
+        android:color="@color/state_pressed" />
 
     <!--Cuando el icono del bottom navigation esta seleccionado-->
     <item android:state_selected="true"
-        android:color="@color/black" />
+        android:color="@color/state_selected" />
     <!--Cuando el icono del bottom navigation no se presiona-->
     <item android:state_pressed="false"
-        android:color="#434141" />
+        android:color="@color/state_not_pressed" />
 </selector>

@@ -20,4 +20,9 @@
     <color name="gray_light">#DADADA</color>
     <color name="transparent">#00DFDFDF</color>
 
+    <!--Iconos de BottomNavigationView-->
+    <color name="state_pressed">#009688</color>
+    <color name="state_selected">#000000</color>
+    <color name="state_not_pressed">#434141</color>
+
 </resources>
