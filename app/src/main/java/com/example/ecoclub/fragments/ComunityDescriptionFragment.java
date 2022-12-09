@@ -92,7 +92,7 @@ public class ComunityDescriptionFragment extends Fragment {
         }
         //enviamos los datos al adaptador de Comunidad
         AdapterComunityDescription adapter = new AdapterComunityDescription(
-                listMembersComunity);
+                listMembersComunity, getActivity());
         //por ultimo al recycler le enviamos el adaptador de la Comunidad
         recyclerComunityDescription.setAdapter(adapter);
         ///===================================

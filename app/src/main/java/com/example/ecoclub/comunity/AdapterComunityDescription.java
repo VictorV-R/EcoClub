@@ -7,10 +7,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecoclub.R;
 import com.example.ecoclub.View.Rectangulo;
+import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 
 import java.util.ArrayList;
 
@@ -19,9 +21,12 @@ public class AdapterComunityDescription extends
 
     //lista de miembros
     private ArrayList<Member> listMembersComunity;
+    private FragmentActivity main;
 
-    public AdapterComunityDescription(ArrayList<Member> listMembersComunity) {
+    public AdapterComunityDescription(ArrayList<Member> listMembersComunity,
+                                      FragmentActivity activity) {
         this.listMembersComunity = listMembersComunity;
+        this.main = activity;
     }
 
     @NonNull
@@ -36,6 +41,8 @@ public class AdapterComunityDescription extends
     @Override
     public void onBindViewHolder(@NonNull AdapterComunityDescription.ViewHolderData holder, int position) {
         holder.cargarDatos(listMembersComunity.get(position));
+        //evento-llamamos al View Rectangulo
+        holder.btnMember.setOnClickListener(eventMemberComunity);
     }
 
     @Override
@@ -43,11 +50,28 @@ public class AdapterComunityDescription extends
         return listMembersComunity.size();
     }
 
+
+    //evento=================================================
+    //otra forma de llegar al MainActivity
+    //recibiendo el getActivity() desde el fragment
+    //y pasandolo por el constructor del adapter
+    View.OnClickListener eventMemberComunity = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), "Ver miembro", Toast.LENGTH_LONG).show();
+            //como se tiene el id se puede hacer consultas
+            //por ahora mandamos datos por defecto
+            MessageDialogMemberComunity.newInstance(
+                    "Miembro","Luis", "Veterano","21")
+                    .show(main.getSupportFragmentManager(), null);
+        }
+    };//=======================================================
+
     //clase ViewHolder
     public class ViewHolderData extends RecyclerView.ViewHolder {
-        private TextView textNameComunityDescription;
-        private int id;
-        private Rectangulo btnMember;
+        TextView textNameComunityDescription;
+        int id;
+        Rectangulo btnMember;
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
@@ -60,16 +84,6 @@ public class AdapterComunityDescription extends
         public void cargarDatos(Member member) {
             this.id = member.getId();
             this.textNameComunityDescription.setText(member.getNameMember());
-            //evento-llamamos al View Rectangulo
-            this.btnMember.setOnClickListener(eventMemberComunity);
         }
-
-        //evento
-        View.OnClickListener eventMemberComunity = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Ver miembro", Toast.LENGTH_LONG).show();
-            }
-        };
     }
 }
