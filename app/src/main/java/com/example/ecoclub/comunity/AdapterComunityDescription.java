@@ -71,9 +71,11 @@ public class AdapterComunityDescription extends
         }
 
         //evento=================================================
-        //otra forma de llegar al MainActivity
         //recibiendo el getActivity() desde el fragment
         //y pasandolo por el constructor del adapter
+        //=======================================================
+        //otra forma de llegar al MainActivity es a traves de un Broadcast
+        //aunque se reiniciaria el activity
         View.OnClickListener eventMemberComunity = new View.OnClickListener() {
             @Override
             public void onClick(View view) {

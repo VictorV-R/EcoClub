@@ -1,18 +1,12 @@
 package com.example.ecoclub;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.ecoclub.comunity.ComunityBroadcastReceiver;
 import com.example.ecoclub.fragments.CollaborateFragment;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
@@ -26,25 +20,17 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
 
-    BottomNavigationView bottomNavigationView;
-
+    private FragmentTransaction ft;
+    private BottomNavigationView bottomNavigationView;
     //Bottom Navigation-Fragments
-    HomeFragment homeFragment = new HomeFragment();
-    MapsFragment mapsFragment = new MapsFragment();
-    ComunityFragment comunityFragment = new ComunityFragment();
-    CollaborateFragment collaborateFragment = new CollaborateFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
+    private HomeFragment homeFragment = new HomeFragment();
+    private MapsFragment mapsFragment = new MapsFragment();
+    private ComunityFragment comunityFragment = new ComunityFragment();
+    private CollaborateFragment collaborateFragment = new CollaborateFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
     //Otros-Fragments
-    MyComunityFragment myComunityFragment = new MyComunityFragment();
-    ComunityDescriptionFragment comunityDescriptionFragment = new ComunityDescriptionFragment();
-
-    //broadcast Receiver
-    protected  static ComunityBroadcastReceiver myBroadcastReceiver =
-            new ComunityBroadcastReceiver();
-    protected IntentFilter intentFilterDescriptionComunity =
-            new IntentFilter("SOME_ACTION_DESCRIPTION_COMUNITY");
-    protected IntentFilter intentFilterDescriptionMyComunity =
-            new IntentFilter("SOME_ACTION_DESCRIPTION_MY_COMUNITY");
+    private MyComunityFragment myComunityFragment = new MyComunityFragment();
+    private ComunityDescriptionFragment comunityDescriptionFragment = new ComunityDescriptionFragment();
 
     String api="18f1b34a081148119e242db1fb37a8e9";
     @Override
@@ -54,86 +40,85 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container, homeFragment);
+        //ft.setReorderingAllowed(true);
+        ft.addToBackStack(null); //agregado para que se pueda retroceder en los fragments
+        ft.commit();
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
-                        return true;
-                    case R.id.maps:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, mapsFragment).commit();
-                        return true;
-                    case R.id.comunity:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, comunityFragment).commit();
-                        return true;
-                    case R.id.collaborate:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, collaborateFragment).commit();
-                        return true;
-                    case R.id.profile:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
-                        return true;
-                }
-                return false;
+        //evento del bottom navigation view
+        bottomNavigationView.setOnItemSelectedListener(eventoBottomNavigationView);
+
+    }
+
+    //evento del bottom navigation view*****************************************
+    private NavigationBarView.OnItemSelectedListener eventoBottomNavigationView =
+            new NavigationBarView.OnItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+
+            //limpiando back stack
+            clearBackStack();
+
+            ft = getSupportFragmentManager().beginTransaction();
+
+            switch (item.getItemId()){
+                case R.id.home:
+                    ft.replace(R.id.container, homeFragment);
+                    //ft.setReorderingAllowed(true);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    return true;
+                case R.id.maps:
+                    ft.replace(R.id.container, mapsFragment);
+                    //ft.setReorderingAllowed(true);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    return true;
+                case R.id.comunity:
+                    ft.replace(R.id.container, comunityFragment);
+                    //ft.setReorderingAllowed(true);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    return true;
+                case R.id.collaborate:
+                    ft.replace(R.id.container, collaborateFragment);
+                    //ft.setReorderingAllowed(true);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    return true;
+                case R.id.profile:
+                    ft.replace(R.id.container, profileFragment);
+                    //ft.setReorderingAllowed(true);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    return true;
             }
-        });
-
-        //BROADCAST RECEIVER
-        //se utiliza en Comunity y MyComunity para acceder al fragment ComunityDescription
-        broadcastReceiverComunity();
-    }
-
-    //broadcast Receiver metodos*****************************************************************
-    //metodo general donde se ve que fragment se llama
-    private void broadcastReceiverComunity() {
-        String mensajeIdComunity = "";
-
-        //Devuelve verdadero si un valor extra está asociado con el nombre dado
-        //Descripcion Comunity-Fragment
-        if (getIntent().hasExtra("BroadcastReceiverDescriptionComunity")){
-            mensajeIdComunity = getIntent().getStringExtra(
-                    "BroadcastReceiverDescriptionComunity");
-            //metodo del activity
-            broadcastComunityDescriptionFragment(comunityDescriptionFragment, mensajeIdComunity);
+            return false;
         }
-    }
+    };
 
-    //habilitamos y enviamos informacio al fragment ComunityDescription
-    private void broadcastComunityDescriptionFragment(
-            ComunityDescriptionFragment comunityDescriptionFragment, String mensajeIdComunity) {
-        //enviamos id al fragment.............
-        Bundle enviarMensaje = new Bundle();
-        enviarMensaje.putString("id", mensajeIdComunity);
-        comunityDescriptionFragment.setArguments(enviarMensaje);
-        //...................................
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.container, comunityDescriptionFragment).commit();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerReceiver(myBroadcastReceiver, intentFilterDescriptionComunity);
-        registerReceiver(myBroadcastReceiver, intentFilterDescriptionMyComunity);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(myBroadcastReceiver);
-        unregisterReceiver(myBroadcastReceiver);
-    }
-    //****************************************************************************************
-
-    //Metodo llamado por el fragment
+    //Metodo llamado por el fragment**********************************************
     @Override
     public void changeFragmentInMain(String destiny) {
         //ingresar fragment My Comunity
         if (destiny.equalsIgnoreCase(MyComunityFragment.DESTINY)){
-            getSupportFragmentManager().beginTransaction().replace(
-                    R.id.container, myComunityFragment).commit();
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container, myComunityFragment);
+            //ft.setReorderingAllowed(true);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
+
+    //para limpiar el back stack*************************************************
+    private void clearBackStack() {
+        FragmentManager manager = getSupportFragmentManager();
+        //solo dejamos el Home Fragment (> 1 e index 1)
+        if (manager.getBackStackEntryCount() > 1) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(1);
+            manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
+
 }
