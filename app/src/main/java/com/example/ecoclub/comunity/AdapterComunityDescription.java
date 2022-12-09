@@ -40,9 +40,8 @@ public class AdapterComunityDescription extends
 
     @Override
     public void onBindViewHolder(@NonNull AdapterComunityDescription.ViewHolderData holder, int position) {
-        holder.cargarDatos(listMembersComunity.get(position));
-        //evento-llamamos al View Rectangulo
-        holder.btnMember.setOnClickListener(eventMemberComunity);
+        //le enviamos el main al ViewHolder
+        holder.cargarDatos(listMembersComunity.get(position), main);
     }
 
     @Override
@@ -50,28 +49,11 @@ public class AdapterComunityDescription extends
         return listMembersComunity.size();
     }
 
-
-    //evento=================================================
-    //otra forma de llegar al MainActivity
-    //recibiendo el getActivity() desde el fragment
-    //y pasandolo por el constructor del adapter
-    View.OnClickListener eventMemberComunity = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Ver miembro", Toast.LENGTH_LONG).show();
-            //como se tiene el id se puede hacer consultas
-            //por ahora mandamos datos por defecto
-            MessageDialogMemberComunity.newInstance(
-                    "Miembro","Luis", "Veterano","21")
-                    .show(main.getSupportFragmentManager(), null);
-        }
-    };//=======================================================
-
     //clase ViewHolder
     public class ViewHolderData extends RecyclerView.ViewHolder {
-        TextView textNameComunityDescription;
-        int id;
-        Rectangulo btnMember;
+        private TextView textNameComunityDescription;
+        private int id;
+        private Rectangulo btnMember;
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
@@ -81,9 +63,27 @@ public class AdapterComunityDescription extends
                     R.id.onClickComunityMember);
         }
 
-        public void cargarDatos(Member member) {
+        public void cargarDatos(Member member, FragmentActivity main) {
             this.id = member.getId();
             this.textNameComunityDescription.setText(member.getNameMember());
+            //evento-llamamos al View Rectangulo
+            this.btnMember.setOnClickListener(eventMemberComunity);
         }
+
+        //evento=================================================
+        //otra forma de llegar al MainActivity
+        //recibiendo el getActivity() desde el fragment
+        //y pasandolo por el constructor del adapter
+        View.OnClickListener eventMemberComunity = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Ver miembro", Toast.LENGTH_LONG).show();
+                //como se tiene el id se puede hacer consultas
+                //por ahora mandamos datos por defecto
+                MessageDialogMemberComunity.newInstance(
+                                "Miembro de la Comunidad","Miembro "+id, "Veterano","21")
+                        .show(main.getSupportFragmentManager(), null);
+            }
+        };//=======================================================
     }
 }
