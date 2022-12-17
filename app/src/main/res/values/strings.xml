@@ -23,8 +23,8 @@
     <string name="title_confirmation">CONFIRMAR CUENTA</string>
     <string name="hint_email">Correo</string>
     <string name="hint_password">Contraseña</string>
-    <string name="hint_username">Usuario</string>
-    <string name="hint_name">Nombre y Apellido</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_lastName">Apellidos</string>
     <string name="hint_phone">Celular</string>
     <string name="hint_code">Codigo de Verificacion</string>
     <string name="txt_btn_login">Iniciar Sesión</string>

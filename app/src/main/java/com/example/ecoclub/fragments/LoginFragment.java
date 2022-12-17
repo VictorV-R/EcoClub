@@ -11,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.ecoclub.R;
 import com.example.ecoclub.exceptions.BlankFieldsException;
-import com.example.ecoclub.exceptions.DataBasesException;
 import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 import java.util.ArrayList;
@@ -23,20 +21,16 @@ import java.util.ArrayList;
 public class LoginFragment extends Fragment{
 
     private Button btn_login;
-    private EditText edt_username, edt_password;
-    private ArrayList<String> data;
+    private EditText edt_email, edt_password;
 
     private AuthenticationCognito authenticationCognito;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        data = new ArrayList<String>();
-
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        edt_username = view.findViewById(R.id.edt_username);
+        edt_email = view.findViewById(R.id.edt_name);
         edt_password = view.findViewById(R.id.edt_password);
         btn_login = view.findViewById(R.id.btn_login);
 
@@ -44,11 +38,21 @@ public class LoginFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                String username = edt_username.getText().toString();
-                String password = edt_password.getText().toString();
+                try {
+                    String username = edt_email.getText().toString();
+                    String password = edt_password.getText().toString();
 
-                authenticationCognito.signIn(username, password);
-                clearFields();
+                    ArrayList<EditText> fields = new ArrayList<EditText>();
+                    fields.add(edt_email);
+                    fields.add(edt_password);
+
+                    authenticationCognito.checkEmptyFields(fields);
+                    authenticationCognito.signIn(username, password);
+                    authenticationCognito.clearFields(fields);
+
+                }catch (BlankFieldsException b){
+                    b.getMsg();
+                }
             }
         });
 
@@ -61,10 +65,4 @@ public class LoginFragment extends Fragment{
             authenticationCognito = (AuthenticationCognito) context;
         }
     }
-
-    public void clearFields() {
-        edt_username.setText("");
-        edt_password.setText("");
-    }
 }
-

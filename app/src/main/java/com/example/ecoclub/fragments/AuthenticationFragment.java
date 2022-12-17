@@ -16,7 +16,7 @@ import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 public class AuthenticationFragment extends Fragment {
 
-    private static final String [] NAME_FRAGMENT = {"LOGIN", "REGISTER"};
+    private final String [] NAME_FRAGMENT = {"LOGIN", "REGISTER"};
 
     private Button btn_login;
     private Button btn_register;
@@ -45,7 +45,6 @@ public class AuthenticationFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
 
     }

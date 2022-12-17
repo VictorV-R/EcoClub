@@ -6,15 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 
+import com.amplifyframework.auth.AuthChannelEventName;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.InitializationStatus;
+import com.amplifyframework.hub.HubChannel;
 import com.example.ecoclub.Entities.Person;
-import com.example.ecoclub.database.DBUsers;
 import com.example.ecoclub.exceptions.BlankFieldsException;
-import com.example.ecoclub.exceptions.DataBasesException;
+import com.example.ecoclub.exceptions.PasswordException;
 import com.example.ecoclub.fragments.AuthenticationFragment;
 import com.example.ecoclub.fragments.ConfirmFragment;
 import com.example.ecoclub.fragments.LoginFragment;
@@ -25,15 +29,11 @@ import java.util.ArrayList;
 
 public class AuthenticationActivity extends AppCompatActivity implements AuthenticationCognito {
 
-    private DBUsers dbUsers;
-
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-
-        dbUsers = new DBUsers(getApplicationContext());
-        loadSesion();
 
         AuthenticationFragment authenticationFragment = new AuthenticationFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, authenticationFragment).commit();
@@ -54,44 +54,42 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     }
 
     @Override
-    public void checkEmptyFields (ArrayList<String> data) throws BlankFieldsException {
-        for (String d: data) {
-            if(d.length() == 0) throw new BlankFieldsException(getApplicationContext(), "Complete todos los campos!!");
+    public void checkEmptyFields (ArrayList<EditText> fields) throws BlankFieldsException {
+        for (EditText e: fields) {
+            if(e.getText().toString().equals("")) throw new BlankFieldsException(getApplicationContext());
         }
     }
 
     @Override
-    public void checkUserEmailPassword(ArrayList<String> data) throws DataBasesException {
-        dbUsers.checkUserEmailPassword(data);
+    public void clearFields (ArrayList<EditText> fields) {
+        for (EditText e: fields) {
+            e.setText("");
+        }
     }
 
     @Override
-    public void checkUserEmail(String email) throws DataBasesException {
-        dbUsers.checkUserEmail(email);
-    }
-
-    @Override
-    public void insertUser(ArrayList<String> data) throws DataBasesException {
-        dbUsers.insertUser(data);
+    public void passwordValidation(EditText password) throws PasswordException {
+        if(password.getText().length() < 8); throw new PasswordException(getApplicationContext());
     }
 
     @Override
     public void signUp(Person person){
 
         ArrayList<AuthUserAttribute> attributes = new ArrayList<>();
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), person.getEmail()));
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.phoneNumber(), person.getPhone()));
         attributes.add(new AuthUserAttribute(AuthUserAttributeKey.name(), person.getName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.familyName(), person.getName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), person.getLastName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.phoneNumber(), person.getPhone()));
 
         Amplify.Auth.signUp(
-                person.getUsername(),
+                person.getEmail(),
                 person.getPassword(),
                 AuthSignUpOptions.builder().userAttributes(attributes).build(),
                 result -> {
-                    Log.i("AuthQuickstart", result.toString());
-                    loadConfirmFragment(person.getUsername());
+                    Log.i("Prueba de Registro", result.toString());
+                    loadConfirmFragment(person.getEmail());
                 },
-                error -> Log.e("AuthQuickstart", error.toString())
+                error -> Log.e("Prueba de registro", error.toString())
         );
     }
     @Override
@@ -123,6 +121,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     public void loadLoginFragment(){
         LoginFragment loginFragment = new LoginFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,loginFragment).addToBackStack(null).commit();
+        loadSesion();
     }
 
     public void loadConfirmFragment(String username){
@@ -144,9 +143,20 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     }
 
     public void loadSesion (){
+
         Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
+                result -> {
+                    AWSCognitoAuthSession cognitoAuthSession = (AWSCognitoAuthSession) result;
+                    switch(cognitoAuthSession.getIdentityIdResult().getType()) {
+                        case SUCCESS:
+                            Log.i("AuthQuickStart", "IdentityId: " + cognitoAuthSession.getIdentityIdResult().getValue());
+                            loadMainActivity();
+                            break;
+                        case FAILURE:
+                            Log.i("AuthQuickStart", "IdentityId not present because: " + cognitoAuthSession.getIdentityIdResult().getError().toString());
+                    }
+                },
+                error -> Log.e("AuthQuickStart", error.toString())
         );
     }
 }

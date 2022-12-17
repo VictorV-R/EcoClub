@@ -1,30 +1,31 @@
 package com.example.ecoclub.Entities;
 
 public class Person {
-    private String username;
+    //Attributes
     private String name;
+    private String lastName;
     private String email;
     private String phone;
     private String password;
 
-    public Person() {
+    //Constructors
+    public Person() {}
 
-    }
-
-    public Person(String username, String name, String email, String phone, String password) {
-        this.username = username;
-        this.name = name;
+    public Person(String email, String name, String lastName, String phone, String password) {
         this.email = email;
+        this.name = name;
+        this.lastName = lastName;
         this.phone = phone;
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    //methods getters and setters
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -35,12 +36,12 @@ public class Person {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {

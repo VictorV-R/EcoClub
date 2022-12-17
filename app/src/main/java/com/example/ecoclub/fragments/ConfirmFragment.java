@@ -13,7 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.ecoclub.R;
+import com.example.ecoclub.exceptions.BlankFieldsException;
 import com.example.ecoclub.interfaces.AuthenticationCognito;
+
+import java.util.ArrayList;
 
 
 public class ConfirmFragment extends Fragment {
@@ -35,13 +38,24 @@ public class ConfirmFragment extends Fragment {
         btn_confirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String code = edt_code.getText().toString();
-                authenticationCognito.confirmSignUp(username, code);
-                clearFields();
+
+                try {
+                    String code = edt_code.getText().toString();
+
+                    ArrayList<EditText> fields = new ArrayList<EditText>();
+                    fields.add(edt_code);
+
+                    authenticationCognito.checkEmptyFields(fields);
+                    authenticationCognito.confirmSignUp(username, code);
+                    authenticationCognito.clearFields(fields);
+
+                }catch (BlankFieldsException b){
+                    b.getMsg();
+                }
+
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -54,9 +68,5 @@ public class ConfirmFragment extends Fragment {
 
     public void assignUsername(String username) {
         this.username = username;
-    }
-
-    public void clearFields() {
-        edt_code.setText("");
     }
 }

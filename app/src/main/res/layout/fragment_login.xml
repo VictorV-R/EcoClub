@@ -53,17 +53,17 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edt_username"
+        android:id="@+id/edt_name"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginTop="45dp"
         android:autofillHints="emailAddress"
         android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/ic_profile"
+        android:drawableStart="@drawable/ic_email_focused"
         android:drawablePadding="12dp"
         android:ems="10"
         android:fontFamily="@font/baskervville_regular"
-        android:hint="@string/hint_username"
+        android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
         android:paddingStart="12dp"
         android:textColorHint="@color/gray"
@@ -83,7 +83,7 @@
         android:drawableStart="@drawable/custom_ic_lock"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
+        android:fontFamily="@font/baskervville_regular"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:paddingStart="12dp"
@@ -92,7 +92,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_username" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
     <Button
         android:id="@+id/btn_login"
