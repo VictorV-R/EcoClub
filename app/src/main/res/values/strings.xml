@@ -39,9 +39,15 @@
     <!-- Strings related to profile Fragment -->
     <string name="txt_rbtn_option1">Mi perfil</string>
     <string name="txt_rbtn_option2">Mis logros</string>
+
+    <!-- Strings related to profile-Datos Fragment -->
     <string name="txt_label_nombre">Nombres</string>
     <string name="txt_label_apellido">Apellidos</string>
     <string name="txt_label_celular">Numero de celular</string>
     <string name="txt_label_email">Correo electrónico</string>
+
+    <!-- Strings related to Profile-Logros Fragment -->
+    <string name="txt_logros">Logros</string>
+    <string name="txt_comunidades">Comunidades</string>
 
 </resources>

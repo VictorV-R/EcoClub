@@ -6,14 +6,92 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileLogrosFragment">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="320dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewNumLogros"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/bg_btn_datos"
+                android:fontFamily="@font/bhavuka_regular"
+                android:text="(backend)"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="39dp" />
+
+            <TextView
+                android:id="@+id/textViewLogros"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/txt_logros"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:fontFamily="@font/bhavuka_regular"
+                tools:layout_editor_absoluteX="94dp"
+                tools:layout_editor_absoluteY="87dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewNumComunidades"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="@font/bhavuka_regular"
+                android:text="(backend)"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_btn_datos"
+                android:layout_marginLeft="5dp"
+                tools:layout_editor_absoluteX="279dp"
+                tools:layout_editor_absoluteY="41dp" />
+
+            <TextView
+                android:id="@+id/textViewComunidades"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:fontFamily="@font/bhavuka_regular"
+                android:text="@string/txt_comunidades"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="268dp"
+                tools:layout_editor_absoluteY="87dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageViewPlanta"
         android:layout_width="195dp"
         android:layout_height="154dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="28dp"
         android:src="@drawable/planta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
