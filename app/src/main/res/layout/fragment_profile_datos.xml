@@ -1,130 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ProfileDatosFragment">
+    tools:context=".fragments.ProfileDatosFragment"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:layout_width="134dp"
+        android:layout_height="148dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/abrazo" />
 
-    <TextView
-        android:id="@+id/textViewNombre"
-        android:layout_width="200dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_nombre"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewApellido"
-        android:layout_width="200dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_apellido"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNombre" />
+        <TextView
+            android:id="@+id/textViewNombre"
+            android:layout_width="200dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_label_nombre"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="200dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_email"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextApellido" />
+        <EditText
+            android:id="@+id/editTextTextNombre"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="@font/bhavuka_regular"
+            android:inputType="textPersonName"
+            android:text="(poner nombre backend)" />
 
-    <TextView
-        android:id="@+id/textViewCelular"
-        android:layout_width="200dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_celular"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        <TextView
+            android:id="@+id/textViewApellido"
+            android:layout_width="200dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_label_apellido"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextTextNombre"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:inputType="textPersonName"
-        android:text="(poner nombre backend)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
+        <EditText
+            android:id="@+id/editTextApellido"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="@font/bhavuka_regular"
+            android:inputType="textPersonName"
+            android:text="(poner nombre bckend)" />
 
-    <EditText
-        android:id="@+id/editTextApellido"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:inputType="textPersonName"
-        android:text="(poner nombre bckend)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewApellido" />
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="200dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_label_email"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:inputType="textEmailAddress"
-        android:text="(poner correo backend)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
+        <TextView
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="200dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="(poner correo backend)"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:inputType="textPersonName"
-        android:text="(poner celular backend)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCelular" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textViewCelular"
+            android:layout_width="200dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_label_celular"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName4"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="@font/bhavuka_regular"
+            android:inputType="textPersonName"
+            android:text="(poner celular backend)" />
+
+    </LinearLayout>
+
+</LinearLayout>
