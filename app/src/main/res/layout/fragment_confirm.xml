@@ -7,7 +7,6 @@
     android:background="@drawable/bg_desing_base"
     tools:context=".fragments.LoginFragment">
 
-
     <ImageView
         android:id="@+id/img_planet"
         android:layout_width="100dp"
@@ -38,14 +37,14 @@
 
     <TextView
         android:id="@+id/app_name"
-        android:layout_width="95dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_fragment"
-        android:text="@string/title_login"
+        android:text="@string/title_confirmation"
         android:fontFamily="@font/bhavuka_regular"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -53,18 +52,17 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edt_name"
+        android:id="@+id/edt_code"
         android:layout_width="250dp"
         android:layout_height="35dp"
-        android:layout_marginTop="45dp"
-        android:autofillHints="emailAddress"
+        android:layout_marginTop="50dp"
         android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/ic_email_focused"
+        android:drawableStart="@drawable/ic_key"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:fontFamily="@font/baskervville_regular"
-        android:hint="@string/hint_email"
-        android:inputType="textEmailAddress"
+        android:fontFamily="@font/bhavuka_regular"
+        android:hint="@string/hint_code"
+        android:inputType="number"
         android:paddingStart="12dp"
         android:textColorHint="@color/gray"
         android:textSize="20sp"
@@ -73,35 +71,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_name" />
 
-    <EditText
-        android:id="@+id/edt_password"
-        android:layout_width="250dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:autofillHints="password"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/custom_ic_lock"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:fontFamily="@font/baskervville_regular"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:paddingStart="12dp"
-        android:textColorHint="@color/gray"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
-
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_confirmation"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/bg_btn_primary"
         android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_btn_login"
+        android:text="@string/txt_btn_confirmation"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -109,6 +86,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_code" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,12 +3,12 @@ package com.example.ecoclub.exceptions;
 import android.content.Context;
 import android.widget.Toast;
 
-public class BlankFieldsException extends Exception{
+public class PasswordException extends Exception{
 
     private String msg;
     private Context context;
 
-    public BlankFieldsException(Context context){
+    public PasswordException(Context context){
         this.context = context;
         this.msg = "Complete todo los campos";
     }
