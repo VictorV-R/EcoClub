@@ -1,15 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ComunityDescriptionFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <com.example.ecoclub.View.Circle
+        android:id="@+id/circle5"
+        android:layout_width="210dp"
+        android:layout_height="216dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="190dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/idnp_person_8"
+        app:layout_constraintBottom_toBottomOf="@+id/circle5"
+        app:layout_constraintEnd_toEndOf="@+id/circle5"
+        app:layout_constraintStart_toStartOf="@+id/circle5"
+        app:layout_constraintTop_toTopOf="@+id/circle5"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/msgComunityDescription"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/string_comunity_description"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msgComunityDescriptionName" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/msgComunityDescriptionName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/string_comunity_name"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle5" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRecyclerComunityDescription"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msgComunityDescription"
+        app:layout_constraintVertical_bias="0.578" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

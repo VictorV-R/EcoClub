@@ -6,7 +6,7 @@
     <!-- Strings related to BottomNavigation -->
     <string name="home">Home</string>
     <string name="mapa">Mapa</string>
-    <string name="comunidades">Comunidades</string>
+    <string name="comunidades">Comunidad</string>
     <string name="colabora">Colabora</string>
     <string name="perfil">Pefil</string>
 
@@ -16,6 +16,9 @@
     <string name="resultados">Resultados</string>
     <string name="nombreComunidad">Comunidad Verde</string>
     <string name="misComunidades">Mis Comunidades</string>
+    <string name="string_comunity_description">Descripcion de la Comunidad</string>
+    <string name="string_comunity_name">Nombre de la Comunidad</string>
+    <string name="nombre_miembro_comunidad">Miembro n</string>
 
     <!-- Strings related to authentication -->
     <string name="title_login">LOGIN</string>

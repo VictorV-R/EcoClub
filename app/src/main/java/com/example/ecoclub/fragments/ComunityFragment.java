@@ -64,7 +64,8 @@ public class ComunityFragment extends Fragment {
                     "Comunidad "+ (i+1)));
         }
         //enviamos los datos al adaptador de Comunidad
-        AdapterComunity adapter = new AdapterComunity(listComunity);
+        //le damos el getActivity para que se pueda cambiar de fragment en el adapter
+        AdapterComunity adapter = new AdapterComunity(listComunity, getActivity());
         //por ultimo al recycler le enviamos el adaptador de la Comunidad
         recycler.setAdapter(adapter);
         ///===================================

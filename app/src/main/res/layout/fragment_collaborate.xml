@@ -12,22 +12,24 @@
         android:layout_width="231dp"
         android:layout_height="226dp"
         android:layout_marginTop="32dp"
-        android:src="@drawable/abrazo"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonCrearComunity"
+        android:background="@drawable/bg_btn_create_comunidad"
         android:layout_width="226dp"
         android:layout_height="56dp"
         android:layout_marginTop="116dp"
         android:fontFamily="@font/bhavuka_regular"
         android:text="@string/txt_btn_crearCom"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="23sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

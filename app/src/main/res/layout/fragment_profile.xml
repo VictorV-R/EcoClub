@@ -7,6 +7,22 @@
     android:background="@drawable/bg_design_profile"
     tools:context=".fragments.ProfileFragment">
 
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="138dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="127dp"
+        android:src="@drawable/abrazo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <RadioGroup
         android:id="@+id/radioGroupBotones"
         android:layout_width="290dp"
@@ -16,7 +32,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="350dp"
+        android:layout_marginBottom="380dp"
         android:background="@drawable/radio_button_left_unchecked"
         android:gravity="center"
         android:orientation="horizontal">
@@ -29,9 +45,13 @@
             android:background="@drawable/radio_button_left_selector"
             android:button="@color/transparent"
             android:checked="true"
+            android:fontFamily="@font/bhavuka_regular"
             android:gravity="center"
             android:text="@string/txt_rbtn_option1"
-            android:textColor="@color/black"/>
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/radioButtonRight"
@@ -42,82 +62,22 @@
             android:button="@color/transparent"
             android:gravity="center"
             android:text="@string/txt_rbtn_option2"
-            android:textColor="@color/black"/>
+            android:textColor="@color/gray"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bhavuka_regular"/>
     </RadioGroup>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
+    <FrameLayout
+        android:id="@+id/child_fragment_container"
+        android:layout_width="wrap_content"
+        android:layout_height="371dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/img_profile"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/alt_image"
-            android:src="@drawable/ic_account_circle"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:id="@+id/txt_completeName"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/bhavuka_regular"
-            android:text="Nombre y apellido"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_email"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/bhavuka_regular"
-            android:text="correo@gmail.com"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txt_phone"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/bhavuka_regular"
-            android:text="915909135"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:text="Logout" />
-
-            <Button
-                android:id="@+id/btn_remove"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="50dp"
-                android:text="Remove" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="0dp"></FrameLayout>
 
 </RelativeLayout>
