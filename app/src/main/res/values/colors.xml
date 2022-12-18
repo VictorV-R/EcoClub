@@ -7,6 +7,7 @@
     <color name="color_quaternary">#EE4953</color>
     <color name="color_quinary">#934CCB</color>
     <color name="bg_edt">#EBE4D4</color>
+    <color name="color_content">#FFEFCD8C</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -16,5 +17,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#808080</color>
+    <color name="gray_light">#DADADA</color>
+    <color name="transparent">#00DFDFDF</color>
+
+    <!--Iconos de BottomNavigationView-->
+    <color name="state_pressed">#009688</color>
+    <color name="state_selected">#000000</color>
+    <color name="state_not_pressed">#434141</color>
 
 </resources>

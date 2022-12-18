@@ -10,6 +10,14 @@
       "StackName": "amplify-ecoclub-dev-175007",
       "StackId": "arn:aws:cloudformation:sa-east-1:346426023469:stack/amplify-ecoclub-dev-175007/2e8ee6b0-7038-11ed-a3b8-028fe5ed2014",
       "AmplifyAppId": "d1r8oyqfx4gfzn"
+    },
+    "categories": {
+      "api": {
+        "ecoclub": {}
+      },
+      "auth": {
+        "ecoclubba652e23": {}
+      }
     }
   }
 }

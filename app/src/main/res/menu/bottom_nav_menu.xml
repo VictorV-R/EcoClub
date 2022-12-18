@@ -3,10 +3,16 @@
     <item android:id="@+id/home"
         android:title="@string/home"
         android:icon="@drawable/ic_baseline_home_24"/>
-    <item android:id="@+id/comunity"
-        android:title="Comunity"
-        android:icon="@drawable/ic_baseline_people_24"/>
     <item android:id="@+id/maps"
-        android:title="Maps"
-        android:icon="@drawable/ic_baseline_map_24"/>
+        android:title="@string/mapa"
+        android:icon="@drawable/ic_baseline_location_on_24"/>
+    <item android:id="@+id/comunity"
+        android:title="@string/comunidades"
+        android:icon="@drawable/ic_baseline_groups_24"/>
+    <item android:id="@+id/collaborate"
+        android:title="@string/colabora"
+        android:icon="@drawable/ic_baseline_favorite_24"/>
+    <item android:id="@+id/profile"
+        android:title="@string/perfil"
+        android:icon="@drawable/ic_profile"/>
 </menu>

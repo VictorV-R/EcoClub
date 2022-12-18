@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.ecoclub.Entities.Person;
 import com.example.ecoclub.R;
 import com.example.ecoclub.exceptions.BlankFieldsException;
-import com.example.ecoclub.exceptions.DataBasesException;
-import com.example.ecoclub.interfaces.MainCallbacks;
+import com.example.ecoclub.exceptions.PasswordException;
+import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 import java.util.ArrayList;
 
@@ -24,15 +24,15 @@ public class RegisterFragment extends Fragment {
 
     private Button btn_register;
     EditText edt_name, edt_lastName, edt_email, edt_phone, edt_password;
-    private ArrayList<String> data;
+    private Person person;
 
-    private MainCallbacks mainCallbacks;
+    private AuthenticationCognito authenticationCognito;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        data = new ArrayList<String>();
+        person = new Person();
 
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         edt_name = view.findViewById(R.id.edt_name);
@@ -46,23 +46,32 @@ public class RegisterFragment extends Fragment {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    data.add(edt_name.getText().toString());
-                    data.add(edt_lastName.getText().toString());
-                    data.add(edt_email.getText().toString());
-                    data.add(edt_phone.getText().toString());
-                    data.add(edt_password.getText().toString());
 
-                    //mainCallbacks.checkEmptyFields(data);
-                    mainCallbacks.checkUserEmail(data.get(2));
-                    mainCallbacks.insertUser(data);
-                    clearFields();
-                    mainCallbacks.onLoadMainActivity();
+                //try {
+                    ArrayList<EditText> fields = new ArrayList<EditText>();
+                    fields.add(edt_name);
+                    fields.add(edt_lastName);
+                    fields.add(edt_email);
+                    fields.add(edt_phone);
+                    fields.add(edt_password);
 
-                }//catch (BlankFieldsException b){}
-                catch (DataBasesException d){}
-                Toast.makeText(getActivity(), "Porque falla, pipipi", Toast.LENGTH_SHORT).show();
+                    //authenticationCognito.checkEmptyFields(fields);
+                    //authenticationCognito.passwordValidation(edt_password);
 
+                    person.setEmail(edt_name.getText().toString());
+                    person.setName(edt_lastName.getText().toString());
+                    person.setLastName(edt_email.getText().toString());
+                    person.setPhone(edt_phone.getText().toString());
+                    person.setPassword(edt_password.getText().toString());
+
+                    authenticationCognito.signUp(person);
+                    authenticationCognito.clearFields(fields);
+
+                //}catch (BlankFieldsException b){
+                    //b.getMsg();
+               /* }catch (PasswordException p){
+                    p.getMsg();
+                }*/
             }
         });
 
@@ -71,16 +80,8 @@ public class RegisterFragment extends Fragment {
 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof MainCallbacks){
-             mainCallbacks = (MainCallbacks) context;
+        if (context instanceof AuthenticationCognito){
+             authenticationCognito = (AuthenticationCognito) context;
         }
-    }
-
-    public void clearFields() {
-        edt_name.setText("");
-        edt_lastName.setText("");
-        edt_email.setText("");
-        edt_phone.setText("");
-        edt_password.setText("");
     }
 }
