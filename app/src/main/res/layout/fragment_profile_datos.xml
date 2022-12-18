@@ -30,7 +30,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/editTextNombre"
+            android:id="@+id/textViewNombre"
             android:layout_width="200dp"
             android:layout_height="25dp"
             android:layout_marginTop="5dp"

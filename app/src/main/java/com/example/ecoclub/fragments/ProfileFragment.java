@@ -94,21 +94,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    public void loadProfile(){
-        Amplify.Auth.fetchUserAttributes(
-                result -> {
-                    Log.i("AuthQuickStart", "IdentityId: " + result.get(2).getValue());
-                },
-                error -> Log.e("AuthQuickStart", error.toString())
-            );
-    }
-    /*[AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=sub}, value=ac1297fe-4d74-4c66-b3c1-42b43835f1a6},
-    {key=AuthUserAttributeKey {attributeKey=email_verified}, value=true},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=name}, value=Walter Huaracha},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=phone_number_verified},value=false},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=phone_number},value=+51915909135},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=email}, value=whuaracha@unsa.edu.pe}]*/
-
     public void loadLogout(){
         Amplify.Auth.signOut( signOutResult -> {
             if (signOutResult instanceof AWSCognitoAuthSignOutResult.CompleteSignOut) {
