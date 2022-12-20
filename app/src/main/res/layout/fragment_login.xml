@@ -7,16 +7,15 @@
     android:background="@drawable/bg_desing_base"
     tools:context=".fragments.LoginFragment">
 
-
     <ImageView
         android:id="@+id/img_planet"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="143dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="4dp"
         android:contentDescription="@string/alt_image"
-        android:src="@drawable/planeta"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,13 +52,13 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edt_mail"
+        android:id="@+id/edt_name"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginTop="45dp"
         android:autofillHints="emailAddress"
         android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/custom_ic_email"
+        android:drawableStart="@drawable/ic_email_focused"
         android:drawablePadding="12dp"
         android:ems="10"
         android:fontFamily="@font/baskervville_regular"
@@ -83,7 +82,7 @@
         android:drawableStart="@drawable/custom_ic_lock"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
+        android:fontFamily="@font/baskervville_regular"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:paddingStart="12dp"
@@ -92,19 +91,19 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_mail" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:background="@drawable/bg_btn_primary"
         android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_btn_primary"
+        android:text="@string/txt_btn_login"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

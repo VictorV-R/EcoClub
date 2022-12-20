@@ -11,12 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.ecoclub.R;
 import com.example.ecoclub.exceptions.BlankFieldsException;
-import com.example.ecoclub.exceptions.DataBasesException;
-import com.example.ecoclub.interfaces.MainCallbacks;
+import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 import java.util.ArrayList;
 
@@ -24,37 +22,37 @@ public class LoginFragment extends Fragment{
 
     private Button btn_login;
     private EditText edt_email, edt_password;
-    private ArrayList<String> data;
 
-    private MainCallbacks mainCallbacks;
-
+    private AuthenticationCognito authenticationCognito;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        data = new ArrayList<String>();
-
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        edt_email = view.findViewById(R.id.edt_mail);
+        edt_email = view.findViewById(R.id.edt_name);
         edt_password = view.findViewById(R.id.edt_password);
         btn_login = view.findViewById(R.id.btn_login);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               try {
-                    data.add(edt_email.getText().toString());
-                    data.add(edt_password.getText().toString());
 
-                    mainCallbacks.checkEmptyFields(data);
-                    mainCallbacks.checkUserEmailPassword(data);
-                    clearFields();
-                    mainCallbacks.onLoadMainActivity();
+                try {
+                    String username = edt_email.getText().toString();
+                    String password = edt_password.getText().toString();
 
-                }catch (BlankFieldsException b){}
-                catch (DataBasesException d){}
-                Toast.makeText(getActivity(), "Porque falla, pipipi", Toast.LENGTH_SHORT).show();
+                    ArrayList<EditText> fields = new ArrayList<EditText>();
+                    fields.add(edt_email);
+                    fields.add(edt_password);
+
+                    authenticationCognito.checkEmptyFields(fields);
+                    authenticationCognito.signIn(username, password);
+                    authenticationCognito.clearFields(fields);
+
+                }catch (BlankFieldsException b){
+                    b.getMsg();
+                }
             }
         });
 
@@ -63,14 +61,8 @@ public class LoginFragment extends Fragment{
 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof MainCallbacks){
-            mainCallbacks = (MainCallbacks) context;
+        if (context instanceof AuthenticationCognito){
+            authenticationCognito = (AuthenticationCognito) context;
         }
     }
-
-    public void clearFields() {
-        edt_email.setText("");
-        edt_password.setText("");
-    }
 }
-

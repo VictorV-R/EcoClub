@@ -9,12 +9,13 @@
 
     <ImageView
         android:id="@+id/img_planet"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="113dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/alt_image"
-        android:src="@drawable/planeta"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintHorizontal_bias="0.996"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +23,7 @@
         android:id="@+id/title_fragment"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +124,7 @@
         android:drawableStart="@drawable/ic_phone"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:fontFamily="@font/baskervville_regular"
+        android:fontFamily="@font/bhavuka_regular"
         android:hint="@string/hint_phone"
         android:inputType="phone"
         android:paddingStart="12dp"
@@ -155,16 +156,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/bg_btn_primary"
         android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_btn_secondary"
+        android:text="@string/txt_btn_register"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.ecoclub.exceptions.DataBasesException;
+import com.example.ecoclub.exceptions.PasswordException;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class DBUsers extends DBHelper{
     }
 
 
-    public void insertUser(ArrayList<String> data) throws DataBasesException {
+    public void insertUser(ArrayList<String> data) throws PasswordException {
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
@@ -31,24 +31,24 @@ public class DBUsers extends DBHelper{
 
         long result = sqLiteDatabase.insert(TABLE_USERS, null, contentValues);
 
-        if(result == -1) throw new DataBasesException(context, "Error al registrarse");
+        if(result == -1);
 
     }
 
-    public void checkUserEmail(String email) throws  DataBasesException{
+    public void checkUserEmail(String email) throws PasswordException {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("Select * from users where email = ?", new String[]{email});
 
-        if(cursor.getCount() > 0) throw new DataBasesException(context, "El correo ya esta registrado, ingrese otro");
+        if(cursor.getCount() > 0);
         cursor.close();
 
     }
 
-    public void checkUserEmailPassword(ArrayList<String> data) throws  DataBasesException{
+    public void checkUserEmailPassword(ArrayList<String> data) throws PasswordException {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("Select * from users where email =? and password =?", new String[]{data.get(0), data.get(1)});
 
-        if(cursor.getCount() <= 0) throw new DataBasesException(context, "Error en el correo o contraseña");
+        if(cursor.getCount() <= 0);
         cursor.close();
 
     }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.ecoclub.View.Rectangulo
+        android:id="@+id/onClickComunityMember"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onClickComunityMember"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageMember"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="20dp"
+
+        android:padding="7dp"
+        android:scaleType="centerCrop"
+
+        app:layout_constraintBottom_toTopOf="@+id/space2"
+        app:layout_constraintStart_toStartOf="@+id/onClickComunityMember"
+        app:layout_constraintTop_toTopOf="@+id/onClickComunityMember"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_person"
+
+        app:shapeAppearanceOverlay="@style/ImageViewRedonda"/>
+
+    <TextView
+        android:id="@+id/textNameMemberComunity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="@string/nombre_miembro_comunidad"
+        app:layout_constraintBottom_toBottomOf="@+id/onClickComunityMember"
+        app:layout_constraintEnd_toEndOf="@+id/onClickComunityMember"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageMember"
+        app:layout_constraintTop_toTopOf="@+id/onClickComunityMember"
+        app:layout_constraintVertical_bias="0.617" />
+</androidx.constraintlayout.widget.ConstraintLayout>

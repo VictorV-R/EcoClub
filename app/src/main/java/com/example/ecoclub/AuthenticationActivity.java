@@ -5,28 +5,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
+import android.widget.EditText;
 
-import com.example.ecoclub.database.DBUsers;
+import com.amplifyframework.auth.AuthChannelEventName;
+import com.amplifyframework.auth.AuthUserAttribute;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.InitializationStatus;
+import com.amplifyframework.hub.HubChannel;
+import com.example.ecoclub.Entities.Person;
 import com.example.ecoclub.exceptions.BlankFieldsException;
-import com.example.ecoclub.exceptions.DataBasesException;
+import com.example.ecoclub.exceptions.PasswordException;
 import com.example.ecoclub.fragments.AuthenticationFragment;
+import com.example.ecoclub.fragments.ConfirmFragment;
 import com.example.ecoclub.fragments.LoginFragment;
 import com.example.ecoclub.fragments.RegisterFragment;
-import com.example.ecoclub.interfaces.MainCallbacks;
+import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 import java.util.ArrayList;
 
-public class AuthenticationActivity extends AppCompatActivity implements MainCallbacks {
-
-    private DBUsers dbUsers;
+public class AuthenticationActivity extends AppCompatActivity implements AuthenticationCognito {
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-
-        dbUsers = new DBUsers(getApplicationContext());
 
         AuthenticationFragment authenticationFragment = new AuthenticationFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, authenticationFragment).commit();
@@ -34,50 +41,122 @@ public class AuthenticationActivity extends AppCompatActivity implements MainCal
     }
 
     @Override
-    public void onReplaceFragmentAnotherFragment(String nameFragment) {
+    public void replaceFragmentAnotherFragment(String nameFragment) {
         switch (nameFragment){
             case "LOGIN":
-                LoginFragment loginFragment = new LoginFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,loginFragment).addToBackStack(null).commit();
+                loadLoginFragment();
                 break;
 
             case "REGISTER":
-                RegisterFragment registerFragment = new RegisterFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,registerFragment).addToBackStack(null).commit();
+                loadRegisterFragment();
                 break;
         }
     }
 
     @Override
-    public void onLoadMainActivity() {
-
-       Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-       startActivity(intent);
-
-        //Toast.makeText(getApplicationContext(), "Mummm", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void checkEmptyFields (ArrayList<String> data) throws BlankFieldsException {
-        for (String d: data) {
-            if(d.length() == 0) throw new BlankFieldsException(getApplicationContext(), "Complete todos los campos!!");
+    public void checkEmptyFields (ArrayList<EditText> fields) throws BlankFieldsException {
+        for (EditText e: fields) {
+            if(e.getText().toString().equals("")) throw new BlankFieldsException(getApplicationContext());
         }
     }
 
     @Override
-    public void checkUserEmailPassword(ArrayList<String> data) throws DataBasesException {
-        dbUsers.checkUserEmailPassword(data);
+    public void clearFields (ArrayList<EditText> fields) {
+        for (EditText e: fields) {
+            e.setText("");
+        }
     }
 
     @Override
-    public void checkUserEmail(String email) throws DataBasesException {
-        dbUsers.checkUserEmail(email);
+    public void passwordValidation(EditText password) throws PasswordException {
+        if(password.getText().length() < 8); throw new PasswordException(getApplicationContext());
     }
 
     @Override
-    public void insertUser(ArrayList<String> data) throws DataBasesException {
-        dbUsers.insertUser(data);
+    public void signUp(Person person){
+
+        ArrayList<AuthUserAttribute> attributes = new ArrayList<>();
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.name(), person.getName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.familyName(), person.getName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), person.getLastName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.phoneNumber(), person.getPhone()));
+
+        Amplify.Auth.signUp(
+                person.getEmail(),
+                person.getPassword(),
+                AuthSignUpOptions.builder().userAttributes(attributes).build(),
+                result -> {
+                    Log.i("Prueba de Registro", result.toString());
+                    loadConfirmFragment(person.getEmail());
+                },
+                error -> Log.e("Prueba de registro", error.toString())
+        );
+    }
+    @Override
+    public void confirmSignUp(String username, String code){
+
+        Amplify.Auth.confirmSignUp(
+                username,
+                code,
+                result -> {
+                    Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
+                    loadLoginFragment();
+                },
+                error -> Log.e("AuthQuickstart", error.toString())
+        );
+    }
+    @Override
+    public void signIn(String username, String password){
+        Amplify.Auth.signIn(
+                username,
+                password,
+                result -> {
+                    Log.i("AuthQuickstart", result.isSignedIn() ? "Sign in succeeded" : "Sign in not complete");
+                    loadMainActivity();
+                },
+                error -> Log.e("AuthQuickstart", error.toString())
+        );
     }
 
+    public void loadLoginFragment(){
+        LoginFragment loginFragment = new LoginFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,loginFragment).addToBackStack(null).commit();
+        loadSesion();
+    }
+
+    public void loadConfirmFragment(String username){
+        ConfirmFragment confirmFragment = new ConfirmFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,confirmFragment).addToBackStack(null).commit();
+        confirmFragment.assignUsername(username);
+    }
+
+    public void loadRegisterFragment() {
+        RegisterFragment registerFragment = new RegisterFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,registerFragment).addToBackStack(null).commit();
+    }
+
+    public void loadMainActivity() {
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void loadSesion (){
+
+        Amplify.Auth.fetchAuthSession(
+                result -> {
+                    AWSCognitoAuthSession cognitoAuthSession = (AWSCognitoAuthSession) result;
+                    switch(cognitoAuthSession.getIdentityIdResult().getType()) {
+                        case SUCCESS:
+                            Log.i("AuthQuickStart", "IdentityId: " + cognitoAuthSession.getIdentityIdResult().getValue());
+                            loadMainActivity();
+                            break;
+                        case FAILURE:
+                            Log.i("AuthQuickStart", "IdentityId not present because: " + cognitoAuthSession.getIdentityIdResult().getError().toString());
+                    }
+                },
+                error -> Log.e("AuthQuickStart", error.toString())
+        );
+    }
 }
