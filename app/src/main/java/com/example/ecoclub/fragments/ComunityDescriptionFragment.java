@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ecoclub.R;
+import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.comunity.AdapterComunity;
 import com.example.ecoclub.comunity.AdapterComunityDescription;
 import com.example.ecoclub.comunity.ComunityContent;
@@ -24,6 +27,8 @@ public class ComunityDescriptionFragment extends Fragment {
     //componentes
     private TextView msgDesFrag;
     private TextView msgDesFragName;
+    //img description comunity
+    private ViewTransparente imgDesCom;
 
     //Recycler View================================
     private ArrayList<Member> listMembersComunity;
@@ -71,6 +76,9 @@ public class ComunityDescriptionFragment extends Fragment {
         this.msgDesFrag = view.findViewById(R.id.msgComunityDescription);
         this.msgDesFrag.setText("Descripción de comunidad "+ id);
 
+        //event image description comunity
+        this.imgDesCom = view.findViewById(R.id.imgDesCom);
+        this.imgDesCom.setOnClickListener(eventImgDesCom);
         referenciarAdaptador(view);
 
         return view;
@@ -97,4 +105,12 @@ public class ComunityDescriptionFragment extends Fragment {
         recyclerComunityDescription.setAdapter(adapter);
         ///===================================
     }
+
+    //event image description comunity
+    View.OnClickListener eventImgDesCom = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), "Esta es una imagen con click", Toast.LENGTH_LONG).show();
+        }
+    };
 }

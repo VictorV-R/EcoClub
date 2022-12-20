@@ -3,6 +3,7 @@ package com.example.ecoclub.comunity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,6 +87,7 @@ public class AdapterComunityDescription extends
                                 "Miembro de la Comunidad","Miembro "+id, "Veterano","21")
                         .show(main.getSupportFragmentManager(), null);
             }
-        };//=======================================================
+        };
+        //=======================================================
     }
 }

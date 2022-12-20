@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecoclub.R;
+import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
         private int id;
         private TextView data;
         private ImageButton btnAddComunity;
-        private ImageButton btnComunity;
+        private ViewTransparente btnComunity;
         private FragmentActivity main; //para cambiar de fragments
 
         public ViewHolderData(@NonNull View itemView) {
@@ -67,7 +68,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             //buscando el item
             data = (TextView) itemView.findViewById(R.id.idDataComunity);
             btnAddComunity = (ImageButton) itemView.findViewById(R.id.imgBtnAddComunity);
-            btnComunity = (ImageButton) itemView.findViewById(R.id.imgBtnComunityDescription);
+            btnComunity = itemView.findViewById(R.id.imgComunity);
         }
 
         public void cargarDatos(ComunityContent comunityContent, FragmentActivity main) {

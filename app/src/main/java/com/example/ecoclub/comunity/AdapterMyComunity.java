@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecoclub.R;
+import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 
 import java.util.ArrayList;
@@ -51,13 +52,13 @@ public class AdapterMyComunity extends RecyclerView.Adapter<AdapterMyComunity.Vi
     public class ViewHolderData extends RecyclerView.ViewHolder {
         private int id;
         private TextView nameMyComunity;
-        private ImageButton btnMyComunity;
+        private ViewTransparente btnMyComunity;
         private FragmentActivity main;
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
             nameMyComunity = itemView.findViewById(R.id.idDataMyComunity);
-            btnMyComunity = (ImageButton) itemView.findViewById(R.id.imgBtnMyComunityDescription);
+            btnMyComunity = itemView.findViewById(R.id.imgMyComunity); //img
         }
 
         public void cargarDatosItemMyComunity(ComunityContent myComunityContent, FragmentActivity main) {
