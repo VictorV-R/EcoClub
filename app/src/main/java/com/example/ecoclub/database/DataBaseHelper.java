@@ -26,17 +26,25 @@ public class DataBaseHelper {
     public static final String TABLE_ACTIVIDADES = "Actividades";
 
     protected void ejecutarSentencia(String query){
-        new Thread(() -> {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection(url, username, password);
-                Statement statement = connection.createStatement();
-                statement.executeUpdate(query);
-                connection.close();
-            } catch (Exception e) {
-                Log.d("INFO",e.toString());
+        Thread t=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection connection = DriverManager.getConnection(url, username, password);
+                    Statement statement = connection.createStatement();
+                    statement.executeUpdate(query);
+                    connection.close();
+                } catch (Exception e) {
+                    Log.d("INFO", e.toString());
+                }
             }
-        }).start();
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (Exception e) {Log.d("INFO",e.toString());}
     }
 
 
