@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.comunity.AdapterComunity;
@@ -29,6 +30,7 @@ public class ComunityDescriptionFragment extends Fragment {
     private TextView msgDesFragName;
     //img description comunity
     private ViewTransparente imgDesCom;
+    private Button btnAtras;
 
     //Recycler View================================
     private ArrayList<Member> listMembersComunity;
@@ -88,6 +90,10 @@ public class ComunityDescriptionFragment extends Fragment {
         //event image description comunity
         this.imgDesCom = view.findViewById(R.id.imgDesCom);
         this.imgDesCom.setOnClickListener(eventImgDesCom);
+        //boton Atras
+        btnAtras = view.findViewById(R.id.btnAtrasDescriptionComunity);
+        btnAtras.setOnClickListener(eventAtras);
+        //adaptador
         referenciarAdaptador(view);
 
         return view;
@@ -120,6 +126,13 @@ public class ComunityDescriptionFragment extends Fragment {
         }
     };
 
+    private View.OnClickListener eventAtras = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ((MainActivity) getActivity()).changeFragmentInMain(
+                    ComunityFragment.DESTINY);
+        }
+    };
 
     private void llenarDatosMiembrosComunity() {
 

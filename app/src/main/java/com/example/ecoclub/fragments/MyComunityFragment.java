@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterMyComunity;
 import com.example.ecoclub.comunity.ComunityContent;
@@ -29,6 +31,7 @@ public class MyComunityFragment extends Fragment {
 
     private RecyclerView recyclerMyComunity;
     private ImageButton btnSearchMyComunity;
+    private Button btnAtras;
 
     EditText textMyComunitySearch;
 
@@ -47,6 +50,9 @@ public class MyComunityFragment extends Fragment {
 
         btnSearchMyComunity = view.findViewById(R.id.imgBtnSearchMyComunity);
         btnSearchMyComunity.setOnClickListener(eventSearchMyComunity);
+
+        btnAtras = view.findViewById(R.id.btnAtrasMyComunity);
+        btnAtras.setOnClickListener(eventAtras);
 
         referenciarAdaptadorMyComunity(view);
         return view;
@@ -120,6 +126,15 @@ public class MyComunityFragment extends Fragment {
             }
 
 
+        }
+    };
+
+
+    private View.OnClickListener eventAtras = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ((MainActivity) getActivity()).changeFragmentInMain(
+                    ComunityFragment.DESTINY);
         }
     };
 

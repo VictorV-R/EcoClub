@@ -26,8 +26,7 @@ import java.util.ArrayList;
 
 public class ComunityFragment extends Fragment {
 
-    //Activity
-    private MainActivity main;
+    public static final String DESTINY = "Comunity_Fragment";
 
     //Recycler View
     private ArrayList<ComunityContent> listComunity;
@@ -139,9 +138,11 @@ public class ComunityFragment extends Fragment {
         @Override
         public void onClick(View view) {
             Toast.makeText(getActivity(), "Mis Comunidades", Toast.LENGTH_LONG).show();
-            main = (MainActivity) getActivity();
+
             //mensaje al main para cambiar al fragment MyComunity
-            main.changeFragmentInMain(MyComunityFragment.DESTINY);
+            ((MainActivity) getActivity()).changeFragmentInMain(
+                    MyComunityFragment.DESTINY);
+
         }
     };
 

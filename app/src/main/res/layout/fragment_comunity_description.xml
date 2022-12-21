@@ -73,5 +73,20 @@
         app:layout_constraintStart_toStartOf="@+id/imageDescriptionComunity"
         app:layout_constraintTop_toTopOf="@+id/imageDescriptionComunity" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAtrasDescriptionComunity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_boton_atras"
+        android:text="Atras"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/imageDescriptionComunity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
