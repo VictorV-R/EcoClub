@@ -12,17 +12,17 @@ public class DbComunidades extends DataBaseHelper{
 
     public void modificarComunidad(int id,String nombre, String informacion, double latitud, double longitud){
         String query="UPDATE sys."+TABLE_COMUNIDADES+" SET " +
-                "'nombre' = '"+nombre+"' " +
-                "'informacion' = '"+informacion+"' " +
-                "'latitud' = '"+latitud+"' " +
-                "'longitud' = '"+longitud+"' " +
-                "WHERE ('id_comunidad' = '"+id+"')";
+                "nombre = '"+nombre+"' ," +
+                "informacion = '"+informacion+"' ," +
+                "latitud = '"+latitud+"' ," +
+                "longitud = '"+longitud+"' " +
+                "WHERE (id_comunidad = '"+id+"')";
         ejecutarSentencia(query);
     }
 
     public void eliminarComunidad(int id){
         String query="DELETE FROM sys."+TABLE_COMUNIDADES+" " +
-                "WHERE ('id_comunidad' = '"+id+"')";
+                "WHERE (id_comunidad = '"+id+"')";
         ejecutarSentencia(query);
     }
 }
