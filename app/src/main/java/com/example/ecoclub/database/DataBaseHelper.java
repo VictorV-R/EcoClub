@@ -24,6 +24,7 @@ public class DataBaseHelper {
     public static final String TABLE_USUARIOS_COMUNIDADES = "Usuarios_comunidades";
     public static final String TABLE_PARTICIPANTES_ACTIVIDADES = "Participantes_actividades";
     public static final String TABLE_ACTIVIDADES = "Actividades";
+    public static final String TABLE_LOGROS_USUARIOS="Logros_usuarios";
 
     protected void ejecutarSentencia(String query){
         Thread t=new Thread(new Runnable() {
