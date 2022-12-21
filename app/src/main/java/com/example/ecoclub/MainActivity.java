@@ -115,6 +115,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
             ft.addToBackStack(null);
             ft.commit();
         }
+
+        //ingresar fragment My Comunity
+        if (destiny.equalsIgnoreCase(ComunityFragment.DESTINY)){
+            //limpiamos el back stack
+            //clearBackStack();
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container, comunityFragment);
+            //ft.setReorderingAllowed(true);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
     }
 
     //para limpiar el back stack*************************************************

@@ -40,22 +40,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rectanguloMC" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <ImageButton
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgBtnMyComunityDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:background="#FBFFFF"
+
+        android:padding="7dp"
+        android:scaleType="centerCrop"
+
         app:layout_constraintBottom_toBottomOf="@+id/rectanguloMC"
         app:layout_constraintEnd_toStartOf="@+id/idDataMyComunity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rectanguloMC"
         app:layout_constraintVertical_bias="0.272"
-        app:srcCompat="@drawable/idnp_person_8_small" />
+        app:srcCompat="@drawable/idnp_person_8_small"
+
+        app:shapeAppearanceOverlay="@style/ImageViewRedonda"/>
+
+    <com.example.ecoclub.View.ViewTransparente
+        android:id="@+id/imgMyComunity"
+        android:layout_width="45dp"
+        android:layout_height="41dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBtnMyComunityDescription"
+        app:layout_constraintEnd_toStartOf="@+id/rectanguloMC"
+        app:layout_constraintStart_toStartOf="@+id/imgBtnMyComunityDescription"
+        app:layout_constraintTop_toTopOf="@+id/imgBtnMyComunityDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

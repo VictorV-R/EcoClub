@@ -7,16 +7,15 @@
     android:background="@drawable/bg_desing_base"
     tools:context=".fragments.LoginFragment">
 
-
     <ImageView
         android:id="@+id/img_planet"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="143dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="4dp"
         android:contentDescription="@string/alt_image"
-        android:src="@drawable/planeta"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,7 +93,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
@@ -103,8 +102,8 @@
         android:fontFamily="@font/bhavuka_regular"
         android:text="@string/txt_btn_login"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
