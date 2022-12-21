@@ -53,7 +53,7 @@ public class AdapterComunityDescription extends
     //clase ViewHolder
     public class ViewHolderData extends RecyclerView.ViewHolder {
         private TextView textNameComunityDescription;
-        private int id;
+        private Member member;
         private Rectangulo btnMember;
 
         public ViewHolderData(@NonNull View itemView) {
@@ -65,7 +65,7 @@ public class AdapterComunityDescription extends
         }
 
         public void cargarDatos(Member member, FragmentActivity main) {
-            this.id = member.getId();
+            this.member = member;
             this.textNameComunityDescription.setText(member.getNameMember());
             //evento-llamamos al View Rectangulo
             this.btnMember.setOnClickListener(eventMemberComunity);
@@ -84,7 +84,10 @@ public class AdapterComunityDescription extends
                 //como se tiene el id se puede hacer consultas
                 //por ahora mandamos datos por defecto
                 MessageDialogMemberComunity.newInstance(
-                                "Miembro de la Comunidad","Miembro "+id, "Veterano","21")
+                                "Miembro de la Comunidad",
+                                member.getNameMember(),
+                                member.getRango(),
+                                member.getLogros()+"")
                         .show(main.getSupportFragmentManager(), null);
             }
         };
