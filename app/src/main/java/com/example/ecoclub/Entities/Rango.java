@@ -2,7 +2,7 @@ package com.example.ecoclub.Entities;
 
 public class Rango {
     private int id;
-    private int nombre;
+    private String nombre;
 
     public int getId() {
         return id;
@@ -12,11 +12,11 @@ public class Rango {
         this.id = id;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 }
