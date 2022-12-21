@@ -57,7 +57,8 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
         //Aqui referenciamos los items del recycler view
         //se juntarana varios item item_comunity
 
-        private int id;
+        private ComunityContent itemComunity;
+
         private TextView data;
         private ImageButton btnAddComunity;
         private ViewTransparente btnComunity;
@@ -73,7 +74,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
 
         public void cargarDatos(ComunityContent comunityContent, FragmentActivity main) {
             //editamos los datos de ViewHolder
-            id = comunityContent.getId();
+            this.itemComunity = comunityContent;
             //de la lista(listComunity) solo tomamos el nombre
             data.setText(comunityContent.getName());
 
@@ -95,12 +96,12 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Ver Comunidad", Toast.LENGTH_LONG).show();
 
-                comunityDescriptionFragment = new ComunityDescriptionFragment();
-                //enviamos id al fragment.............
-                Bundle enviarMensaje = new Bundle();
-                enviarMensaje.putString("id", String.valueOf(id));
-                comunityDescriptionFragment.setArguments(enviarMensaje);
-                //...................................
+                //tenemos que llamar newInstacne siempre para la descripcion de un fragment
+                comunityDescriptionFragment = ComunityDescriptionFragment.newInstance(
+                        String.valueOf(itemComunity.getId()), //id
+                        itemComunity.getName(),                //name
+                        itemComunity.getDescription()
+                );
 
                 //lo guardamos en el back stack
                 main.getSupportFragmentManager().beginTransaction()
