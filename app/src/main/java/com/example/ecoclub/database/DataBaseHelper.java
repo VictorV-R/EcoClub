@@ -10,19 +10,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DataBaseHelper {
     public static final String url="jdbc:mysql://database-nuna.c1gztg4ki2uu.sa-east-1.rds.amazonaws.com";
     public static final String DATABASE_NAME="database-nuna";
     public static final String username="admin", password="XiQ5nzUrRUQ8fKc";
-
-    public static final String urlTest="jdbc:mysql://database-nuna.c1gztg4ki2uu.sa-east-1.rds.amazonaws.com;" +
-            "database=sys;"+
-            "user="+username+";"+
-            "password="+password+";"+
-            "encrypt=true;"+
-            "trustServerCertificate=false;"+
-            "loginTimeout=30;";
 
     public static final String TABLE_USUARIOS = "Usuarios";
     public static final String TABLE_COMUNIDADES = "Comunidades";
@@ -38,7 +31,7 @@ public class DataBaseHelper {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection connection = DriverManager.getConnection(url, username, password);
                 Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery(query);
+                statement.executeUpdate(query);
                 connection.close();
             } catch (Exception e) {
                 Log.d("INFO",e.toString());
@@ -47,28 +40,43 @@ public class DataBaseHelper {
     }
 
 
-    protected void obtenerDeSentencia(String query,int cantidadCampos){
-        new Thread(() -> {
-            StringBuilder records = new StringBuilder();
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection(url, username, password);
-                Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery(query);
-                while (rs.next()) {
-                    for (int i=1;i<=cantidadCampos;i++){
-                        Log.d("INFO",rs.getString(i));
-                        records.append(rs.getString(i));
-                        if (i!=cantidadCampos) {records.append(":");}
+    /*protected String obtenerDeSentencia(String query, int cantidadCampos){
+        Thread t =  new Thread(new Runnable() {
+            @Override
+            public void run() {
+                StringBuilder records = new StringBuilder();
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection connection = DriverManager.getConnection(url, username, password);
+                    Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(query);
+                    while (rs.next()) {
+                        for (int i=1;i<=cantidadCampos;i++){
+                            records.append(rs.getString(i));
+                            if (i!=cantidadCampos) {records.append(":");}
+                        }
+                        if (!rs.isLast()) {
+                            records.append(";");
+                        }
                     }
-                }
-                connection.close();
+                    respuesta=records.toString();
+                    connection.close();
 
-            } catch (Exception e) {
-                Log.d("INFO",e.toString());
-                e.printStackTrace();
+                } catch (Exception e) {
+                    Log.d("INFO",e.toString());
+                    e.printStackTrace();
+                }
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (Exception e){
+
+        }
+        String aux=respuesta;
+        respuesta="";
+        return  aux;
     }
 
 

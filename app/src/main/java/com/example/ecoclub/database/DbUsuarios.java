@@ -7,13 +7,13 @@ public class DbUsuarios extends DataBaseHelper{
 
     public void insertarUsuario(String nombre, String contraseña){
         String query= "INSERT INTO sys."+TABLE_USUARIOS+" (nombre, contrasena )VALUES ('"+nombre+"','"+contraseña+"')";
+        Log.d("INFO",query);
         ejecutarSentencia(query);
     }
 
-    public void obtenerUsuarios(){
+    /*public String obtenerUsuarios(){
         String query= "SELECT * FROM sys."+TABLE_USUARIOS;
         String salida="";
-        obtenerDeSentencia(query,cantidadCampos);
-        Log.d("INFO",salida);
-    }
+        return obtenerDeSentencia(query,cantidadCampos);
+    }*/
 }
