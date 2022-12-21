@@ -50,19 +50,21 @@ public class AdapterMyComunity extends RecyclerView.Adapter<AdapterMyComunity.Vi
 
     //clase View Holder
     public class ViewHolderData extends RecyclerView.ViewHolder {
-        private int id;
+
+        private ComunityContent itemComunity;
+
         private TextView nameMyComunity;
         private ViewTransparente btnMyComunity;
         private FragmentActivity main;
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
-            nameMyComunity = itemView.findViewById(R.id.idDataMyComunity);
-            btnMyComunity = itemView.findViewById(R.id.imgMyComunity); //img
+            this.nameMyComunity = itemView.findViewById(R.id.idDataMyComunity);
+            this.btnMyComunity = itemView.findViewById(R.id.imgMyComunity); //img
         }
 
         public void cargarDatosItemMyComunity(ComunityContent myComunityContent, FragmentActivity main) {
-            id = myComunityContent.getId();
+            this.itemComunity = myComunityContent;
             nameMyComunity.setText(myComunityContent.getName());
             //evento
             btnMyComunity.setOnClickListener(eventMyComunityDescription);
@@ -76,12 +78,11 @@ public class AdapterMyComunity extends RecyclerView.Adapter<AdapterMyComunity.Vi
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Ver Comunidad", Toast.LENGTH_LONG).show();
 
-                comunityDescriptionFragment = new ComunityDescriptionFragment();
-                //enviamos id al fragment.............
-                Bundle enviarMensaje = new Bundle();
-                enviarMensaje.putString("id", String.valueOf(id));
-                comunityDescriptionFragment.setArguments(enviarMensaje);
-                //...................................
+                comunityDescriptionFragment = ComunityDescriptionFragment.newInstance(
+                        String.valueOf(itemComunity.getId()),
+                        itemComunity.getName(),
+                        itemComunity.getDescription()
+                );
 
                 //no lo guardamos en el back stack
                 main.getSupportFragmentManager().beginTransaction()

@@ -36,18 +36,25 @@ public class ComunityDescriptionFragment extends Fragment {
     //=============================================
 
     private static final String ARG_PARAM1 = "id";
+    private static final String ARG_PARAM2 = "name";
+    private static final String ARG_PARAM3 = "description";
 
     //Guardara la id del Comunity
     private String id;
+    private String nombre;
+    private String descripcion;
 
     public ComunityDescriptionFragment() {
         // Required empty public constructor
     }
 
-    public static ComunityDescriptionFragment newInstance(String id) {
+    public static ComunityDescriptionFragment newInstance(
+            String id, String nombre, String description) {
 
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, id);
+        args.putString(ARG_PARAM2, nombre);
+        args.putString(ARG_PARAM3, description);
         ComunityDescriptionFragment fragment = new ComunityDescriptionFragment();
         fragment.setArguments(args);
         return fragment;
@@ -57,7 +64,9 @@ public class ComunityDescriptionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            id = getArguments().getString(ARG_PARAM1);
+            this.id = getArguments().getString(ARG_PARAM1);
+            this.nombre = getArguments().getString(ARG_PARAM2);
+            this.descripcion = getArguments().getString(ARG_PARAM3);
         }
     }
 
@@ -70,11 +79,11 @@ public class ComunityDescriptionFragment extends Fragment {
         ///////se colocaron nombres por defecto por ahora//////////////////////
         //name comunity
         this.msgDesFragName = view.findViewById(R.id.msgComunityDescriptionName);
-        this.msgDesFragName.setText("Comunidad "+ id);
+        this.msgDesFragName.setText(this.nombre);
 
         //description comunity
         this.msgDesFrag = view.findViewById(R.id.msgComunityDescription);
-        this.msgDesFrag.setText("Descripción de comunidad "+ id);
+        this.msgDesFrag.setText(this.descripcion);
 
         //event image description comunity
         this.imgDesCom = view.findViewById(R.id.imgDesCom);
@@ -93,11 +102,8 @@ public class ComunityDescriptionFragment extends Fragment {
         recyclerComunityDescription.setLayoutManager(new LinearLayoutManager(getActivity(),
                 RecyclerView.VERTICAL, false));
         //llenando datos de comunidad
-        listMembersComunity = new ArrayList<>();
-        for (int i = 0; i < 15; i++){
-            listMembersComunity.add(new Member((i+1),
-                    "Miembro "+ (i+1)));
-        }
+        llenarDatosMiembrosComunity();
+
         //enviamos los datos al adaptador de Comunidad
         AdapterComunityDescription adapter = new AdapterComunityDescription(
                 listMembersComunity, getActivity());
@@ -113,4 +119,27 @@ public class ComunityDescriptionFragment extends Fragment {
             Toast.makeText(view.getContext(), "Esta es una imagen con click", Toast.LENGTH_LONG).show();
         }
     };
+
+
+    private void llenarDatosMiembrosComunity() {
+
+        listMembersComunity = new ArrayList<>();
+        ArrayList<String> listNombMiemComunity = new ArrayList<>();
+        listNombMiemComunity.add("Juan Perez");
+        listNombMiemComunity.add("Mario Palacios");
+        listNombMiemComunity.add("Victor Pineda");
+        listNombMiemComunity.add("Sandro Bustamante");
+        listNombMiemComunity.add("Pedro Roque");
+        listNombMiemComunity.add("Sandro Martinez");
+        listNombMiemComunity.add("Brian Guerrero");
+        listNombMiemComunity.add("Alex Ticona");
+        listNombMiemComunity.add("Julio Lopez");
+        listNombMiemComunity.add("Antonio Valdivia");
+
+        for (int i = 0; i < listNombMiemComunity.size(); i++){
+            listMembersComunity.add(new Member(
+                    (i+1), listNombMiemComunity.get(i),
+                    "Veterano", 21));
+        }
+    }
 }
