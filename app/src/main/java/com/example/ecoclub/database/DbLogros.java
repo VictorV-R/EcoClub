@@ -5,12 +5,12 @@ import android.util.Log;
 public class DbLogros extends DataBaseHelper{
     private static final int cantidadCampos=2;
 
-    public void insertarLogro(String nombre, String contraseña){
+    public void insertarLogro(String nombre){
         String query= "INSERT INTO sys."+TABLE_LOGROS+" (nombre ) VALUES ('"+nombre+"')";
         ejecutarSentencia(query);
     }
 
-    public void modificarLogro(int id,String nombre, String contraseña){
+    public void modificarLogro(int id,String nombre){
         String query="UPDATE sys."+TABLE_LOGROS+" SET 'nombre' = '"+nombre+"' " +
                 "WHERE ('id_logro' = '"+id+"')";
         ejecutarSentencia(query);
