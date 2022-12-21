@@ -1,5 +1,12 @@
 package com.example.ecoclub.database;
 
+import android.database.SQLException;
+import android.util.Log;
+
+import com.mysql.jdbc.Connection;
+
+import java.sql.DriverManager;
+
 public class DataBaseHelper {
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "database-nuna.db";
@@ -15,7 +22,19 @@ public class DataBaseHelper {
     public static final String TABLE_PARTICIPANTES_ACTIVIDADES = "Participantes_actividades";
     public static final String TABLE_ACTIVIDADES = "Actividades";
 
-    public void testConnection(){
-        
+    public void testConnection() throws SQLException {
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection= (Connection) DriverManager.getConnection(url,username,password);
+            if (connection == null){
+                Log.d("INFO","NEL");
+            } else {
+                Log.d("INFO","SIMON");
+            }
+            connection.close();
+        } catch (Exception e){
+            Log.d("INFO","ERROR");
+            e.printStackTrace();
+        }
     }
 }
