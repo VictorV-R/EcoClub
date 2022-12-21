@@ -12,19 +12,19 @@ public class DbActividades extends DataBaseHelper{
 
     public void modificarActividad(int id,String nombre, int id_comunidad, String fecha,String descripcion,double latitud, double longitud){
         String query="UPDATE sys."+TABLE_ACTIVIDADES+" SET " +
-                "'nombre' = '"+nombre+"' " +
-                "'id_comunidad' = '"+id_comunidad+"' " +
-                "'fecha' = '"+fecha+"' " +
-                "'descripcion' = '"+descripcion+"' " +
-                "'latitud' = '"+latitud+"' " +
-                "'longitud' = '"+longitud+"' " +
-                "WHERE ('id_actividad' = '"+id+"')";
+                "nombre = '"+nombre+"' ," +
+                "id_comunidad = '"+id_comunidad+"' ," +
+                "fecha = '"+fecha+"' ," +
+                "descripcion = '"+descripcion+"' ," +
+                "latitud = '"+latitud+"' ," +
+                "longitud = '"+longitud+"' " +
+                "WHERE (id_actividad = '"+id+"')";
         ejecutarSentencia(query);
     }
 
     public void eliminarActividad(int id){
         String query="DELETE FROM sys."+TABLE_ACTIVIDADES+" " +
-                "WHERE ('id_actividad' = '"+id+"')";
+                "WHERE (id_actividad = '"+id+"')";
         ejecutarSentencia(query);
     }
 }
