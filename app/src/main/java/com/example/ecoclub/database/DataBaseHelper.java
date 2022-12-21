@@ -16,6 +16,14 @@ public class DataBaseHelper {
     public static final String DATABASE_NAME="database-nuna";
     public static final String username="admin", password="XiQ5nzUrRUQ8fKc";
 
+    public static final String urlTest="jdbc:mysql://database-nuna.c1gztg4ki2uu.sa-east-1.rds.amazonaws.com;" +
+            "database=sys;"+
+            "user="+username+";"+
+            "password="+password+";"+
+            "encrypt=true;"+
+            "trustServerCertificate=false;"+
+            "loginTimeout=30;";
+
     public static final String TABLE_USUARIOS = "Usuarios";
     public static final String TABLE_COMUNIDADES = "Comunidades";
     public static final String TABLE_LOGROS = "Logros";
@@ -23,8 +31,6 @@ public class DataBaseHelper {
     public static final String TABLE_USUARIOS_COMUNIDADES = "Usuarios_comunidades";
     public static final String TABLE_PARTICIPANTES_ACTIVIDADES = "Participantes_actividades";
     public static final String TABLE_ACTIVIDADES = "Actividades";
-
-    public String respuesta="";
 
     protected void ejecutarSentencia(String query){
         new Thread(() -> {
@@ -41,7 +47,7 @@ public class DataBaseHelper {
     }
 
 
-    protected String obtenerDeSentencia(String query,int cantidadCampos){
+    protected void obtenerDeSentencia(String query,int cantidadCampos){
         new Thread(() -> {
             StringBuilder records = new StringBuilder();
             try {
@@ -51,20 +57,18 @@ public class DataBaseHelper {
                 ResultSet rs = statement.executeQuery(query);
                 while (rs.next()) {
                     for (int i=1;i<=cantidadCampos;i++){
+                        Log.d("INFO",rs.getString(i));
                         records.append(rs.getString(i));
                         if (i!=cantidadCampos) {records.append(":");}
                     }
                 }
-                respuesta=records.toString();
                 connection.close();
 
             } catch (Exception e) {
+                Log.d("INFO",e.toString());
                 e.printStackTrace();
             }
         }).start();
-        String aux=respuesta;
-        respuesta="";
-        return aux;
     }
 
 
