@@ -1,5 +1,15 @@
 package com.example.ecoclub.database;
 
+import android.util.Log;
+
+import com.example.ecoclub.Entities.Logro;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 public class DbLogrosUsuarios extends DataBaseHelper{
     private static final int cantidadCampos=2;
 
@@ -19,4 +29,37 @@ public class DbLogrosUsuarios extends DataBaseHelper{
                 "WHERE (id_usuario = '"+id_usuario+"') and (id_logro = '"+id_logro+"')";
         ejecutarSentencia(query);
     }
+    public ArrayList<Logro> obtenerLogrosUsuario(int id_usuario){
+        ArrayList<Logro> listaLogros=new ArrayList<Logro>();
+        String query= "SELECT * FROM sys."+TABLE_LOGROS_USUARIOS+" WHERE id_usuario='"+id_usuario+"' ";
+        Thread t =  new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection connection = DriverManager.getConnection(url, username, password);
+                    Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(query);
+                    while (rs.next()) {
+                        Logro aux=new Logro();
+                        aux.setId(rs.getInt(1));
+                        aux.setNombre(rs.getString(2));
+                        listaLogros.add(aux);
+                    }
+                    connection.close();
+
+                } catch (Exception e) {
+                    Log.d("INFO",e.toString());
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (Exception e){ Log.d("INFO",e.toString());}
+        return listaLogros;
+    }
+
+
 }
