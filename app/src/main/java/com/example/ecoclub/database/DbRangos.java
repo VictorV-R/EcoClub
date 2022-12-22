@@ -64,7 +64,7 @@ public class DbRangos extends DataBaseHelper{
         return listaRangos;
     }
 
-    public Rango obtenerLogro(int id){
+    public Rango obtenerRango(int id){
         Rango rango=new Rango();
         String query= "SELECT * FROM sys."+TABLE_RANGOS+" WHERE id_rango='"+id+"' ";
 

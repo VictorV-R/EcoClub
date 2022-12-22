@@ -21,6 +21,7 @@ import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterMyComunity;
 import com.example.ecoclub.database.DbComunidades;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.dialog.MessageDialogComunityNotExist;
 import com.example.ecoclub.dialog.MessageDialogQuit;
 
@@ -162,5 +163,9 @@ public class MyComunityFragment extends Fragment {
         listMyComunity = new ArrayList<>();
         //Falta 1 metodo aldair
         listMyComunity=dbComunidades.obtenerComunidades();
+
+        /*DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
+        listMyComunity = new ArrayList<>();
+        listMyComunity=dbUsuariosComunidades.obtenerComunidadesdeUsuario(id);*/
     }
 }

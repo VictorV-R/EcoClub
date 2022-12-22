@@ -95,4 +95,38 @@ public class DbUsuariosComunidades extends DataBaseHelper{
         } catch (Exception e){ Log.d("INFO",e.toString());}
         return aux;
     }
+
+    public ArrayList<Usuario_Comunidad> obtenerComunidadesdeUsuario(int id_usuario){
+        ArrayList<Usuario_Comunidad> listaUsuarios_Comunidad=new ArrayList<Usuario_Comunidad>();
+        String query= "SELECT * FROM sys."+TABLE_USUARIOS_COMUNIDADES+" WHERE id_usuario='"+id_usuario+"' ";
+        Thread t =  new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection connection = DriverManager.getConnection(url, username, password);
+                    Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(query);
+                    while (rs.next()) {
+                        Usuario_Comunidad aux=new Usuario_Comunidad();
+                        aux.setId_usuario(rs.getInt(1));
+                        aux.setId_comunidad(rs.getInt(2));
+                        aux.setTipo_usuario(rs.getString(3));
+                        aux.setId_rango(rs.getInt(4));
+                        listaUsuarios_Comunidad.add(aux);
+                    }
+                    connection.close();
+
+                } catch (Exception e) {
+                    Log.d("INFO",e.toString());
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (Exception e){ Log.d("INFO",e.toString());}
+        return listaUsuarios_Comunidad;
+    }
 }
