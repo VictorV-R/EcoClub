@@ -16,11 +16,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ecoclub.Entities.Comunidad;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterComunity;
 import com.example.ecoclub.comunity.AdapterMyComunity;
-import com.example.ecoclub.comunity.ComunityContent;
+import com.example.ecoclub.database.DbComunidades;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,7 @@ public class ComunityFragment extends Fragment {
     public static final String DESTINY = "Comunity_Fragment";
 
     //Recycler View
-    private ArrayList<ComunityContent> listComunity;
+    private ArrayList<Comunidad> listComunity;
     private RecyclerView recycler;
 
     private ImageButton btnSearch;
@@ -82,7 +83,7 @@ public class ComunityFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            ArrayList<ComunityContent> listaComBuscados = new ArrayList<>();
+            ArrayList<Comunidad> listaComBuscados = new ArrayList<>();
             String nombreBuscado = textComunitySearch.getText().toString();
 
             Toast.makeText(getActivity(), "Buscando Comunidad",
@@ -99,7 +100,7 @@ public class ComunityFragment extends Fragment {
 
                 //buscando de forma lineal==============================================
                 for (int i = 0; i < listComunity.size(); i++){
-                    if(nombreBuscado.equalsIgnoreCase(listComunity.get(i).getName()
+                    if(nombreBuscado.equalsIgnoreCase(listComunity.get(i).getNombre()
                             .substring(0,nombreBuscado.length()))){
                         listaComBuscados.add(listComunity.get(i)); //agregandolo a nueva lista
                     }
@@ -148,9 +149,9 @@ public class ComunityFragment extends Fragment {
 
 
     private void llenarDatosComunidades(){
-        listComunity = new ArrayList<>();
+        /*listComunity = new ArrayList<>();
 
-        ArrayList<String> nombresComunidades = new ArrayList<>();
+        ArrayList<Comunidad> nombresComunidades = new ArrayList<>();
         nombresComunidades.add("Reciclaje Piura");
         nombresComunidades.add("Ecologia Cayma");
         nombresComunidades.add("Eco-Miraflores");
@@ -168,6 +169,9 @@ public class ComunityFragment extends Fragment {
             listComunity.add(new ComunityContent((i+1),
                     nombresComunidades.get(i),
                     "Descripción de comunidad "+ (i+1)));
-        }
+        }*/
+        DbComunidades dbComunidades=new DbComunidades();
+        listComunity = new ArrayList<>();
+        listComunity=dbComunidades.obtenerComunidades();
     }
 }

@@ -16,10 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ecoclub.Entities.Comunidad;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterMyComunity;
-import com.example.ecoclub.comunity.ComunityContent;
+import com.example.ecoclub.database.DbComunidades;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class MyComunityFragment extends Fragment {
 
     public static final String DESTINY = "My Comunity";
 
-    private ArrayList<ComunityContent> listMyComunity;
+    private ArrayList<Comunidad> listMyComunity;
 
     private RecyclerView recyclerMyComunity;
     private ImageButton btnSearchMyComunity;
@@ -78,7 +79,7 @@ public class MyComunityFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            ArrayList<ComunityContent> listaMisComBuscados = new ArrayList<>();
+            ArrayList<Comunidad> listaMisComBuscados = new ArrayList<>();
             String nombreBuscado = textMyComunitySearch.getText().toString();
 
             Toast.makeText(getActivity(), "Buscar mis Comunidades",
@@ -95,7 +96,7 @@ public class MyComunityFragment extends Fragment {
 
                 //buscando de forma lineal==============================================
                 for (int i = 0; i < listMyComunity.size(); i++){
-                    if(nombreBuscado.equalsIgnoreCase(listMyComunity.get(i).getName()
+                    if(nombreBuscado.equalsIgnoreCase(listMyComunity.get(i).getNombre()
                             .substring(0,nombreBuscado.length()))){
                         listaMisComBuscados.add(listMyComunity.get(i)); //agregandolo a nueva lista
                     }
@@ -139,7 +140,7 @@ public class MyComunityFragment extends Fragment {
     };
 
     private void llenarDatosComunidades(){
-        listMyComunity = new ArrayList<>();
+        /*listMyComunity = new ArrayList<>();
 
         ArrayList<String> nombresComunidades = new ArrayList<>();
         nombresComunidades.add("Reciclaje AQP");
@@ -157,6 +158,10 @@ public class MyComunityFragment extends Fragment {
             listMyComunity.add(new ComunityContent((i+1),
                     nombresComunidades.get(i),
                     "Descripción de comunidad "+ (i+1)));
-        }
+        }*/
+        DbComunidades dbComunidades=new DbComunidades();
+        listMyComunity = new ArrayList<>();
+        //Falta 1 metodo aldair
+        listMyComunity=dbComunidades.obtenerComunidades();
     }
 }
