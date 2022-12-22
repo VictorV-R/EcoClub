@@ -13,13 +13,13 @@ import java.util.ArrayList;
 public class DbUsuarios extends DataBaseHelper{
     private static final int cantidadCampos=3;
 
-    public void insertarUsuario(String nombre, String contraseña){
-        String query= "INSERT INTO sys."+TABLE_USUARIOS+" (nombre, contrasena ) VALUES ('"+nombre+"','"+contraseña+"')";
+    public void insertarUsuario(String nombre){
+        String query= "INSERT INTO sys."+TABLE_USUARIOS+" (nombre ) VALUES ('"+nombre+"')";
         ejecutarSentencia(query);
     }
 
-    public void modificarUsuario(int id,String nombre, String contraseña){
-        String query="UPDATE sys."+TABLE_USUARIOS+" SET nombre = '"+nombre+"' , contrasena='"+contraseña+"' " +
+    public void modificarUsuario(int id,String nombre){
+        String query="UPDATE sys."+TABLE_USUARIOS+" SET nombre = '"+nombre+"'  " +
                 "WHERE (id_usuario = '"+id+"')";
         ejecutarSentencia(query);
     }
@@ -46,7 +46,6 @@ public class DbUsuarios extends DataBaseHelper{
                         Usuario aux=new Usuario();
                         aux.setId(rs.getInt(1));
                         aux.setNombre(rs.getString(2));
-                        aux.setContrasena(rs.getString(3));
                         listaUsuarios.add(aux);
                     }
                     connection.close();
@@ -79,7 +78,6 @@ public class DbUsuarios extends DataBaseHelper{
                     while (rs.next()) {
                         usuario.setId(rs.getInt(1));
                         usuario.setNombre(rs.getString(2));
-                        usuario.setContrasena(rs.getString(3));
                     }
                     connection.close();
                 } catch (Exception e) {
