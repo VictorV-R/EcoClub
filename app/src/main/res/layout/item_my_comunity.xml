@@ -5,30 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.ecoclub.View.Rectangulo
+    <androidx.cardview.widget.CardView
         android:id="@+id/rectanguloMC"
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="30dp"
+        android:background="@color/color_content"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintVertical_bias="0.105">
 
-    <TextView
-        android:id="@+id/idDataMyComunity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comunidad n"
-        app:layout_constraintBottom_toBottomOf="@+id/rectanguloMC"
-        app:layout_constraintEnd_toEndOf="@+id/rectanguloMC"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toStartOf="@+id/rectanguloMC"
-        app:layout_constraintTop_toTopOf="@+id/rectanguloMC"
-        app:layout_constraintVertical_bias="0.47" />
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_content">
+
+            <TextView
+                android:id="@+id/idDataMyComunity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="Comunidad n" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <Space
         android:id="@+id/spaceMC"
@@ -45,19 +52,19 @@
         android:id="@+id/imgBtnMyComunityDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
 
         android:padding="7dp"
         android:scaleType="centerCrop"
 
         app:layout_constraintBottom_toBottomOf="@+id/rectanguloMC"
-        app:layout_constraintEnd_toStartOf="@+id/idDataMyComunity"
+        app:layout_constraintEnd_toStartOf="@+id/rectanguloMC"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rectanguloMC"
-        app:layout_constraintVertical_bias="0.272"
-        app:srcCompat="@drawable/idnp_person_8_small"
 
-        app:shapeAppearanceOverlay="@style/ImageViewRedonda"/>
+        app:layout_constraintVertical_bias="0.0"
+        app:shapeAppearanceOverlay="@style/ImageViewRedonda"
+        app:srcCompat="@drawable/idnp_person_8_small" />
 
     <com.example.ecoclub.View.ViewTransparente
         android:id="@+id/imgMyComunity"

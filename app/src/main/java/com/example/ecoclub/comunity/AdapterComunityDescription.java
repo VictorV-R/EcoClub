@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,14 +55,14 @@ public class AdapterComunityDescription extends
     public class ViewHolderData extends RecyclerView.ViewHolder {
         private TextView textNameComunityDescription;
         private Member member;
-        private Rectangulo btnMember;
+        private CardView btnMember;
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
             this.textNameComunityDescription = itemView.findViewById(
                     R.id.textNameMemberComunity);
             this.btnMember = itemView.findViewById(
-                    R.id.onClickComunityMember);
+                    R.id.onClickComunityMember);  //CARDVIEW
         }
 
         public void cargarDatos(Member member, FragmentActivity main) {

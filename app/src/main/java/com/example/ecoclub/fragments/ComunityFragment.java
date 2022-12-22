@@ -91,7 +91,7 @@ public class ComunityFragment extends Fragment {
             //en caso el texto este vacio
             if(nombreBuscado.equalsIgnoreCase("")){
                 //enviamos los datos al adaptador de Mis Comunidades
-                AdapterMyComunity adapter = new AdapterMyComunity(
+                AdapterComunity adapter = new AdapterComunity(
                         listComunity, getActivity());
                 //por ultimo al recycler le enviamos el adaptador de mis comunidades
                 recycler.setAdapter(adapter);
@@ -109,7 +109,7 @@ public class ComunityFragment extends Fragment {
                 //en caso de que se encontro
                 if (listaComBuscados.size() > 0){
                     //enviamos los datos al adaptador de Clientes
-                    AdapterMyComunity adapterbuscados = new AdapterMyComunity(
+                    AdapterComunity adapterbuscados = new AdapterComunity(
                             listaComBuscados, getActivity());
                     //por ultimo al recycler le enviamos el adaptador de la Clientes
                     recycler.setAdapter(adapterbuscados);
