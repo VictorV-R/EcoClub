@@ -12,6 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecoclub.Entities.Usuario;
+import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
 import com.example.ecoclub.View.Rectangulo;
 import com.example.ecoclub.dialog.MessageDialogMemberComunity;
@@ -22,10 +24,10 @@ public class AdapterComunityDescription extends
         RecyclerView.Adapter<AdapterComunityDescription.ViewHolderData> {
 
     //lista de miembros
-    private ArrayList<Member> listMembersComunity;
+    private ArrayList<Usuario_Comunidad> listMembersComunity;
     private FragmentActivity main;
 
-    public AdapterComunityDescription(ArrayList<Member> listMembersComunity,
+    public AdapterComunityDescription(ArrayList<Usuario_Comunidad> listMembersComunity,
                                       FragmentActivity activity) {
         this.listMembersComunity = listMembersComunity;
         this.main = activity;
@@ -54,8 +56,9 @@ public class AdapterComunityDescription extends
     //clase ViewHolder
     public class ViewHolderData extends RecyclerView.ViewHolder {
         private TextView textNameComunityDescription;
-        private Member member;
+
         private CardView btnMember;
+        private Usuario_Comunidad member;
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
@@ -65,9 +68,9 @@ public class AdapterComunityDescription extends
                     R.id.onClickComunityMember);  //CARDVIEW
         }
 
-        public void cargarDatos(Member member, FragmentActivity main) {
+        public void cargarDatos(Usuario_Comunidad member, FragmentActivity main) {
             this.member = member;
-            this.textNameComunityDescription.setText(member.getNameMember());
+            this.textNameComunityDescription.setText(member.getId_usuario()+"");
             //evento-llamamos al View Rectangulo
             this.btnMember.setOnClickListener(eventMemberComunity);
         }
@@ -85,10 +88,8 @@ public class AdapterComunityDescription extends
                 //como se tiene el id se puede hacer consultas
                 //por ahora mandamos datos por defecto
                 MessageDialogMemberComunity.newInstance(
-                                "Miembro de la Comunidad",
-                                member.getNameMember(),
-                                member.getRango(),
-                                member.getLogros()+"")
+                                member.getId_usuario(),
+                                member.getId_comunidad())
                         .show(main.getSupportFragmentManager(), null);
             }
         };

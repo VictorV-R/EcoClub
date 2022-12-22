@@ -12,13 +12,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ecoclub.Entities.Participante_Actividad;
+import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.View.ViewTransparente;
-import com.example.ecoclub.comunity.AdapterComunity;
 import com.example.ecoclub.comunity.AdapterComunityDescription;
-import com.example.ecoclub.comunity.ComunityContent;
-import com.example.ecoclub.comunity.Member;
+import com.example.ecoclub.database.DbParticipantesActividades;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class ComunityDescriptionFragment extends Fragment {
     private Button btnAtras;
 
     //Recycler View================================
-    private ArrayList<Member> listMembersComunity;
+    private ArrayList<Usuario_Comunidad> listMembersComunity;
     private RecyclerView recyclerComunityDescription;
     //=============================================
 
@@ -136,8 +137,9 @@ public class ComunityDescriptionFragment extends Fragment {
 
     private void llenarDatosMiembrosComunity() {
 
-        listMembersComunity = new ArrayList<>();
-        ArrayList<String> listNombMiemComunity = new ArrayList<>();
+        DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
+        listMembersComunity = dbUsuariosComunidades.obtenerUsuariosComunidad(Integer.parseInt(id));
+        /*ArrayList<String> listNombMiemComunity = new ArrayList<>();
         listNombMiemComunity.add("Juan Perez");
         listNombMiemComunity.add("Mario Palacios");
         listNombMiemComunity.add("Victor Pineda");
@@ -150,9 +152,9 @@ public class ComunityDescriptionFragment extends Fragment {
         listNombMiemComunity.add("Antonio Valdivia");
 
         for (int i = 0; i < listNombMiemComunity.size(); i++){
-            listMembersComunity.add(new Member(
+            listMembersComunity.add(new Participante_Actividad(
                     (i+1), listNombMiemComunity.get(i),
                     "Veterano", 21));
-        }
+        }*/
     }
 }

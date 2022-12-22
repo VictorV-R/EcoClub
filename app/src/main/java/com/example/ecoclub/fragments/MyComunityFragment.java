@@ -16,10 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ecoclub.Entities.Comunidad;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterMyComunity;
-import com.example.ecoclub.comunity.ComunityContent;
+import com.example.ecoclub.database.DbComunidades;
+import com.example.ecoclub.dialog.MessageDialogComunityNotExist;
+import com.example.ecoclub.dialog.MessageDialogQuit;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,7 @@ public class MyComunityFragment extends Fragment {
 
     public static final String DESTINY = "My Comunity";
 
-    private ArrayList<ComunityContent> listMyComunity;
+    private ArrayList<Comunidad> listMyComunity;
 
     private RecyclerView recyclerMyComunity;
     private ImageButton btnSearchMyComunity;
@@ -63,6 +66,7 @@ public class MyComunityFragment extends Fragment {
         //para cargar una lista vertical
         recyclerMyComunity.setLayoutManager(new LinearLayoutManager(getActivity(),
                 RecyclerView.VERTICAL, false));
+
         //llenando datos de comunidad
         llenarDatosComunidades();
 
@@ -74,15 +78,13 @@ public class MyComunityFragment extends Fragment {
     }
 
     //eventos
+    //TODO: buscando mis comunidades
     private View.OnClickListener eventSearchMyComunity = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
-            ArrayList<ComunityContent> listaMisComBuscados = new ArrayList<>();
+            ArrayList<Comunidad> listaMisComBuscados = new ArrayList<>();
             String nombreBuscado = textMyComunitySearch.getText().toString();
-
-            Toast.makeText(getActivity(), "Buscar mis Comunidades",
-                    Toast.LENGTH_LONG).show();
 
             //en caso el texto este vacio
             if(nombreBuscado.equalsIgnoreCase("")){
@@ -95,7 +97,7 @@ public class MyComunityFragment extends Fragment {
 
                 //buscando de forma lineal==============================================
                 for (int i = 0; i < listMyComunity.size(); i++){
-                    if(nombreBuscado.equalsIgnoreCase(listMyComunity.get(i).getName()
+                    if(nombreBuscado.equalsIgnoreCase(listMyComunity.get(i).getNombre()
                             .substring(0,nombreBuscado.length()))){
                         listaMisComBuscados.add(listMyComunity.get(i)); //agregandolo a nueva lista
                     }
@@ -104,23 +106,21 @@ public class MyComunityFragment extends Fragment {
 
                 //en caso de que se encontro
                 if (listaMisComBuscados.size() > 0){
-                    //enviamos los datos al adaptador de Clientes
+                    //enviamos los datos al adaptador de mis Comunidades
                     AdapterMyComunity adapterbuscados = new AdapterMyComunity(
                             listaMisComBuscados, getActivity());
-                    //por ultimo al recycler le enviamos el adaptador de la Clientes
+                    //por ultimo al recycler le enviamos el adaptador de mis Comunidades
                     recyclerMyComunity.setAdapter(adapterbuscados);
 
                 }else{
-                    //Dialogo para confirmar la eliminacion
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("No se encontro tu comunidad buscada. ")
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss(); //la ventana se cierra
-                                }
-                            });
-                    builder.show();
+                    //Dialogo para confirmar que no se encontro comunidad======
+                    MessageDialogComunityNotExist dialogComunityNotExist =
+                            new MessageDialogComunityNotExist();
+                    //mostramos mensaje emergente
+                    dialogComunityNotExist.show(
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction(),null);
+                    //=========================================================
                 }
 
             }
@@ -139,7 +139,7 @@ public class MyComunityFragment extends Fragment {
     };
 
     private void llenarDatosComunidades(){
-        listMyComunity = new ArrayList<>();
+        /*listMyComunity = new ArrayList<>();
 
         ArrayList<String> nombresComunidades = new ArrayList<>();
         nombresComunidades.add("Reciclaje AQP");
@@ -157,6 +157,10 @@ public class MyComunityFragment extends Fragment {
             listMyComunity.add(new ComunityContent((i+1),
                     nombresComunidades.get(i),
                     "Descripción de comunidad "+ (i+1)));
-        }
+        }*/
+        DbComunidades dbComunidades=new DbComunidades();
+        listMyComunity = new ArrayList<>();
+        //Falta 1 metodo aldair
+        listMyComunity=dbComunidades.obtenerComunidades();
     }
 }

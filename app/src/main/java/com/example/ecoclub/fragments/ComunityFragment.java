@@ -16,11 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ecoclub.Entities.Comunidad;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterComunity;
 import com.example.ecoclub.comunity.AdapterMyComunity;
-import com.example.ecoclub.comunity.ComunityContent;
+import com.example.ecoclub.database.DbComunidades;
+import com.example.ecoclub.dialog.MessageDialogComunityNotExist;
 
 import java.util.ArrayList;
 
@@ -29,7 +31,7 @@ public class ComunityFragment extends Fragment {
     public static final String DESTINY = "Comunity_Fragment";
 
     //Recycler View
-    private ArrayList<ComunityContent> listComunity;
+    private ArrayList<Comunidad> listComunity;
     private RecyclerView recycler;
 
     private ImageButton btnSearch;
@@ -67,7 +69,7 @@ public class ComunityFragment extends Fragment {
                 RecyclerView.VERTICAL, false));
 
         //llenando datos de comunidad
-        llenarDatosComunidades(); //debe reemplazarlo la bd
+        llenarDatosComunidades();
 
         //enviamos los datos al adaptador de Comunidad
         //le damos el getActivity para que se pueda cambiar de fragment en el adapter
@@ -78,28 +80,26 @@ public class ComunityFragment extends Fragment {
     }
 
     //Evento cuando se ejecuta el boton de buscar comunidad
+    //TODO: buscando comunidades
     View.OnClickListener btnEventSearch = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
-            ArrayList<ComunityContent> listaComBuscados = new ArrayList<>();
+            ArrayList<Comunidad> listaComBuscados = new ArrayList<>();
             String nombreBuscado = textComunitySearch.getText().toString();
-
-            Toast.makeText(getActivity(), "Buscando Comunidad",
-                    Toast.LENGTH_LONG).show();
 
             //en caso el texto este vacio
             if(nombreBuscado.equalsIgnoreCase("")){
-                //enviamos los datos al adaptador de Mis Comunidades
+                //enviamos los datos al adaptador de Comunidades
                 AdapterComunity adapter = new AdapterComunity(
                         listComunity, getActivity());
-                //por ultimo al recycler le enviamos el adaptador de mis comunidades
+                //por ultimo al recycler le enviamos el adaptador de comunidades
                 recycler.setAdapter(adapter);
             }else{
 
                 //buscando de forma lineal==============================================
                 for (int i = 0; i < listComunity.size(); i++){
-                    if(nombreBuscado.equalsIgnoreCase(listComunity.get(i).getName()
+                    if(nombreBuscado.equalsIgnoreCase(listComunity.get(i).getNombre()
                             .substring(0,nombreBuscado.length()))){
                         listaComBuscados.add(listComunity.get(i)); //agregandolo a nueva lista
                     }
@@ -108,23 +108,21 @@ public class ComunityFragment extends Fragment {
 
                 //en caso de que se encontro
                 if (listaComBuscados.size() > 0){
-                    //enviamos los datos al adaptador de Clientes
+                    //enviamos los datos al adaptador de Comunidades
                     AdapterComunity adapterbuscados = new AdapterComunity(
                             listaComBuscados, getActivity());
-                    //por ultimo al recycler le enviamos el adaptador de la Clientes
+                    //por ultimo al recycler le enviamos el adaptador de Comunidades
                     recycler.setAdapter(adapterbuscados);
 
                 }else{
-                    //Dialogo para confirmar la eliminacion
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("No se encontro la comunidad buscada. ")
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss(); //la ventana se cierra
-                                }
-                            });
-                    builder.show();
+                    //Dialogo para confirmar que no se encontro comunidad======
+                    MessageDialogComunityNotExist dialogComunityNotExist =
+                            new MessageDialogComunityNotExist();
+                    //mostramos mensaje emergente
+                    dialogComunityNotExist.show(
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction(),null);
+                    //=========================================================
                 }
 
             }
@@ -148,9 +146,9 @@ public class ComunityFragment extends Fragment {
 
 
     private void llenarDatosComunidades(){
-        listComunity = new ArrayList<>();
+        /*listComunity = new ArrayList<>();
 
-        ArrayList<String> nombresComunidades = new ArrayList<>();
+        ArrayList<Comunidad> nombresComunidades = new ArrayList<>();
         nombresComunidades.add("Reciclaje Piura");
         nombresComunidades.add("Ecologia Cayma");
         nombresComunidades.add("Eco-Miraflores");
@@ -168,6 +166,9 @@ public class ComunityFragment extends Fragment {
             listComunity.add(new ComunityContent((i+1),
                     nombresComunidades.get(i),
                     "Descripción de comunidad "+ (i+1)));
-        }
+        }*/
+        DbComunidades dbComunidades=new DbComunidades();
+        listComunity = new ArrayList<>();
+        listComunity=dbComunidades.obtenerComunidades();
     }
 }

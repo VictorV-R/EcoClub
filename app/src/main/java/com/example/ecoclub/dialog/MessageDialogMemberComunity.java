@@ -11,7 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.ecoclub.Entities.Usuario;
+import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
+import com.example.ecoclub.database.DbUsuarios;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 
 public class MessageDialogMemberComunity extends DialogFragment {
     public static String TAG = "MessageDialog";
@@ -23,14 +27,19 @@ public class MessageDialogMemberComunity extends DialogFragment {
     private static final String ARG_PARAM4 = "logros";
 
     static public MessageDialogMemberComunity newInstance(
-            String cargo, String nombre, String rango, String logros) {
+            int id_usuario,int id_comunidad) {
+
+        DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
+        Usuario_Comunidad aux=dbUsuariosComunidades.obtenerUsuarioComunidad(id_comunidad,id_usuario);
+
+
         //se referencia asi mismo
         MessageDialogMemberComunity f = new MessageDialogMemberComunity();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, cargo);
-        args.putString(ARG_PARAM2, nombre);
-        args.putString(ARG_PARAM3, rango);
-        args.putString(ARG_PARAM4, logros);
+        args.putString(ARG_PARAM1, aux.getTipo_usuario());
+        args.putString(ARG_PARAM2, aux.getId_usuario()+"");
+        args.putString(ARG_PARAM3, aux.getId_rango()+"");
+        args.putString(ARG_PARAM4, aux.getTipo_usuario());
         f.setArguments(args);
         return f;
     }
