@@ -1,9 +1,7 @@
 package com.example.ecoclub.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,25 +9,17 @@ import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
-
-import com.amplifyframework.auth.AuthUser;
-import com.amplifyframework.auth.AuthUserAttribute;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.auth.cognito.result.AWSCognitoAuthSignOutResult;
 import com.amplifyframework.auth.cognito.result.GlobalSignOutError;
 import com.amplifyframework.auth.cognito.result.HostedUIError;
 import com.amplifyframework.auth.cognito.result.RevokeTokenError;
 import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.AuthenticationActivity;
-import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 
 
