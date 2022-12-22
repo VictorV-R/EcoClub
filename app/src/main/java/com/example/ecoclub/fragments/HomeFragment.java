@@ -1,68 +1,75 @@
 package com.example.ecoclub.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.CompoundButton;
 import com.example.ecoclub.R;
-import com.example.ecoclub.news.Adapter;
-import com.example.ecoclub.news.ApiUtilities;
-import com.example.ecoclub.news.NewsShowClass;
-import com.example.ecoclub.news.mainNews;
-
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 
 public class HomeFragment extends Fragment {
+    private View view;
+    private Fragment homeNoticiasFragment;
+    private Fragment homeActividadesFragment;
+    FragmentTransaction transaction;
+    private AppCompatRadioButton rbLeft, rbRight;
 
-    String api="18f1b34a081148119e242db1fb37a8e9";
-    ArrayList<NewsShowClass> modelClassArrayList;
-    Adapter adapter;
-    String country="in";
-    private RecyclerView recyclerViewofHome;
-    private String category="science";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_home, container, false);
-
-        recyclerViewofHome=v.findViewById(R.id.recycleviewofHome);
-        modelClassArrayList=new ArrayList<>();
-        recyclerViewofHome.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter= new Adapter(getContext(), modelClassArrayList);
-        recyclerViewofHome.setAdapter(adapter);
-        findNews();
-        
-        return v;
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        rbLeft = view.findViewById(R.id.radioButtonLeft);
+        rbRight = view.findViewById(R.id.radioButtonRight);
+        rbLeft.setOnCheckedChangeListener(new Radio_check());
+        rbRight.setOnCheckedChangeListener(new Radio_check());
+        return view;
     }
 
-    private void findNews() {
-        ApiUtilities.getApiInterface().getCategoryNews(country,category,100,api).enqueue(new Callback<mainNews>() {
-            @Override
-            public void onResponse(Call<mainNews> call, Response<mainNews> response) {
-                if(response.isSuccessful())
-                {
-                    modelClassArrayList.addAll(response.body().getArticles());
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<mainNews> call, Throwable t) {
-
-            }
-        });
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        homeNoticiasFragment = new HomeNoticiasFragment();
+        transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.child_fragment_container, homeNoticiasFragment).addToBackStack(null).commit();
     }
 
+    class Radio_check implements CompoundButton.OnCheckedChangeListener{
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            //limpiando back stack
+            clearBackStack();
+            if(rbLeft.isChecked()) {
+                rbLeft.setTextColor(Color.BLACK);
+                rbRight.setTextColor(Color.GRAY);
+                homeNoticiasFragment = new HomeNoticiasFragment();
+                transaction = getChildFragmentManager().beginTransaction();
+                transaction.replace(R.id.child_fragment_container, homeNoticiasFragment).addToBackStack(null).commit();
+            }
+            else if(rbRight.isChecked()) {
+                rbRight.setTextColor(Color.BLACK);
+                rbLeft.setTextColor(Color.GRAY);
+                homeActividadesFragment = new HomeActividadesFragment();
+                transaction = getChildFragmentManager().beginTransaction();
+                transaction.replace(R.id.child_fragment_container, homeActividadesFragment).addToBackStack(null).commit();
+            }
+        }
+    }
+    //para limpiar el back stack**
+    private void clearBackStack() {
+        FragmentManager manager = getChildFragmentManager();
+        //solo dejamos el Home Fragment(index 1)
+        if (manager.getBackStackEntryCount() > 1) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(1);
+            manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
 }

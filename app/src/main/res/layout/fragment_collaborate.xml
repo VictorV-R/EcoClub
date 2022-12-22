@@ -9,179 +9,216 @@
 
     <ImageView
         android:id="@+id/imageViewLogo"
-        android:layout_width="327dp"
-        android:layout_height="201dp"
+        android:layout_width="229dp"
+        android:layout_height="155dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="331dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_title"
-        android:textAlignment="center"
-        android:textColor="@color/color_primary"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
-
-    <TextView
-        android:id="@+id/textViewNombreComunidad"
-        android:layout_width="245dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_nombreCom"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
-
-    <EditText
-        android:id="@+id/editTextNombreComunidad"
-        android:layout_width="325dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:hint="@string/txt_hint_nombreCom"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombreComunidad" />
-
-    <TextView
-        android:id="@+id/textViewDescripcion"
-        android:layout_width="245dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_descripcion"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombreComunidad" />
-
-    <EditText
-        android:id="@+id/editTextDescripcion"
-        android:layout_width="341dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:hint="@string/txt_hint_descripcion"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="374dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/textViewLocalizacion"
-        android:layout_width="245dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_localizacion"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescripcion" />
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_title"
+            android:textAlignment="center"
+            android:textColor="@color/color_primary"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
 
-    <EditText
-        android:id="@+id/editTextLocalizacion"
-        android:layout_width="341dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:hint="@string/txt_hint_coordenadas"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLocalizacion" />
+        <TextView
+            android:id="@+id/textViewNombreComunidad"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_label_nombreCom"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <TextView
-        android:id="@+id/textViewPais"
-        android:layout_width="136dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_pais"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocalizacion" />
+        <EditText
+            android:id="@+id/editTextNombreComunidad"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:fontFamily="@font/bhavuka_regular"
+            android:hint="@string/txt_hint_nombreCom"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.465"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombreComunidad" />
 
-    <EditText
-        android:id="@+id/editTextPais"
-        android:layout_width="154dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:hint="@string/txt_label_pais"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPais" />
+        <TextView
+            android:id="@+id/textViewDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_label_descripcion"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreComunidad" />
 
-    <TextView
-        android:id="@+id/textViewRegion"
-        android:layout_width="147dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="@string/txt_label_region"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.821"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocalizacion" />
+        <EditText
+            android:id="@+id/editTextDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="@font/bhavuka_regular"
+            android:hint="@string/txt_hint_descripcion"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion" />
 
-    <EditText
-        android:id="@+id/editTextRegion"
-        android:layout_width="164dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:fontFamily="@font/bhavuka_regular"
-        android:hint="@string/txt_label_region"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegion" />
+        <TextView
+            android:id="@+id/textViewLocalizacion"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:text="@string/txt_label_localizacion"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescripcion" />
+
+        <EditText
+            android:id="@+id/editTextLocalizacion"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="@font/bhavuka_regular"
+            android:hint="@string/txt_hint_coordenadas"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLocalizacion" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewPais"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/bhavuka_regular"
+                    android:text="@string/txt_label_pais"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.145"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextLocalizacion" />
+
+                <EditText
+                    android:id="@+id/editTextPais"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:fontFamily="@font/bhavuka_regular"
+                    android:hint="@string/txt_label_pais"
+                    android:inputType="textPersonName"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.163"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPais" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/bhavuka_regular"
+                    android:text="@string/txt_label_region"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.821"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextLocalizacion" />
+
+                <EditText
+                    android:id="@+id/editTextRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:fontFamily="@font/bhavuka_regular"
+                    android:hint="@string/txt_label_region"
+                    android:inputType="textPersonName"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.878"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewRegion" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonCrearComunity"
         android:layout_width="226dp"
         android:layout_height="56dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_btn_create_comunidad"
         android:fontFamily="@font/bhavuka_regular"
         android:text="@string/txt_btn_crearCom"
@@ -190,8 +227,9 @@
         android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocalizacion" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
