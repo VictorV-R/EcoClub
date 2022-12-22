@@ -3,7 +3,6 @@ package com.example.ecoclub.comunity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,10 +11,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
-import com.example.ecoclub.View.Rectangulo;
 import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 
 import java.util.ArrayList;
@@ -71,7 +68,7 @@ public class AdapterComunityDescription extends
         public void cargarDatos(Usuario_Comunidad member, FragmentActivity main) {
             this.member = member;
             this.textNameComunityDescription.setText(member.getId_usuario()+"");
-            //evento-llamamos al View Rectangulo
+            //evento-llamamos
             this.btnMember.setOnClickListener(eventMemberComunity);
         }
 
