@@ -68,7 +68,7 @@ public class AdapterComunityDescription extends
 
         public void cargarDatos(Usuario_Comunidad member, FragmentActivity main) {
             this.member = member;
-            this.textNameComunityDescription.setText(member.getId_usuario());
+            this.textNameComunityDescription.setText(member.getId_usuario()+"");
             //evento-llamamos al View Rectangulo
             this.btnMember.setOnClickListener(eventMemberComunity);
         }

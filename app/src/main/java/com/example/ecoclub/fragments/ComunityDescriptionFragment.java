@@ -138,7 +138,6 @@ public class ComunityDescriptionFragment extends Fragment {
     private void llenarDatosMiembrosComunity() {
 
         DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
-        id="1";
         listMembersComunity = dbUsuariosComunidades.obtenerUsuariosComunidad(Integer.parseInt(id));
         /*ArrayList<String> listNombMiemComunity = new ArrayList<>();
         listNombMiemComunity.add("Juan Perez");
