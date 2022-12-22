@@ -3,6 +3,10 @@
     <string name="app_name">NUNA</string>
     <string name="alt_image">Imagen de un planeta</string>
 
+    <!-- Strings related to Home Fragment -->
+    <string name="txt_rbtn_opcion1">Noticias</string>
+    <string name="txt_rbtn_opcion2">Actividades</string>
+
     <!-- Strings related to BottomNavigation -->
     <string name="home">Home</string>
     <string name="mapa">Mapa</string>
@@ -43,9 +47,9 @@
     <string name="txt_label_descripcion">Descripción</string>
     <string name="txt_hint_descripcion">Ingrese la descripcion de la comunidad</string>
     <string name="txt_label_localizacion">Localización</string>
-    <string name="txt_hint_coordenadas">Ingrese las coordenadas</string>
-    <string name="txt_label_pais">Pais</string>
-    <string name="txt_label_region">Region</string>
+    <string name="txt_hint_coordenadas">Ingrese el nombre de la localización</string>
+    <string name="txt_label_pais">Latitud</string>
+    <string name="txt_label_region">Longitud</string>
     <string name="txt_btn_crearCom">Crear comunidad</string>
 
     <!-- Strings related to profile Fragment -->
