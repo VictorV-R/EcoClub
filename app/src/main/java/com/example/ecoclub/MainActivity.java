@@ -17,13 +17,12 @@ import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
 import com.example.ecoclub.fragments.HomeFragment;
 import com.example.ecoclub.fragments.MapsFragment;
+import com.example.ecoclub.fragments.MapsViewFragment;
 import com.example.ecoclub.fragments.MyComunityFragment;
 import com.example.ecoclub.fragments.ProfileFragment;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
 
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     private BottomNavigationView bottomNavigationView;
     //Bottom Navigation-Fragments
     private HomeFragment homeFragment = new HomeFragment();
-    private MapsFragment mapsFragment = new MapsFragment();
+    private MapsViewFragment mapsFragment = new MapsViewFragment();
     private ComunityFragment comunityFragment = new ComunityFragment();
     private CollaborateFragment collaborateFragment = new CollaborateFragment();
     private ProfileFragment profileFragment = new ProfileFragment();

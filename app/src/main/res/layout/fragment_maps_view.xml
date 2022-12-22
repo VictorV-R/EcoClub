@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_design_profile"
-    tools:context=".fragments.ProfileFragment">
+    tools:context=".fragments.MapsViewFragment">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <ImageView
         android:id="@+id/imageViewLogo"
@@ -14,31 +16,31 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="127dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/abrazo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroupBotones"
-        android:layout_width="290dp"
-        android:layout_height="52dp"
+        android:layout_width="278dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="380dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/radio_button_left_unchecked"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo">
 
         <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/radioButtonLeft"
+            android:id="@+id/radioButtonActividades"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -47,37 +49,38 @@
             android:checked="true"
             android:fontFamily="@font/bhavuka_regular"
             android:gravity="center"
-            android:text="@string/txt_rbtn_option1"
+            android:text="@string/txt_rbtn_opcion2"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/radioButtonRight"
+            android:id="@+id/radioButtonComunidades"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@drawable/radio_button_left_selector"
             android:button="@color/transparent"
+            android:fontFamily="@font/bhavuka_regular"
             android:gravity="center"
-            android:text="@string/txt_rbtn_option2"
-            android:textColor="@color/gray"
+            android:text="@string/txt_comunidades"
             android:textAllCaps="false"
+            android:textColor="#757575"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/bhavuka_regular"/>
+            android:textStyle="bold" />
     </RadioGroup>
 
     <FrameLayout
-        android:id="@+id/child_fragment_container"
-        android:layout_width="wrap_content"
-        android:layout_height="371dp"
+        android:id="@+id/maps_fragment_container"
+        android:layout_width="354dp"
+        android:layout_height="375dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="-3dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupBotones"></FrameLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
