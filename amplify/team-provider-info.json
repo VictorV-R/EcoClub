@@ -16,7 +16,13 @@
         "ecoclub": {}
       },
       "auth": {
-        "ecoclubba652e23": {}
+        "ecoclubba652e23": {},
+        "ecoclub7fbd86c8": {
+          "userPoolId": "sa-east-1_in2smaMOK",
+          "userPoolName": "Eco-Club-users",
+          "webClientId": "2dn4ekhif2gtpfg675umi03ug3",
+          "nativeClientId": "2dn4ekhif2gtpfg675umi03ug3"
+        }
       }
     }
   }
