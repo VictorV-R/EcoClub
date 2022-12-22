@@ -11,8 +11,10 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
+import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ public class AdapterComunityDescription extends
     @Override
     public void onBindViewHolder(@NonNull AdapterComunityDescription.ViewHolderData holder, int position) {
         //le enviamos el main al ViewHolder
-        holder.cargarDatos(listMembersComunity.get(position), main);
+        holder.cargarDatos(listMembersComunity.get(position));
     }
 
     @Override
@@ -65,9 +67,13 @@ public class AdapterComunityDescription extends
                     R.id.onClickComunityMember);  //CARDVIEW
         }
 
-        public void cargarDatos(Usuario_Comunidad member, FragmentActivity main) {
+        public void cargarDatos(Usuario_Comunidad member) {
             this.member = member;
-            this.textNameComunityDescription.setText(member.getId_usuario()+"");
+
+            DbUsuarios dbUsuarios=new DbUsuarios();
+            Usuario usuarioInfo=dbUsuarios.obtenerUsuario(member.getId_usuario());
+
+            this.textNameComunityDescription.setText(usuarioInfo.getNombre());
             //evento-llamamos
             this.btnMember.setOnClickListener(eventMemberComunity);
         }
