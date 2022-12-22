@@ -1,17 +1,15 @@
 package com.example.ecoclub;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
+import com.example.ecoclub.dialog.MessageDialogQuit;
 import com.example.ecoclub.fragments.CollaborateFragment;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
@@ -23,7 +21,6 @@ import com.example.ecoclub.interfaces.MainActivityCallbacks;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
 
@@ -151,31 +148,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         if (keyCode == event.KEYCODE_BACK)
         {
             //cambiamos el icono del bottom navigation================================
-            manager = getSupportFragmentManager();
 
             if (bottomNavigationView.getSelectedItemId() == R.id.home) {
                 //Dialogo para salir de la app o no
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("¿Desea salir de NuNa?")
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Cerramos la aplicacion
-                                Intent intent = new Intent(Intent.ACTION_MAIN);
-                                intent.addCategory(Intent.CATEGORY_HOME);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                                //para que inicie con un fragment
-                                bottomNavigationView.setSelectedItemId(R.id.home);
-                            }
-                        });
-                builder.show();
+
+                //Dialogo para salir de la app o no
+                MessageDialogQuit dialogoSalir= new MessageDialogQuit();
+                dialogoSalir.show(getSupportFragmentManager()
+                        .beginTransaction(), null);
             }
 
 
