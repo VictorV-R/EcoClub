@@ -39,6 +39,7 @@ public class ComunityDescFragModerator extends Fragment {
     private ComunityDescriptionFragment comuDescFrag;
     private ComunityDescFragNotMember comunityDescFragNotMember;
     //Todo:==========================================================
+    private FragmentCreateActivity fragmentCreateActivity;
 
     public ComunityDescFragModerator() {
         // Required empty public constructor
@@ -121,6 +122,9 @@ public class ComunityDescFragModerator extends Fragment {
                     Toast.makeText(getActivity(), "Agregando miembro",
                             Toast.LENGTH_LONG).show();
 
+                    //Todo:Utilizar la base de datos aqui para agregar miembro
+                    // Todo: a traves de un correo electronico
+
                 }
             };
 
@@ -130,6 +134,22 @@ public class ComunityDescFragModerator extends Fragment {
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), "Creando actividad",
                             Toast.LENGTH_LONG).show();
+
+                    //para crear actividad
+                    new Thread(new Runnable() {
+                        public void run() {
+
+                            //Todo:agregarle parametros mas adelante como el id
+                            //Todo: de la comunidad para unirlo en el otro fragmento
+                            //todo: para la base de datos
+                            fragmentCreateActivity = new FragmentCreateActivity();
+
+                            //para cmbiar de interface
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.container, fragmentCreateActivity)
+                                    .addToBackStack(null).commit();
+                        }
+                    }).start();
 
                 }
             };
