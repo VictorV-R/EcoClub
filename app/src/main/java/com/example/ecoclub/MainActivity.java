@@ -26,7 +26,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
 
     //Datos del Usuario Inicio Sesion
-    //private Usuario currentUser = null;
+    private Usuario currentUser = null;
 
     private FragmentTransaction ft;
     private BottomNavigationView bottomNavigationView;
@@ -113,16 +113,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         }
     }
 
-    @Override
-    public void requestCurrentUserDataInMain() {
-
-    }
-
-    @Override
-    public Usuario sendCurrentUserDataFragment() {
-        return null;
-    }
-
     //para limpiar el back stack*************************************************
     private void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
@@ -172,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         }
         return super.onKeyDown(keyCode, event);
     }
-/*
+
     //recuperando datos del ussuario conectdo
     @Override
     public void requestCurrentUserDataInMain(){
@@ -197,6 +187,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     @Override
     public Usuario sendCurrentUserDataFragment(){
         return currentUser;
-    }*/
+    }
 
 }
