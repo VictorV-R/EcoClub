@@ -89,11 +89,15 @@ public class AdapterComunityDescription extends
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Ver miembro", Toast.LENGTH_LONG).show();
                 //como se tiene el id se puede hacer consultas
-                //por ahora mandamos datos por defecto
-                MessageDialogMemberComunity.newInstance(
-                                member.getId_usuario(),
-                                member.getId_comunidad())
-                        .show(main.getSupportFragmentManager(), null);
+                new Thread(new Runnable() {
+                    public void run() {
+                        //Aquí ejecutamos nuestras tareas costosas
+                        MessageDialogMemberComunity.newInstance(
+                                        member.getId_usuario(),
+                                        member.getId_comunidad())
+                                .show(main.getSupportFragmentManager(), null);
+                    }
+                }).start();
             }
         };
         //=======================================================
