@@ -28,7 +28,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
 
     //Datos del Usuario Inicio Sesion
-    private Usuario currentUser = null;
+    //private Usuario currentUser = null;
 
     private FragmentTransaction ft;
     private BottomNavigationView bottomNavigationView;
@@ -120,17 +120,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
             ft.addToBackStack(null);
             ft.commit();
         }
-
-        //ingresar fragment My Comunity
-        if (destiny.equalsIgnoreCase(ComunityFragment.DESTINY)){
-            //limpiamos el back stack
-            //clearBackStack();
-            ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container, comunityFragment);
-            //ft.setReorderingAllowed(true);
-            ft.addToBackStack(null);
-            ft.commit();
-        }
     }
 
     //para limpiar el back stack*************************************************
@@ -183,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         }
         return super.onKeyDown(keyCode, event);
     }
-
+    /*
     //recuperando datos del ussuario conectdo
     @Override
     public void requestCurrentUserDataInMain(){
@@ -204,5 +193,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     @Override
     public Usuario sendCurrentUserDataFragment(){
         return currentUser;
+    }*/
+
+    @Override
+    public void requestCurrentUserDataInMain() {
+
     }
+
+    @Override
+    public Usuario sendCurrentUserDataFragment() {
+        return null;
+    }
+
 }

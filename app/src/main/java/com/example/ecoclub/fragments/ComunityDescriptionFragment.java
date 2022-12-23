@@ -2,6 +2,7 @@ package com.example.ecoclub.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,9 +34,13 @@ public class ComunityDescriptionFragment extends Fragment {
     private ViewTransparente imgDesCom;
     private Button btnAtras;
 
-    //Recycler View================================
-    private ArrayList<Usuario_Comunidad> listMembersComunity;
-    private RecyclerView recyclerComunityDescription;
+    private ComunityFragment comunityFragment = new ComunityFragment();
+    //Fragments hijos================================
+    private FragmentTransaction fragmentTransaction;
+    //inicializarlos con newInstance es necesario para pasar parametros
+    private ComunityDescFragMember comunityDescFragMember;
+    private ComunityDescFragNotMember comunityDescFragNotMember;
+    private ComunityDescFragModerator comunityDescFragModerator;
     //=============================================
 
     private static final String ARG_PARAM1 = "id";
@@ -94,33 +99,54 @@ public class ComunityDescriptionFragment extends Fragment {
         //boton Atras
         btnAtras = view.findViewById(R.id.btnAtrasDescriptionComunity);
         btnAtras.setOnClickListener(eventAtras);
-        //adaptador
-        referenciarAdaptador(view);
+
+        //para aliviar el fragment utilizamos un hilo
+        //new Thread(new Runnable() {
+          //  public void run() {
+                //Aquí ejecutamos nuestras tareas costosas
+                //fragments hijos
+                fragmentSegunRangoMiembro(view);
+            //}
+        //}).start();
 
         return view;
     }
 
-    //para configurar lo que falte para que el RecyclerView funcione bien
-    private void referenciarAdaptador(View view) {
-        //Recycler View=======================
-        //Referenciamos el RecyclerView del layout
-        recyclerComunityDescription = view.findViewById(R.id.idRecyclerComunityDescription);
-        //para cargar una lista vertical
-        recyclerComunityDescription.setLayoutManager(new LinearLayoutManager(getActivity(),
-                RecyclerView.VERTICAL, false));
-        //llenando datos de comunidad
-        llenarDatosMiembrosComunity();
+    private void fragmentSegunRangoMiembro(View view) {
+/*
+        //Todo: Miembro
+        //por default dejaremos el de miembro por mientras
+        //le pasamos el id de la comunidad
+        comunityDescFragMember = ComunityDescFragMember.newInstance(id);
+        fragmentTransaction = getChildFragmentManager().beginTransaction();
 
-        //enviamos los datos al adaptador de Comunidad
-        AdapterComunityDescription adapter = new AdapterComunityDescription(
-                listMembersComunity, getActivity());
-        //por ultimo al recycler le enviamos el adaptador de la Comunidad
-        recyclerComunityDescription.setAdapter(adapter);
-        ///===================================
+        //para mostrarlo en la interface
+        fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
+                comunityDescFragMember).commit();
+*/
+/*
+        //Todo: No miembro
+        comunityDescFragNotMember = ComunityDescFragNotMember.newInstance(id);
+        fragmentTransaction = getChildFragmentManager().beginTransaction();
+
+        //para mostrarlo en la interface
+        fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
+                comunityDescFragNotMember).commit();
+*/
+
+        //Todo: Moderador
+        comunityDescFragModerator = ComunityDescFragModerator.newInstance(id);
+        fragmentTransaction = getChildFragmentManager().beginTransaction();
+
+        //para mostrarlo en la interface
+        fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
+                comunityDescFragModerator).commit();
+
     }
 
+
     //event image description comunity
-    View.OnClickListener eventImgDesCom = new View.OnClickListener() {
+    private View.OnClickListener eventImgDesCom = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Toast.makeText(view.getContext(), "Esta es una imagen con click", Toast.LENGTH_LONG).show();
@@ -130,31 +156,8 @@ public class ComunityDescriptionFragment extends Fragment {
     private View.OnClickListener eventAtras = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            ((MainActivity) getActivity()).changeFragmentInMain(
-                    ComunityFragment.DESTINY);
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, comunityFragment).commit();
         }
     };
-
-    private void llenarDatosMiembrosComunity() {
-
-        DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
-        listMembersComunity = dbUsuariosComunidades.obtenerUsuariosComunidad(Integer.parseInt(id));
-        /*ArrayList<String> listNombMiemComunity = new ArrayList<>();
-        listNombMiemComunity.add("Juan Perez");
-        listNombMiemComunity.add("Mario Palacios");
-        listNombMiemComunity.add("Victor Pineda");
-        listNombMiemComunity.add("Sandro Bustamante");
-        listNombMiemComunity.add("Pedro Roque");
-        listNombMiemComunity.add("Sandro Martinez");
-        listNombMiemComunity.add("Brian Guerrero");
-        listNombMiemComunity.add("Alex Ticona");
-        listNombMiemComunity.add("Julio Lopez");
-        listNombMiemComunity.add("Antonio Valdivia");
-
-        for (int i = 0; i < listNombMiemComunity.size(); i++){
-            listMembersComunity.add(new Participante_Actividad(
-                    (i+1), listNombMiemComunity.get(i),
-                    "Veterano", 21));
-        }*/
-    }
 }

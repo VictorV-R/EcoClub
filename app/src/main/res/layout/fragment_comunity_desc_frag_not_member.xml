@@ -6,28 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ComunityDescFragNotMember">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerListaMiembrosComunidad"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSalirComunidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/custom_button_my_comunity"
-        android:text="Unirse a la comunidad"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerListaMiembrosComunidad"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerListaMiembrosComunidad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSalirComunidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="60dp"
+                android:background="@drawable/custom_button_my_comunity"
+                android:text="Unirse a la comunidad"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
