@@ -1,19 +1,16 @@
 package com.example.ecoclub;
 
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MenuItem;
-
 import com.example.ecoclub.Entities.Usuario;
-import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.dialog.MessageDialogQuit;
-import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.fragments.CollaborateFragment;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
@@ -29,7 +26,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
 
     //Datos del Usuario Inicio Sesion
-    private Usuario currentUser = null;
+    //private Usuario currentUser = null;
 
     private FragmentTransaction ft;
     private BottomNavigationView bottomNavigationView;
@@ -116,6 +113,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         }
     }
 
+    @Override
+    public void requestCurrentUserDataInMain() {
+
+    }
+
+    @Override
+    public Usuario sendCurrentUserDataFragment() {
+        return null;
+    }
+
     //para limpiar el back stack*************************************************
     private void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
@@ -165,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         }
         return super.onKeyDown(keyCode, event);
     }
-
+/*
     //recuperando datos del ussuario conectdo
     @Override
     public void requestCurrentUserDataInMain(){
@@ -190,6 +197,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     @Override
     public Usuario sendCurrentUserDataFragment(){
         return currentUser;
-    }
+    }*/
 
 }
