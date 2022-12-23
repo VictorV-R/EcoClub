@@ -181,9 +181,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
                 },
                 error -> Log.e("AuthQuickStart", error.toString())
         );
-
+        while (currentUser.getEmail()==null){
+            try {
+                Thread.sleep( 500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d("INFO","Correo:"+currentUser.getEmail());
         currentUser.setId(dbUsuarios.recuperarUsuarioID(currentUser.getEmail()));
-        dbUsuarios.modificarUsuario(currentUser.getId(), currentUser.getName()+" "+currentUser.getLastName());
+        //dbUsuarios.modificarUsuario(currentUser.getId(), currentUser.getName()+" "+currentUser.getLastName());
         Log.i("IDuser","-> "+currentUser.getId());
     }
 
