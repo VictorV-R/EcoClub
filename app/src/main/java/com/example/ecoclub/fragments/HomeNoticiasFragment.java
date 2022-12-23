@@ -26,15 +26,6 @@ public class HomeNoticiasFragment extends Fragment {
     private RecyclerView recyclerViewofHome;
     private String category="science";
 
-    public HomeNoticiasFragment() {
-        // Required empty public constructor
-    }
-    public static HomeNoticiasFragment newInstance(String param1, String param2) {
-        HomeNoticiasFragment fragment = new HomeNoticiasFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

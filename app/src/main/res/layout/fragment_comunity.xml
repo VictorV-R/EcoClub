@@ -16,6 +16,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:text="@string/comunidades"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/bhavuka_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
@@ -32,6 +35,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="16dp"
         android:text="@string/resultados"
+        android:textSize="20dp"
+        android:fontFamily="@font/bhavuka_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,11 +63,13 @@
             <EditText
                 android:id="@+id/editTextComunitySearch"
                 android:layout_width="254dp"
-                android:layout_height="46dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:ems="10"
                 android:hint="@string/buscar"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textSize="20dp"
+                android:fontFamily="@font/bhavuka_regular"/>
 
             <ImageButton
                 android:id="@+id/imgBtnSearch"
@@ -71,7 +78,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/color_content"
-                android:src="?android:attr/actionModeWebSearchDrawable"/>
+                android:src="?android:attr/actionModeWebSearchDrawable" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

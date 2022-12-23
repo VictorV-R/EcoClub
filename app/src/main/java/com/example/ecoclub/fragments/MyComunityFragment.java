@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class MyComunityFragment extends Fragment {
 
     public static final String DESTINY = "My Comunity";
+    private ComunityFragment comunityFragment = new ComunityFragment();
 
     private ArrayList<Comunidad> listMyComunity;
 
@@ -134,8 +135,8 @@ public class MyComunityFragment extends Fragment {
     private View.OnClickListener eventAtras = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            ((MainActivity) getActivity()).changeFragmentInMain(
-                    ComunityFragment.DESTINY);
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, comunityFragment).commit();
         }
     };
 

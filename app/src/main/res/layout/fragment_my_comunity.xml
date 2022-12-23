@@ -17,7 +17,9 @@
         android:layout_marginStart="4dp"
         android:layout_marginBottom="24dp"
         android:text="@string/misComunidades"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/bhavuka_regular"
         app:layout_constraintBottom_toTopOf="@+id/rectanguloMyComunity"
         app:layout_constraintEnd_toStartOf="@+id/btnAtrasMyComunity"
         app:layout_constraintHorizontal_bias="0.161"
@@ -33,6 +35,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:text="@string/resultados"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/bhavuka_regular"
         app:layout_constraintBottom_toTopOf="@+id/idRecyclerMyComunity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
@@ -61,11 +66,13 @@
             <EditText
                 android:id="@+id/editTextMyComunity"
                 android:layout_width="254dp"
-                android:layout_height="46dp"
+                android:layout_height="48dp"
                 android:ems="10"
                 android:hint="@string/buscar"
                 android:inputType="textPersonName"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/bhavuka_regular"/>
 
             <ImageButton
                 android:id="@+id/imgBtnSearchMyComunity"
@@ -102,6 +109,9 @@
         android:text="Atras"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/bhavuka_regular"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/rectanguloMyComunity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

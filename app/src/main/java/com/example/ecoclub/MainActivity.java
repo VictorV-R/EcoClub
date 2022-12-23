@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
         ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container, homeFragment);
-        //ft.setReorderingAllowed(true);
         ft.addToBackStack(null); //agregado para que se pueda retroceder en los fragments
         ft.commit();
 
@@ -77,31 +76,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
             switch (item.getItemId()){
                 case R.id.home:
                     ft.replace(R.id.container, homeFragment);
-                    //ft.setReorderingAllowed(true);
                     ft.addToBackStack(null);
                     ft.commit();
                     return true;
                 case R.id.maps:
                     ft.replace(R.id.container, mapsFragment);
-                    //ft.setReorderingAllowed(true);
                     ft.addToBackStack(null);
                     ft.commit();
                     return true;
                 case R.id.comunity:
                     ft.replace(R.id.container, comunityFragment);
-                    //ft.setReorderingAllowed(true);
                     ft.addToBackStack(null);
                     ft.commit();
                     return true;
                 case R.id.collaborate:
                     ft.replace(R.id.container, collaborateFragment);
-                    //ft.setReorderingAllowed(true);
                     ft.addToBackStack(null);
                     ft.commit();
                     return true;
                 case R.id.profile:
                     ft.replace(R.id.container, profileFragment);
-                    //ft.setReorderingAllowed(true);
                     ft.addToBackStack(null);
                     ft.commit();
                     return true;
@@ -117,18 +111,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         if (destiny.equalsIgnoreCase(MyComunityFragment.DESTINY)){
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, myComunityFragment);
-            //ft.setReorderingAllowed(true);
-            ft.addToBackStack(null);
-            ft.commit();
-        }
-
-        //ingresar fragment My Comunity
-        if (destiny.equalsIgnoreCase(ComunityFragment.DESTINY)){
-            //limpiamos el back stack
-            //clearBackStack();
-            ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container, comunityFragment);
-            //ft.setReorderingAllowed(true);
             ft.addToBackStack(null);
             ft.commit();
         }
@@ -151,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        FragmentManager manager;
         Fragment fragmentCurrent;
 
         if (keyCode == event.KEYCODE_BACK)
@@ -209,4 +190,5 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     public Usuario sendCurrentUserDataFragment(){
         return currentUser;
     }
+
 }
