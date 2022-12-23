@@ -2,6 +2,7 @@
     <!-- Strings Global -->
     <string name="app_name">NUNA</string>
     <string name="alt_image">Imagen de un planeta</string>
+    <string name="app_nuna">App NuNa</string>
 
     <!-- Strings related to Home Fragment -->
     <string name="txt_rbtn_opcion1">Noticias</string>
@@ -23,6 +24,12 @@
     <string name="string_comunity_description">Descripcion de la Comunidad</string>
     <string name="string_comunity_name">Nombre de la Comunidad</string>
     <string name="nombre_miembro_comunidad">Miembro n</string>
+
+    <!-- Strings related to dialog Fragment message-->
+    <string name="txt_titulo">Cargo(miembro/colaborador)</string>
+    <string name="txt_nombre">Nombre</string>
+    <string name="txt_rango">Rango</string>
+    <string name="txt_logro">Logros</string>
 
     <!-- Strings related to authentication -->
     <string name="title_login">LOGIN</string>
@@ -61,10 +68,13 @@
     <string name="txt_label_apellido">Apellidos</string>
     <string name="txt_label_celular">Numero de celular</string>
     <string name="txt_label_email">Correo electrónico</string>
+    <string name="txt_btn_signout">Cerrar Sesión</string>
 
     <!-- Strings related to Profile-Logros Fragment -->
     <string name="txt_logros">Logros</string>
     <string name="txt_comunidades">Comunidades</string>
     <string name="todo">TODO</string>
+
+    <string name="descripcion">Imagen</string>
 
 </resources>

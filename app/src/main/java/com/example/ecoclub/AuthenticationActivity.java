@@ -14,6 +14,7 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.Entities.Usuario;
+import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.exceptions.BlankFieldsException;
 import com.example.ecoclub.exceptions.PasswordException;
 import com.example.ecoclub.fragments.AuthenticationFragment;
@@ -166,6 +167,14 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     }
 
     public void registerUserDB(String email){
-        Log.i("Info Register", "Usuario Registrado exitosamente");
+        DbUsuarios dbUsuarios = new DbUsuarios();
+        dbUsuarios.insertarUsuario("",email);
+        Log.i("Info Register", "Usuario Registrado exitosamente con correo "+email);
     }
+
+    /*ublic void registerUserDB(String nombre,String email){
+        DbUsuarios dbUsuarios = new DbUsuarios();
+        dbUsuarios.insertarUsuario(nombre,email);
+        Log.i("Info Register", "Usuario Registrado exitosamente con correo "+email);
+    }*/
 }
