@@ -54,7 +54,7 @@
     <EditText
         android:id="@+id/edt_name"
         android:layout_width="250dp"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:layout_marginTop="45dp"
         android:autofillHints="emailAddress"
         android:background="@drawable/custom_input"
@@ -75,7 +75,7 @@
     <EditText
         android:id="@+id/edt_password"
         android:layout_width="250dp"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:autofillHints="password"
         android:background="@drawable/custom_input"

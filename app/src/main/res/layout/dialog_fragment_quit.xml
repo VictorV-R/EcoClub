@@ -17,11 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:text="App NuNa"
+            android:text="@string/app_nuna"
             android:layout_marginBottom="20dp"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bhavuka_regular"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +38,8 @@
                 android:text="¿Desea salir de la aplicacion?"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="18dp"
+                android:fontFamily="@font/bhavuka_regular"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -56,6 +59,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/custom_boton_atras"
                     android:text="Cancelar"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/bhavuka_regular"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <Space
@@ -70,6 +77,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/custom_boton_atras"
                     android:text="Salir"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/bhavuka_regular"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 

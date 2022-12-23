@@ -35,7 +35,8 @@
                 android:text="Unirse a la comunidad"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>

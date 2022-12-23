@@ -24,7 +24,9 @@
             android:text="App NuNa"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bhavuka_regular"/>
 
         <TextView
             android:id="@+id/textAnswer"
@@ -35,8 +37,9 @@
             android:layout_weight="1"
             android:text="La comunidad buscada no existe"
             android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/bhavuka_regular"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAceptar"
@@ -47,7 +50,11 @@
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:background="@drawable/custom_boton_atras"
-            android:text="Aceptar" />
+            android:text="Aceptar"
+            android:textAllCaps="false"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bhavuka_regular"/>
 
     </LinearLayout>
 
