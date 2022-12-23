@@ -1,19 +1,19 @@
 package com.example.ecoclub;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.dialog.MessageDialogQuit;
-import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.fragments.CollaborateFragment;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
@@ -181,10 +181,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
                 },
                 error -> Log.e("AuthQuickStart", error.toString())
         );
-
+        while (currentUser.getEmail()==null){
+            try {
+                Thread.sleep( 500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d("INFO","Correo:"+currentUser.getEmail());
         currentUser.setId(dbUsuarios.recuperarUsuarioID(currentUser.getEmail()));
-        dbUsuarios.modificarUsuario(currentUser.getId(), currentUser.getName()+" "+currentUser.getLastName());
-        Log.i("IDuser Que fue","-> "+currentUser.getId());
+        //dbUsuarios.modificarUsuario(currentUser.getId(), currentUser.getName()+" "+currentUser.getLastName());
+        Log.i("IDuser","-> "+currentUser.getId());
     }
 
     @Override
