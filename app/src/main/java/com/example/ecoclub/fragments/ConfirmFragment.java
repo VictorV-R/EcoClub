@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.R;
 import com.example.ecoclub.exceptions.BlankFieldsException;
 import com.example.ecoclub.interfaces.AuthenticationActivityCallbacks;
@@ -23,7 +24,7 @@ public class ConfirmFragment extends Fragment {
 
     private Button btn_confirmation;
     private EditText edt_code;
-    private String username;
+    private Usuario user;
 
     private AuthenticationActivityCallbacks authenticationActivityCallbacks;
 
@@ -46,7 +47,7 @@ public class ConfirmFragment extends Fragment {
                     fields.add(edt_code);
 
                     authenticationActivityCallbacks.checkEmptyFields(fields);
-                    authenticationActivityCallbacks.confirmSignUp(username, code);
+                    authenticationActivityCallbacks.confirmSignUp(user, code);
                     authenticationActivityCallbacks.clearFields(fields);
 
                 }catch (BlankFieldsException b){
@@ -66,7 +67,7 @@ public class ConfirmFragment extends Fragment {
         }
     }
 
-    public void assignUsername(String username) {
-        this.username = username;
+    public void assignUsername(Usuario user) {
+        this.user = user;
     }
 }

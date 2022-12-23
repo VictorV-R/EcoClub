@@ -7,4 +7,5 @@ public interface MainActivityCallbacks {
     void changeFragmentInMain(String destiny);
     void requestCurrentUserDataInMain();
     Usuario sendCurrentUserDataFragment();
+    void logout();
 }

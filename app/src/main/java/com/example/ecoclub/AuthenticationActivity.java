@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.AuthUserAttributeKey;
@@ -16,6 +17,7 @@ import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.exceptions.BlankFieldsException;
+import com.example.ecoclub.exceptions.EmailExistsException;
 import com.example.ecoclub.exceptions.PasswordException;
 import com.example.ecoclub.fragments.AuthenticationFragment;
 import com.example.ecoclub.fragments.ConfirmFragment;
@@ -78,7 +80,25 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     }
 
     @Override
-    public void signUp(Usuario user){
+    public void EmailExistsValidation(String email) throws EmailExistsException {
+        DbUsuarios dbUsuarios = new DbUsuarios();
+
+        int flagID = -999;
+
+        flagID = dbUsuarios.recuperarUsuarioID(email);
+
+        while (flagID == -999){
+            try {
+                Thread.sleep( 200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if(flagID > 0) throw new EmailExistsException(getApplicationContext());
+    }
+
+    @Override
+    public void signUp(Usuario user) {
 
         ArrayList<AuthUserAttribute> attributes = new ArrayList<>();
         attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), user.getEmail()));
@@ -92,23 +112,24 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                 AuthSignUpOptions.builder().userAttributes(attributes).build(),
                 result -> {
                     Log.i("Registro Exitoso !!!", result.toString());
-                    loadConfirmFragment(user.getEmail());
+                    loadConfirmFragment(user);
                 },
                 error -> Log.e("Error al registrase", error.toString())
         );
     }
     @Override
-    public void confirmSignUp(String email, String code){
+    public void confirmSignUp(Usuario user, String code){
 
         Amplify.Auth.confirmSignUp(
-                email,
+                user.getEmail(),
                 code,
                 result -> {
                     Log.i("Confirm Email info", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
-                    registerUserDB(email);
+                    registerUserDB(user);
                     loadLoginFragment();
                 },
                 error -> Log.e("Confirm Email info", error.toString())
+
         );
     }
     @Override
@@ -130,10 +151,10 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         loadSesion();
     }
 
-    public void loadConfirmFragment(String username){
+    public void loadConfirmFragment(Usuario user){
         ConfirmFragment confirmFragment = new ConfirmFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,confirmFragment).addToBackStack(null).commit();
-        confirmFragment.assignUsername(username);
+        confirmFragment.assignUsername(user);
     }
 
     public void loadRegisterFragment() {
@@ -166,10 +187,10 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         );
     }
 
-    public void registerUserDB(String email){
+    public void registerUserDB(Usuario user){
         DbUsuarios dbUsuarios = new DbUsuarios();
-        dbUsuarios.insertarUsuario("",email);
-        Log.i("Info Register", "Usuario Registrado exitosamente con correo "+email);
+        dbUsuarios.insertarUsuario(user.getName()+" "+user.getLastName(), user.getEmail());
+        Log.i("Info Register", "Usuario Registrado exitosamente el usuario "+ user.getName());
     }
 
 }

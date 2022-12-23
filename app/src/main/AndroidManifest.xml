@@ -35,7 +35,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".AuthenticationActivity"
+            android:name=".MainActivity"
             android:theme="@style/Theme.EcoClubDos"
             android:exported="true">
 
@@ -44,7 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".AuthenticationActivity"
             android:exported="true">
 
             <intent-filter>
