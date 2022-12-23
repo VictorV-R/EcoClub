@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.ecoclub.Entities.Person;
+import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.R;
 import com.example.ecoclub.exceptions.BlankFieldsException;
 import com.example.ecoclub.exceptions.PasswordException;
-import com.example.ecoclub.interfaces.AuthenticationCognito;
+import com.example.ecoclub.interfaces.AuthenticationActivityCallbacks;
 
 import java.util.ArrayList;
 
@@ -24,15 +24,15 @@ public class RegisterFragment extends Fragment {
 
     private Button btn_register;
     EditText edt_name, edt_lastName, edt_email, edt_phone, edt_password;
-    private Person person;
+    private Usuario user;
 
-    private AuthenticationCognito authenticationCognito;
+    private AuthenticationActivityCallbacks authenticationActivityCallbacks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        person = new Person();
+        user = new Usuario();
 
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         edt_name = view.findViewById(R.id.edt_name);
@@ -47,7 +47,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                //try {
+                try {
                     ArrayList<EditText> fields = new ArrayList<EditText>();
                     fields.add(edt_name);
                     fields.add(edt_lastName);
@@ -55,23 +55,23 @@ public class RegisterFragment extends Fragment {
                     fields.add(edt_phone);
                     fields.add(edt_password);
 
-                    //authenticationCognito.checkEmptyFields(fields);
-                    //authenticationCognito.passwordValidation(edt_password);
+                    authenticationActivityCallbacks.checkEmptyFields(fields);
+                    authenticationActivityCallbacks.passwordValidation(edt_password);
 
-                    person.setEmail(edt_name.getText().toString());
-                    person.setName(edt_lastName.getText().toString());
-                    person.setLastName(edt_email.getText().toString());
-                    person.setPhone(edt_phone.getText().toString());
-                    person.setPassword(edt_password.getText().toString());
+                    user.setEmail(edt_email.getText().toString());
+                    user.setName(edt_name.getText().toString());
+                    user.setLastName(edt_lastName.getText().toString());
+                    user.setPhone("+51" + edt_phone.getText().toString());
+                    user.setPassword(edt_password.getText().toString());
 
-                    authenticationCognito.signUp(person);
-                    authenticationCognito.clearFields(fields);
+                    authenticationActivityCallbacks.signUp(user);
+                    authenticationActivityCallbacks.clearFields(fields);
 
-                //}catch (BlankFieldsException b){
-                    //b.getMsg();
-               /* }catch (PasswordException p){
+                }catch (BlankFieldsException b){
+                    b.getMsg();
+               }catch (PasswordException p){
                     p.getMsg();
-                }*/
+                }
             }
         });
 
@@ -80,8 +80,8 @@ public class RegisterFragment extends Fragment {
 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof AuthenticationCognito){
-             authenticationCognito = (AuthenticationCognito) context;
+        if (context instanceof AuthenticationActivityCallbacks){
+             authenticationActivityCallbacks = (AuthenticationActivityCallbacks) context;
         }
     }
 }

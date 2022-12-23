@@ -45,7 +45,7 @@ public class DbUsuarios extends DataBaseHelper{
                     while (rs.next()) {
                         Usuario aux=new Usuario();
                         aux.setId(rs.getInt(1));
-                        aux.setNombre(rs.getString(2));
+                        aux.setName(rs.getString(2));
                         listaUsuarios.add(aux);
                     }
                     connection.close();
@@ -77,7 +77,7 @@ public class DbUsuarios extends DataBaseHelper{
                     ResultSet rs = statement.executeQuery(query);
                     while (rs.next()) {
                         usuario.setId(rs.getInt(1));
-                        usuario.setNombre(rs.getString(2));
+                        usuario.setName(rs.getString(2));
                     }
                     connection.close();
                 } catch (Exception e) {
