@@ -25,6 +25,7 @@ import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterMyComunity;
 import com.example.ecoclub.database.DbComunidades;
 import com.example.ecoclub.database.DbUsuariosComunidades;
+import com.example.ecoclub.database.DbViewsHelpers;
 import com.example.ecoclub.dialog.MessageDialogComunityNotExist;
 import com.example.ecoclub.dialog.MessageDialogQuit;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
@@ -169,16 +170,9 @@ public class MyComunityFragment extends Fragment {
         //Falta 1 metodo aldair
         listMyComunity=dbComunidades.obtenerComunidades();*/
 
-        DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
+        DbViewsHelpers dbViewsHelpers=new DbViewsHelpers();
         listMyComunity = new ArrayList<>();
-
-        ArrayList<Usuario_Comunidad> usuario_comunidades=new ArrayList<>();
-        usuario_comunidades=dbUsuariosComunidades.obtenerComunidadesdeUsuario(mainActivity.sendCurrentUserDataFragment().getId());
-
-        DbComunidades dbComunidades=new DbComunidades();
-        for(int i=0;i<usuario_comunidades.size();i++){
-            listMyComunity.add(dbComunidades.obtenerComunidad(usuario_comunidades.get(i).getId_comunidad()));
-        }
+        listMyComunity=dbViewsHelpers.obtenerComunidadesPorUsuarioID(mainActivity.sendCurrentUserDataFragment().getId());
     }
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
