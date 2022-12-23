@@ -168,7 +168,13 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
     public void registerUserDB(String email){
         DbUsuarios dbUsuarios = new DbUsuarios();
-        dbUsuarios.insertarUsuario(email);
+        dbUsuarios.insertarUsuario("",email);
         Log.i("Info Register", "Usuario Registrado exitosamente con correo "+email);
     }
+
+    /*ublic void registerUserDB(String nombre,String email){
+        DbUsuarios dbUsuarios = new DbUsuarios();
+        dbUsuarios.insertarUsuario(nombre,email);
+        Log.i("Info Register", "Usuario Registrado exitosamente con correo "+email);
+    }*/
 }

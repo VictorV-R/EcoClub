@@ -13,13 +13,13 @@ import java.util.ArrayList;
 public class DbUsuarios extends DataBaseHelper{
     private static final int cantidadCampos=3;
 
-    public void insertarUsuario(String email){
-        String query= "INSERT INTO sys."+TABLE_USUARIOS+" (email ) VALUES ('"+email+"')";
+    public void insertarUsuario(String nombre, String email){
+        String query= "INSERT INTO sys."+TABLE_USUARIOS+" (nombre, email ) VALUES ('"+nombre+"','"+email+"')";
         ejecutarSentencia(query);
     }
 
-    public void modificarUsuario(int id,String email){
-        String query="UPDATE sys."+TABLE_USUARIOS+" SET email = '"+email+"'  " +
+    public void modificarUsuario(int id,String nombre,String email){
+        String query="UPDATE sys."+TABLE_USUARIOS+" SET email = '"+email+"'  , nombre='"+nombre+"'" +
                 "WHERE (id_usuario = '"+id+"')";
         ejecutarSentencia(query);
     }
@@ -79,7 +79,7 @@ public class DbUsuarios extends DataBaseHelper{
                     while (rs.next()) {
                         usuario.setId(rs.getInt(1));
                         usuario.setName(rs.getString(2));
-                        usuario.setName(rs.getString(4));
+                        usuario.setEmail(rs.getString(4));
                     }
                     connection.close();
                 } catch (Exception e) {
@@ -109,7 +109,7 @@ public class DbUsuarios extends DataBaseHelper{
                     while (rs.next()) {
                         usuario.setId(rs.getInt(1));
                         usuario.setName(rs.getString(2));
-                        usuario.setName(rs.getString(4));
+                        usuario.setEmail(rs.getString(4));
                     }
                     connection.close();
                 } catch (Exception e) {
@@ -123,6 +123,5 @@ public class DbUsuarios extends DataBaseHelper{
             t.join();
         } catch (Exception e){ Log.d("INFO",e.toString());}
         return usuario.getId();
-
     }
 }
