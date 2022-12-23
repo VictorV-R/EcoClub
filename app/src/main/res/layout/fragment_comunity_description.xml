@@ -81,6 +81,8 @@
         android:text="Atras"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/bhavuka_regular"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageDescriptionComunity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.022"

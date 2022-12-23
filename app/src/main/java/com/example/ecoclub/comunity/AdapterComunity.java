@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHolderData> {
 
     private FragmentActivity main; //para cambiar de fragments
+    private ComunityDescriptionFragment comuDescFrag;
     private ArrayList<Comunidad> listComunity;
 
     public AdapterComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity) {
@@ -44,7 +45,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
     //establece la comunicacion entre el adaptador y la clase ViewHolderData
     @Override
     public void onBindViewHolder(@NonNull ViewHolderData holder, int position) {
-        holder.cargarDatos(this.listComunity.get(position), this.main);
+        holder.cargarDatos(this.listComunity.get(position));
     }
 
     //retorna el tamanio de la lista del item
@@ -63,7 +64,6 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
         private TextView data;
         private ImageButton btnAddComunity;
         private ViewTransparente btnComunity;
-        private FragmentActivity main; //para cambiar de fragments
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +73,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             btnComunity = itemView.findViewById(R.id.imgComunity);
         }
 
-        public void cargarDatos(Comunidad comunityContent, FragmentActivity main) {
+        public void cargarDatos(Comunidad comunityContent) {
             //editamos los datos de ViewHolder
             this.itemComunity = comunityContent;
             //de la lista(listComunity) solo tomamos el nombre
@@ -82,9 +82,6 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             //empezamos asignando los eventos
             btnComunity.setOnClickListener(btnEventComunity);
             btnAddComunity.setOnClickListener(btnEventAddComunity);
-
-            //pasando referencia de activity
-            this.main = main;
         }
 
         //EVENTOS ITEM==============================================================
@@ -116,8 +113,21 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Unirse a Comunidad", Toast.LENGTH_LONG).show();
-                //Todavia no se envio el mensaje al fragment comunity para enviarselo al main
-                //si se quiere cambiar de fragment
+
+                //Todo: unir a usuario en la comunidad en la base de datos====
+                //Todo: AQUI LE DAMOS SOLO EL RANGO DE MIEMBRO para que habra
+                //Todo: la interface de miembro en la descripcion de comunidad
+                //Todo:========================================================
+                comuDescFrag = ComunityDescriptionFragment.newInstance(
+                        String.valueOf(itemComunity.getId()),
+                        itemComunity.getNombre(),
+                        itemComunity.getInformacion()
+                );
+                //cambiando de fragment
+                main.getSupportFragmentManager().beginTransaction().replace(
+                        R.id.container, comuDescFrag).addToBackStack(null).commit();
+
+
             }
         };
         //EVENTOS ITEM==============================================================

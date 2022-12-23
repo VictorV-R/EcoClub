@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
@@ -35,6 +37,12 @@ public class ComunityDescFragNotMember extends Fragment {
     private ArrayList<Usuario_Comunidad> listMembersComunity;
     private RecyclerView recyclerComunityDescNotMember;
     //=============================================
+    private Button btnUnirseComunidad;
+
+    //Todo:Fragments para salir de la comunidad==================
+    private ComunityDescriptionFragment comuDescFrag;
+    private ComunityDescFragMember comunityDescFragMember;
+    //Todo:==========================================================
 
     public ComunityDescFragNotMember() {
         // Required empty public constructor
@@ -62,10 +70,45 @@ public class ComunityDescFragNotMember extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_comunity_desc_frag_not_member, container, false);
+
+        btnUnirseComunidad = view.findViewById(R.id.btnUnirseComunidad);
+        btnUnirseComunidad.setOnClickListener(eventoUnirseComunidad);
         //adaptador
         referenciarAdaptador(view);
         return view;
     }
+
+    //eventos========================================================
+    private View.OnClickListener eventoUnirseComunidad =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getActivity(), "Uniendo a comunidad",
+                            Toast.LENGTH_LONG).show();
+
+                    //Todo:Utilizar la base de datos aqui para unirse****************
+                    //**********************************************************
+
+                    //para cambiar de interface a no miembro
+                    new Thread(new Runnable() {
+                        public void run() {
+                            //para conectar con el padre fragment
+                            comuDescFrag = ((ComunityDescriptionFragment)
+                                    ComunityDescFragNotMember.this.getParentFragment());
+
+                            comunityDescFragMember = ComunityDescFragMember
+                                    .newInstance(idComunidad);
+
+                            //para cmbiar de interface
+                            comuDescFrag.getChildFragmentManager().beginTransaction()
+                                    .replace(R.id.fragmentLayoutComunityDesc,
+                                            comunityDescFragMember).commit();
+                        }
+                    }).start();
+
+                }
+            };
+    //===============================================================
 
     private void referenciarAdaptador(View view) {
         //Recycler View=======================

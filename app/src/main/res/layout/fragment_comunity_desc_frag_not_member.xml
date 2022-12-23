@@ -25,15 +25,17 @@
                 android:layout_height="match_parent"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSalirComunidad"
+                android:id="@+id/btnUnirseComunidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_marginLeft="60dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/custom_button_my_comunity"
+                android:fontFamily="@font/bhavuka_regular"
                 android:text="Unirse a la comunidad"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
         </LinearLayout>
     </ScrollView>

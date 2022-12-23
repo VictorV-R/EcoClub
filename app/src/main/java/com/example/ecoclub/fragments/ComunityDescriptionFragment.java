@@ -101,18 +101,20 @@ public class ComunityDescriptionFragment extends Fragment {
         btnAtras.setOnClickListener(eventAtras);
 
         //para aliviar el fragment utilizamos un hilo
-        //new Thread(new Runnable() {
-          //  public void run() {
+        new Thread(new Runnable() {
+            public void run() {
                 //Aquí ejecutamos nuestras tareas costosas
                 //fragments hijos
                 fragmentSegunRangoMiembro(view);
-            //}
-        //}).start();
+            }
+        }).start();
 
         return view;
     }
 
     private void fragmentSegunRangoMiembro(View view) {
+        //como se tiene el id de usuario y comunidad se podria filtrar
+        //el rango para aperturar los siguientes fragments hijos
 /*
         //Todo: Miembro
         //por default dejaremos el de miembro por mientras
@@ -143,7 +145,6 @@ public class ComunityDescriptionFragment extends Fragment {
                 comunityDescFragModerator).commit();
 
     }
-
 
     //event image description comunity
     private View.OnClickListener eventImgDesCom = new View.OnClickListener() {

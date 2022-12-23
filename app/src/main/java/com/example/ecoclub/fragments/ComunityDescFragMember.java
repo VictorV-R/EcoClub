@@ -3,12 +3,15 @@ package com.example.ecoclub.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
@@ -17,15 +20,8 @@ import com.example.ecoclub.database.DbUsuariosComunidades;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ComunityDescFragMember#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ComunityDescFragMember extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "idComunidad";
 
     // TODO: Rename and change types of parameters
@@ -35,6 +31,12 @@ public class ComunityDescFragMember extends Fragment {
     private ArrayList<Usuario_Comunidad> listMembersComunity;
     private RecyclerView recyclerComunityDescMember;
     //=============================================
+    private Button btnSalirComunidad;
+
+    //Todo:Fragments para salir de la comunidad==================
+    private ComunityDescFragNotMember comunityDescFragNotMember;
+    private ComunityDescriptionFragment comuDescFrag;
+    //=========================================================
 
     public ComunityDescFragMember() {
         // Required empty public constructor
@@ -62,11 +64,45 @@ public class ComunityDescFragMember extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_comunity_desc_frag_member, container, false);
+
+        btnSalirComunidad = view.findViewById(R.id.btnSalirMiComunidad);
+        btnSalirComunidad.setOnClickListener(eventoSalirMiComunidad);
         //adaptador
         referenciarAdaptador(view);
         
         return view;
     }
+    //eventos========================================================
+    private View.OnClickListener eventoSalirMiComunidad =
+            new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getActivity(), "Saliendo de mi comunidad",
+                    Toast.LENGTH_LONG).show();
+
+            //Todo:Utilizar la base de datos aqui para salir****************
+            //**********************************************************
+
+            //para cambiar de interface a no miembro
+            new Thread(new Runnable() {
+                public void run() {
+                    //para conectar con el padre fragment
+                    comuDescFrag = ((ComunityDescriptionFragment)
+                            ComunityDescFragMember.this.getParentFragment());
+
+                    comunityDescFragNotMember = ComunityDescFragNotMember
+                            .newInstance(idComunidad);
+
+                    //para cmbiar de interface
+                    comuDescFrag.getChildFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentLayoutComunityDesc,
+                            comunityDescFragNotMember).commit();
+                }
+            }).start();
+
+        }
+    };
+    //===============================================================
 
     private void referenciarAdaptador(View view) {
 

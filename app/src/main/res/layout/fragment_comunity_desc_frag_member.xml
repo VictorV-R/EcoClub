@@ -26,6 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="60dp"
+                android:fontFamily="@font/bhavuka_regular"
+                android:textSize="20dp"
                 android:background="@drawable/custom_button_my_comunity"
                 android:text="Salir de la comunidad"
                 android:textAllCaps="false"
