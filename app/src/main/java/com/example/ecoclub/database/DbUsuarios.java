@@ -46,6 +46,7 @@ public class DbUsuarios extends DataBaseHelper{
                         Usuario aux=new Usuario();
                         aux.setId(rs.getInt(1));
                         aux.setName(rs.getString(2));
+                        aux.setEmail(rs.getString(4));
                         listaUsuarios.add(aux);
                     }
                     connection.close();
@@ -78,6 +79,7 @@ public class DbUsuarios extends DataBaseHelper{
                     while (rs.next()) {
                         usuario.setId(rs.getInt(1));
                         usuario.setName(rs.getString(2));
+                        usuario.setName(rs.getString(4));
                     }
                     connection.close();
                 } catch (Exception e) {
@@ -94,9 +96,8 @@ public class DbUsuarios extends DataBaseHelper{
     }
 
     public int recuperarUsuarioID(String email) {
-        ArrayList<Integer> id = new ArrayList<Integer>();
-        String query="SELECT id_usuario FROM sys."+TABLE_USUARIOS+" " + "WHERE (email = '"+email+"')";
-
+        Usuario usuario=new Usuario();
+        String query= "SELECT id_usuario FROM sys."+TABLE_USUARIOS+" " + " WHERE (email = '"+email+"')";
         Thread t =  new Thread(new Runnable() {
             @Override
             public void run() {
@@ -105,10 +106,11 @@ public class DbUsuarios extends DataBaseHelper{
                     Connection connection = DriverManager.getConnection(url, username, password);
                     Statement statement = connection.createStatement();
                     ResultSet rs = statement.executeQuery(query);
-
-                    //while (rs.next()) {
-                         id.add(rs.getInt(1));
-                    Log.d("INFO vase",id.toString());
+                    while (rs.next()) {
+                        usuario.setId(rs.getInt(1));
+                        usuario.setName(rs.getString(2));
+                        usuario.setName(rs.getString(4));
+                    }
                     connection.close();
                 } catch (Exception e) {
                     Log.d("INFO",e.toString());
@@ -120,7 +122,7 @@ public class DbUsuarios extends DataBaseHelper{
         try {
             t.join();
         } catch (Exception e){ Log.d("INFO",e.toString());}
-        return 0;
-    }
+        return usuario.getId();
 
+    }
 }
