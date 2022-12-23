@@ -34,7 +34,6 @@ public class ComunityDescriptionFragment extends Fragment {
     private ViewTransparente imgDesCom;
     private Button btnAtras;
 
-    private ComunityFragment comunityFragment = new ComunityFragment();
     //Fragments hijos================================
     private FragmentTransaction fragmentTransaction;
     //inicializarlos con newInstance es necesario para pasar parametros
@@ -157,8 +156,8 @@ public class ComunityDescriptionFragment extends Fragment {
     private View.OnClickListener eventAtras = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, comunityFragment).commit();
+            //para retroceder en el back stack
+            getActivity().onBackPressed();
         }
     };
 }
