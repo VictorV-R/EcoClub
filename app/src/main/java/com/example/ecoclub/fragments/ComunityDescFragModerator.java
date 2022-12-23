@@ -139,10 +139,9 @@ public class ComunityDescFragModerator extends Fragment {
                     new Thread(new Runnable() {
                         public void run() {
 
-                            //Todo:agregarle parametros mas adelante como el id
-                            //Todo: de la comunidad para unirlo en el otro fragmento
-                            //todo: para la base de datos
-                            fragmentCreateActivity = new FragmentCreateActivity();
+                            //Todo:nos llevara a un formulario para crear actividad
+                            fragmentCreateActivity = FragmentCreateActivity
+                                    .newInstance(idComunidad);
 
                             //para cmbiar de interface
                             getActivity().getSupportFragmentManager().beginTransaction()

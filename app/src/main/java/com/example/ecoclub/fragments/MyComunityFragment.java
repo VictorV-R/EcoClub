@@ -30,8 +30,6 @@ import java.util.ArrayList;
 public class MyComunityFragment extends Fragment {
 
     public static final String DESTINY = "My Comunity";
-    private ComunityFragment comunityFragment = new ComunityFragment();
-
     private ArrayList<Comunidad> listMyComunity;
 
     private RecyclerView recyclerMyComunity;
@@ -135,8 +133,8 @@ public class MyComunityFragment extends Fragment {
     private View.OnClickListener eventAtras = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, comunityFragment).commit();
+            //para retroceder en el back stack
+            getActivity().onBackPressed();
         }
     };
 
