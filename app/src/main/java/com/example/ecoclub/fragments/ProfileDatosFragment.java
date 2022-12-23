@@ -44,7 +44,7 @@ public class ProfileDatosFragment extends Fragment {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logout();
+                mainActivity.logout();
             }
         });
 
@@ -66,22 +66,6 @@ public class ProfileDatosFragment extends Fragment {
         txt_email.setText(userInfo.getEmail());
         txt_phone.setText(userInfo.getPhone());
 
-    }
-
-    void logout() {
-        AuthSignOutOptions options = AuthSignOutOptions.builder()
-                .globalSignOut(true)
-                .build();
-
-        Amplify.Auth.signOut(options, signOutResult -> {
-            if (signOutResult instanceof AWSCognitoAuthSignOutResult.CompleteSignOut) {
-                // handle successful sign out
-            } else if (signOutResult instanceof AWSCognitoAuthSignOutResult.PartialSignOut) {
-                // handle partial sign out
-            } else if (signOutResult instanceof AWSCognitoAuthSignOutResult.FailedSignOut) {
-                // handle failed sign out
-            }
-        });
     }
 
 }

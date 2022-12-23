@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.R;
 import com.example.ecoclub.exceptions.BlankFieldsException;
+import com.example.ecoclub.exceptions.EmailExistsException;
 import com.example.ecoclub.exceptions.PasswordException;
 import com.example.ecoclub.interfaces.AuthenticationActivityCallbacks;
 
@@ -57,6 +58,7 @@ public class RegisterFragment extends Fragment {
 
                     authenticationActivityCallbacks.checkEmptyFields(fields);
                     authenticationActivityCallbacks.passwordValidation(edt_password);
+                    authenticationActivityCallbacks.EmailExistsValidation(edt_email.getText().toString());
 
                     user.setEmail(edt_email.getText().toString());
                     user.setName(edt_name.getText().toString());
@@ -71,6 +73,8 @@ public class RegisterFragment extends Fragment {
                     b.getMsg();
                }catch (PasswordException p){
                     p.getMsg();
+                }catch (EmailExistsException e){
+                    e.getMsg();
                 }
             }
         });
