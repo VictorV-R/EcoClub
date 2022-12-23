@@ -2,9 +2,11 @@ package com.example.ecoclub.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,24 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
+            googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(@NonNull LatLng latLng) {
+                    // When clicked on map
+                    // Initialize marker options
+                    MarkerOptions markerOptions=new MarkerOptions();
+                    // Set position of marker
+                    markerOptions.position(latLng);
+                    // Set title of marker
+                    markerOptions.title(latLng.latitude+" : "+latLng.longitude);
+                    // Remove all marker
+                    googleMap.clear();
+                    // Animating to zoom the marker
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                    // Add marker on map
+                    googleMap.addMarker(markerOptions);
+                }
+            });
             LatLng sydney = new LatLng(-16.4008114, -71.5346801);
             googleMap.addMarker(new MarkerOptions().position(sydney).title("Comunidad 1"));
             LatLng com2 = new LatLng(-16.399305, -71.5360514);

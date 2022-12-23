@@ -1,22 +1,5 @@
 {
-  "api": {
-    "ecoclub": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
-    }
-  },
+  "api": {},
   "auth": {
     "ecoclub7fbd86c8": {
       "service": "Cognito",

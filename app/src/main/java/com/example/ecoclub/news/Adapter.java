@@ -1,7 +1,6 @@
 package com.example.ecoclub.news;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 
 import java.util.ArrayList;
@@ -37,13 +34,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter.ViewHolder holder,int position) {
+    public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(context, MainActivity.class);
-                intent.putExtra("url",modelClassArrayList.get(position).getUrl());
-                context.startActivity(intent);
+                //Intent intent= new Intent(context, MainActivity.class);
+                //intent.putExtra("url",modelClassArrayList.get(position).getUrl());
+                //context.startActivity(intent);
             }
         });
 
