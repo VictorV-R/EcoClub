@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         );
 
         currentUser.setId(dbUsuarios.recuperarUsuarioID(currentUser.getEmail()));
+        dbUsuarios.modificarUsuario(currentUser.getId(), currentUser.getName()+" "+currentUser.getLastName());
         Log.i("IDuser","-> "+currentUser.getId());
     }
 
