@@ -1,8 +1,10 @@
 package com.example.ecoclub.fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.ecoclub.Entities.Comunidad;
+import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterMyComunity;
@@ -24,6 +27,7 @@ import com.example.ecoclub.database.DbComunidades;
 import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.dialog.MessageDialogComunityNotExist;
 import com.example.ecoclub.dialog.MessageDialogQuit;
+import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
 
@@ -37,6 +41,8 @@ public class MyComunityFragment extends Fragment {
     private RecyclerView recyclerMyComunity;
     private ImageButton btnSearchMyComunity;
     private Button btnAtras;
+
+    MainActivityCallbacks mainActivity;
 
     EditText textMyComunitySearch;
 
@@ -160,13 +166,26 @@ public class MyComunityFragment extends Fragment {
                     nombresComunidades.get(i),
                     "Descripción de comunidad "+ (i+1)));
         }*/
-        DbComunidades dbComunidades=new DbComunidades();
+        /*DbComunidades dbComunidades=new DbComunidades();
         listMyComunity = new ArrayList<>();
         //Falta 1 metodo aldair
-        listMyComunity=dbComunidades.obtenerComunidades();
+        listMyComunity=dbComunidades.obtenerComunidades();*/
 
-        /*DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
+        DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
         listMyComunity = new ArrayList<>();
-        listMyComunity=dbUsuariosComunidades.obtenerComunidadesdeUsuario(id);*/
+
+        ArrayList<Usuario_Comunidad> usuario_comunidades=new ArrayList<>();
+        usuario_comunidades=dbUsuariosComunidades.obtenerComunidadesdeUsuario(mainActivity.sendCurrentUserDataFragment().getId());
+
+        DbComunidades dbComunidades=new DbComunidades();
+        for(int i=0;i<usuario_comunidades.size();i++){
+            listMyComunity.add(dbComunidades.obtenerComunidad(usuario_comunidades.get(i).getId_comunidad()));
+        }
+    }
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivityCallbacks){
+            mainActivity = (MainActivityCallbacks) context;
+        }
     }
 }
