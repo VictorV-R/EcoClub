@@ -21,7 +21,7 @@
             android:contentDescription="@string/descripcion"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonCerrarSesion"
+            android:id="@+id/btn_cerrarSesion"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"

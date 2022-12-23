@@ -97,6 +97,7 @@ public class DbUsuarios extends DataBaseHelper{
 
     public int recuperarUsuarioID(String email) {
         Usuario usuario=new Usuario();
+        Log.i("INFOMACION CORREO",email.toString());
         String query= "SELECT id_usuario FROM sys."+TABLE_USUARIOS+" " + " WHERE (email = '"+email+"')";
         Thread t =  new Thread(new Runnable() {
             @Override

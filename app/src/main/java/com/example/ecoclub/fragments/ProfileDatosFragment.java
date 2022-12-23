@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.auth.cognito.result.AWSCognitoAuthSignOutResult;
+import com.amplifyframework.auth.options.AuthSignOutOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.R;
@@ -22,6 +25,7 @@ public class ProfileDatosFragment extends Fragment {
 
    TextView txt_name, txt_lastName, txt_email, txt_phone;
    MainActivityCallbacks mainActivity;
+   Button btn_logout;
 
 
     @Override
@@ -33,7 +37,16 @@ public class ProfileDatosFragment extends Fragment {
         txt_email = view.findViewById(R.id.textViewEmail);
         txt_phone = view.findViewById(R.id.textViewCelular);
 
+        btn_logout = view.findViewById(R.id.btn_cerrarSesion);
+
         loadProfileData();
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
 
         return view;
 
@@ -53,6 +66,22 @@ public class ProfileDatosFragment extends Fragment {
         txt_email.setText(userInfo.getEmail());
         txt_phone.setText(userInfo.getPhone());
 
+    }
+
+    void logout() {
+        AuthSignOutOptions options = AuthSignOutOptions.builder()
+                .globalSignOut(true)
+                .build();
+
+        Amplify.Auth.signOut(options, signOutResult -> {
+            if (signOutResult instanceof AWSCognitoAuthSignOutResult.CompleteSignOut) {
+                // handle successful sign out
+            } else if (signOutResult instanceof AWSCognitoAuthSignOutResult.PartialSignOut) {
+                // handle partial sign out
+            } else if (signOutResult instanceof AWSCognitoAuthSignOutResult.FailedSignOut) {
+                // handle failed sign out
+            }
+        });
     }
 
 }
