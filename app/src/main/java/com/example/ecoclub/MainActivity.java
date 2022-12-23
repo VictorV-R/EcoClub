@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
+import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.dialog.MessageDialogQuit;
 import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.fragments.CollaborateFragment;
@@ -25,6 +26,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity implements MainActivityCallbacks {
+
+    //Datos del Usuario Inicio Sesion
+    private Usuario currentUser = null;
 
     private FragmentTransaction ft;
     private BottomNavigationView bottomNavigationView;
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        requestCurrentUserDataInMain();
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         ft = getSupportFragmentManager().beginTransaction();
@@ -55,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         //evento del bottom navigation view
         bottomNavigationView.setOnItemSelectedListener(eventoBottomNavigationView);
 
-        loadProfile();
     }
 
     //evento del bottom navigation view*****************************************
@@ -179,18 +184,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         return super.onKeyDown(keyCode, event);
     }
 
-    // Fragmet para recurper datos ususario
-    public void loadProfile(){
+    //recuperando datos del ussuario conectdo
+    @Override
+    public void requestCurrentUserDataInMain(){
+        currentUser = new Usuario();
+
         Amplify.Auth.fetchUserAttributes(
                 result -> {
-                    Log.i("AuthQuickStart", "Array -> " + result.toString());
-                    /*txt_name.setText(result.get(2).getValue());
-                    txt_lastName.setText(result.get(3).getValue());
-                    txt_phone.setText(result.get(5).getValue());
-                    txt_email.setText(result.get(6).getValue());*/
 
+                    currentUser.setName(result.get(2).getValue());
+                    currentUser.setLastName(result.get(5).getValue());
+                    currentUser.setPhone(result.get(4).getValue());
+                    currentUser.setEmail(result.get(6).getValue());
                 },
                 error -> Log.e("AuthQuickStart", error.toString())
         );
+    }
+
+    @Override
+    public Usuario sendCurrentUserDataFragment(){
+        return currentUser;
     }
 }

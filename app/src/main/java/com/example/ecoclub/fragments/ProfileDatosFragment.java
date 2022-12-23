@@ -1,7 +1,9 @@
 package com.example.ecoclub.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -11,11 +13,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.amplifyframework.core.Amplify;
+import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.R;
+import com.example.ecoclub.interfaces.AuthenticationActivityCallbacks;
+import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 public class ProfileDatosFragment extends Fragment {
 
    TextView txt_name, txt_lastName, txt_email, txt_phone;
+   MainActivityCallbacks mainActivity;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,14 +33,26 @@ public class ProfileDatosFragment extends Fragment {
         txt_email = view.findViewById(R.id.textViewEmail);
         txt_phone = view.findViewById(R.id.textViewCelular);
 
+        loadProfileData();
+
         return view;
 
     }
 
-    /*[AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=sub}, value=ac1297fe-4d74-4c66-b3c1-42b43835f1a6},
-    {key=AuthUserAttributeKey {attributeKey=email_verified}, value=true},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=name}, value=Walter Huaracha},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=phone_number_verified},value=false},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=phone_number},value=+51915909135},
-    AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=email}, value=whuaracha@unsa.edu.pe}]*/
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivityCallbacks){
+            mainActivity = (MainActivityCallbacks) context;
+        }
+    }
+
+    void loadProfileData(){
+        Usuario userInfo =  mainActivity.sendCurrentUserDataFragment();
+        txt_name.setText(userInfo.getName());
+        txt_lastName.setText(userInfo.getLastName());
+        txt_email.setText(userInfo.getEmail());
+        txt_phone.setText(userInfo.getPhone());
+
+    }
+
 }

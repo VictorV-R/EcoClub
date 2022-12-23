@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 import com.example.ecoclub.R;
 import com.example.ecoclub.exceptions.BlankFieldsException;
-import com.example.ecoclub.interfaces.AuthenticationCognito;
+import com.example.ecoclub.interfaces.AuthenticationActivityCallbacks;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class LoginFragment extends Fragment{
     private Button btn_login;
     private EditText edt_email, edt_password;
 
-    private AuthenticationCognito authenticationCognito;
+    private AuthenticationActivityCallbacks authenticationActivityCallbacks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,9 +46,9 @@ public class LoginFragment extends Fragment{
                     fields.add(edt_email);
                     fields.add(edt_password);
 
-                    authenticationCognito.checkEmptyFields(fields);
-                    authenticationCognito.signIn(email, password);
-                    authenticationCognito.clearFields(fields);
+                    authenticationActivityCallbacks.checkEmptyFields(fields);
+                    authenticationActivityCallbacks.signIn(email, password);
+                    authenticationActivityCallbacks.clearFields(fields);
 
                 }catch (BlankFieldsException b){
                     b.getMsg();
@@ -61,8 +61,8 @@ public class LoginFragment extends Fragment{
 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof AuthenticationCognito){
-            authenticationCognito = (AuthenticationCognito) context;
+        if (context instanceof AuthenticationActivityCallbacks){
+            authenticationActivityCallbacks = (AuthenticationActivityCallbacks) context;
         }
     }
 }

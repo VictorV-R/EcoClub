@@ -8,27 +8,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.amplifyframework.auth.AuthChannelEventName;
 import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.InitializationStatus;
-import com.amplifyframework.hub.HubChannel;
-import com.example.ecoclub.Entities.Person;
+import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.exceptions.BlankFieldsException;
 import com.example.ecoclub.exceptions.PasswordException;
 import com.example.ecoclub.fragments.AuthenticationFragment;
 import com.example.ecoclub.fragments.ConfirmFragment;
 import com.example.ecoclub.fragments.LoginFragment;
 import com.example.ecoclub.fragments.RegisterFragment;
-import com.example.ecoclub.interfaces.AuthenticationCognito;
+import com.example.ecoclub.interfaces.AuthenticationActivityCallbacks;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class AuthenticationActivity extends AppCompatActivity implements AuthenticationCognito {
+public class AuthenticationActivity extends AppCompatActivity implements AuthenticationActivityCallbacks {
 
     @Override
 
@@ -80,21 +77,21 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     }
 
     @Override
-    public void signUp(Person person){
+    public void signUp(Usuario user){
 
         ArrayList<AuthUserAttribute> attributes = new ArrayList<>();
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), person.getEmail()));
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.name(), person.getName()));
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.familyName(), person.getLastName()));
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.phoneNumber(), person.getPhone()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), user.getEmail()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.name(), user.getName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.familyName(), user.getLastName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.phoneNumber(), user.getPhone()));
 
         Amplify.Auth.signUp(
-                person.getEmail(),
-                person.getPassword(),
+                user.getEmail(),
+                user.getPassword(),
                 AuthSignUpOptions.builder().userAttributes(attributes).build(),
                 result -> {
                     Log.i("Registro Exitoso !!!", result.toString());
-                    loadConfirmFragment(person.getEmail());
+                    loadConfirmFragment(user.getEmail());
                 },
                 error -> Log.e("Error al registrase", error.toString())
         );

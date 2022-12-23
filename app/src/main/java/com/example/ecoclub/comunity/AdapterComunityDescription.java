@@ -73,7 +73,7 @@ public class AdapterComunityDescription extends
             DbUsuarios dbUsuarios=new DbUsuarios();
             Usuario usuarioInfo=dbUsuarios.obtenerUsuario(member.getId_usuario());
 
-            this.textNameComunityDescription.setText(usuarioInfo.getNombre());
+            this.textNameComunityDescription.setText(usuarioInfo.getName());
             //evento-llamamos
             this.btnMember.setOnClickListener(eventMemberComunity);
         }

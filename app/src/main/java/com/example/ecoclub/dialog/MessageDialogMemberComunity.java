@@ -51,7 +51,7 @@ public class MessageDialogMemberComunity extends DialogFragment {
         MessageDialogMemberComunity f = new MessageDialogMemberComunity();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, aux.getTipo_usuario());
-        args.putString(ARG_PARAM2, usuarioInfo.getNombre());
+        args.putString(ARG_PARAM2, usuarioInfo.getName());
         args.putString(ARG_PARAM3, rangoInfo.getNombre());
         args.putString(ARG_PARAM4, logro.getNombre());
         f.setArguments(args);
