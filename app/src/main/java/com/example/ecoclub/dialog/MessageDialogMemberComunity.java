@@ -11,7 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.ecoclub.Entities.Logro;
+import com.example.ecoclub.Entities.Rango;
+import com.example.ecoclub.Entities.Usuario;
+import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
+import com.example.ecoclub.database.DbLogros;
+import com.example.ecoclub.database.DbLogrosUsuarios;
+import com.example.ecoclub.database.DbRangos;
+import com.example.ecoclub.database.DbUsuarios;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 
 public class MessageDialogMemberComunity extends DialogFragment {
     public static String TAG = "MessageDialog";
@@ -23,14 +32,28 @@ public class MessageDialogMemberComunity extends DialogFragment {
     private static final String ARG_PARAM4 = "logros";
 
     static public MessageDialogMemberComunity newInstance(
-            String cargo, String nombre, String rango, String logros) {
+            int id_usuario,int id_comunidad) {
+
+        DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
+        Usuario_Comunidad aux=dbUsuariosComunidades.obtenerUsuarioComunidad(id_comunidad,id_usuario);
+
+        DbUsuarios dbUsuarios=new DbUsuarios();
+        Usuario usuarioInfo=dbUsuarios.obtenerUsuario(aux.getId_usuario());
+
+        DbRangos dbRangos=new DbRangos();
+        Rango rangoInfo=dbRangos.obtenerRango(aux.getId_rango());
+
+        DbLogrosUsuarios dbLogrosUsuarios=new DbLogrosUsuarios();
+        Logro logro=new DbLogros().obtenerLogro(dbLogrosUsuarios.obtenerLogrosUsuario(usuarioInfo.getId()).get(0).getId());
+
+
         //se referencia asi mismo
         MessageDialogMemberComunity f = new MessageDialogMemberComunity();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, cargo);
-        args.putString(ARG_PARAM2, nombre);
-        args.putString(ARG_PARAM3, rango);
-        args.putString(ARG_PARAM4, logros);
+        args.putString(ARG_PARAM1, aux.getTipo_usuario());
+        args.putString(ARG_PARAM2, usuarioInfo.getNombre());
+        args.putString(ARG_PARAM3, rangoInfo.getNombre());
+        args.putString(ARG_PARAM4, logro.getNombre());
         f.setArguments(args);
         return f;
     }

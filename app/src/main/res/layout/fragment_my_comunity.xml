@@ -40,42 +40,45 @@
         app:layout_constraintTop_toBottomOf="@+id/rectanguloMyComunity" />
 
 
-    <com.example.ecoclub.View.Rectangulo
+    <androidx.cardview.widget.CardView
         android:id="@+id/rectanguloMyComunity"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="84dp"
         android:layout_marginRight="30dp"
+        app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
 
-    <EditText
-        android:id="@+id/editTextMyComunity"
-        android:layout_width="254dp"
-        android:layout_height="46dp"
-        android:ems="10"
-        android:hint="@string/buscar"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/rectanguloMyComunity"
-        app:layout_constraintEnd_toStartOf="@+id/imgBtnSearchMyComunity"
-        app:layout_constraintStart_toStartOf="@+id/rectanguloMyComunity"
-        app:layout_constraintTop_toTopOf="@+id/rectanguloMyComunity"
-        app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_content"
+            android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/imgBtnSearchMyComunity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/color_content"
-        android:src="?android:attr/actionModeWebSearchDrawable"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextMyComunity"
-        app:layout_constraintEnd_toEndOf="@+id/rectanguloMyComunity"
-        app:layout_constraintHorizontal_bias="0.905"
-        app:layout_constraintStart_toStartOf="@+id/rectanguloMyComunity"
-        app:layout_constraintTop_toTopOf="@+id/rectanguloMyComunity"
-        app:layout_constraintVertical_bias="0.59" />
+            <EditText
+                android:id="@+id/editTextMyComunity"
+                android:layout_width="254dp"
+                android:layout_height="46dp"
+                android:ems="10"
+                android:hint="@string/buscar"
+                android:inputType="textPersonName"
+                android:layout_marginLeft="20dp"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnSearchMyComunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/color_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="?android:attr/actionModeWebSearchDrawable" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRecyclerMyComunity"

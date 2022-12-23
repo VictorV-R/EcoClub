@@ -1,18 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    android:background="@drawable/bg_design_home">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="144dp"
+        android:layout_height="83dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="136dp"
+        android:src="@drawable/abrazo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupBotones"
+        android:layout_width="290dp"
+        android:layout_height="52dp"
+        android:layout_below="@+id/imageViewLogo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/radio_button_left_unchecked"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radioButtonLeft"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_left_selector"
+            android:button="@color/transparent"
+            android:checked="true"
+            android:fontFamily="@font/bhavuka_regular"
+            android:gravity="center"
+            android:text="@string/txt_rbtn_opcion1"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radioButtonRight"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_left_selector"
+            android:button="@color/transparent"
+            android:gravity="center"
+            android:text="@string/txt_rbtn_opcion2"
+            android:textColor="@color/gray"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bhavuka_regular"/>
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/child_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycleviewofHome"
-        android:layout_margin="2dp"
-        android:fitsSystemWindows="true"
-        android:padding="2dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="449dp"
+        android:layout_below="@+id/radioGroupBotones"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="23dp"></FrameLayout>
 
 </RelativeLayout>

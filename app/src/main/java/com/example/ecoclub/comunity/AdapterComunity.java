@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecoclub.Entities.Comunidad;
 import com.example.ecoclub.R;
 import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
@@ -23,9 +24,9 @@ import java.util.ArrayList;
 public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHolderData> {
 
     private FragmentActivity main; //para cambiar de fragments
-    private ArrayList<ComunityContent> listComunity;
+    private ArrayList<Comunidad> listComunity;
 
-    public AdapterComunity(ArrayList<ComunityContent> listComunity, FragmentActivity activity) {
+    public AdapterComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity) {
         this.listComunity = listComunity;
         this.main = activity;
 
@@ -57,7 +58,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
         //Aqui referenciamos los items del recycler view
         //se juntarana varios item item_comunity
 
-        private ComunityContent itemComunity;
+        private Comunidad itemComunity;
 
         private TextView data;
         private ImageButton btnAddComunity;
@@ -72,11 +73,11 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             btnComunity = itemView.findViewById(R.id.imgComunity);
         }
 
-        public void cargarDatos(ComunityContent comunityContent, FragmentActivity main) {
+        public void cargarDatos(Comunidad comunityContent, FragmentActivity main) {
             //editamos los datos de ViewHolder
             this.itemComunity = comunityContent;
             //de la lista(listComunity) solo tomamos el nombre
-            data.setText(comunityContent.getName());
+            data.setText(comunityContent.getNombre());
 
             //empezamos asignando los eventos
             btnComunity.setOnClickListener(btnEventComunity);
@@ -99,8 +100,8 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
                 //tenemos que llamar newInstacne siempre para la descripcion de un fragment
                 comunityDescriptionFragment = ComunityDescriptionFragment.newInstance(
                         String.valueOf(itemComunity.getId()), //id
-                        itemComunity.getName(),                //name
-                        itemComunity.getDescription()
+                        itemComunity.getNombre(),                //name
+                        itemComunity.getInformacion()
                 );
 
                 //lo guardamos en el back stack

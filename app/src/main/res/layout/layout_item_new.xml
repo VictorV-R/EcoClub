@@ -1,51 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:layout_margin="2dp"
-        app:cardCornerRadius="10dp"
-        android:id="@+id/cardview"
-        android:elevation="5dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="25dp"
+        android:elevation="50dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/bg_btn_datos">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:id="@+id/mainheading"
-            android:padding="5dp"
+            android:padding="15dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/black"
             android:text="Main headin here"
-            android:textSize="20sp"
-            android:textStyle="bold"></TextView>
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bhavuka_regular"
+            android:background="#809AA8AF" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="6"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:id="@+id/content"
-                android:textSize="15sp"
-                android:text="Main content">
-
-            </TextView>
+                android:textSize="17sp"
+                android:text="Main content"
+                android:fontFamily="@font/bhavuka_regular" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -55,31 +62,36 @@
                 android:padding="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background">
-
             </ImageView>
+
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="By By"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:textStyle="italic"
             android:id="@+id/author"
             android:textColor="@color/purple_200"
-            android:padding="5dp">
-            
-        </TextView>
+            android:padding="10dp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:background="#8086E7F4" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/time"
-            android:padding="5dp"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:text="Published at"
             android:textStyle="bold"
-            android:textSize="12sp">
+            android:textSize="14sp"
+            android:fontFamily="@font/bhavuka_regular"
+            android:background="#806FE5F3" />
 
-        </TextView>
     </LinearLayout>
+
     </androidx.cardview.widget.CardView>
+
 </LinearLayout>

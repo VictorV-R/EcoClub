@@ -3,7 +3,6 @@ package com.example.ecoclub.Entities;
 public class Usuario {
     private int id;
     private String nombre;
-    private String contrasena;
     private Object imagen;
 
     public int getId() {
@@ -20,14 +19,6 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
     }
 
     public Object getImagen() {

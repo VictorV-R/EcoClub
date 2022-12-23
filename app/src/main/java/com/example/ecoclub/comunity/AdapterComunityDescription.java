@@ -3,16 +3,18 @@ package com.example.ecoclub.comunity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecoclub.Entities.Usuario;
+import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
-import com.example.ecoclub.View.Rectangulo;
+import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 
 import java.util.ArrayList;
@@ -21,10 +23,10 @@ public class AdapterComunityDescription extends
         RecyclerView.Adapter<AdapterComunityDescription.ViewHolderData> {
 
     //lista de miembros
-    private ArrayList<Member> listMembersComunity;
+    private ArrayList<Usuario_Comunidad> listMembersComunity;
     private FragmentActivity main;
 
-    public AdapterComunityDescription(ArrayList<Member> listMembersComunity,
+    public AdapterComunityDescription(ArrayList<Usuario_Comunidad> listMembersComunity,
                                       FragmentActivity activity) {
         this.listMembersComunity = listMembersComunity;
         this.main = activity;
@@ -42,7 +44,7 @@ public class AdapterComunityDescription extends
     @Override
     public void onBindViewHolder(@NonNull AdapterComunityDescription.ViewHolderData holder, int position) {
         //le enviamos el main al ViewHolder
-        holder.cargarDatos(listMembersComunity.get(position), main);
+        holder.cargarDatos(listMembersComunity.get(position));
     }
 
     @Override
@@ -53,21 +55,26 @@ public class AdapterComunityDescription extends
     //clase ViewHolder
     public class ViewHolderData extends RecyclerView.ViewHolder {
         private TextView textNameComunityDescription;
-        private Member member;
-        private Rectangulo btnMember;
+
+        private CardView btnMember;
+        private Usuario_Comunidad member;
 
         public ViewHolderData(@NonNull View itemView) {
             super(itemView);
             this.textNameComunityDescription = itemView.findViewById(
                     R.id.textNameMemberComunity);
             this.btnMember = itemView.findViewById(
-                    R.id.onClickComunityMember);
+                    R.id.onClickComunityMember);  //CARDVIEW
         }
 
-        public void cargarDatos(Member member, FragmentActivity main) {
+        public void cargarDatos(Usuario_Comunidad member) {
             this.member = member;
-            this.textNameComunityDescription.setText(member.getNameMember());
-            //evento-llamamos al View Rectangulo
+
+            DbUsuarios dbUsuarios=new DbUsuarios();
+            Usuario usuarioInfo=dbUsuarios.obtenerUsuario(member.getId_usuario());
+
+            this.textNameComunityDescription.setText(usuarioInfo.getNombre());
+            //evento-llamamos
             this.btnMember.setOnClickListener(eventMemberComunity);
         }
 
@@ -82,13 +89,15 @@ public class AdapterComunityDescription extends
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Ver miembro", Toast.LENGTH_LONG).show();
                 //como se tiene el id se puede hacer consultas
-                //por ahora mandamos datos por defecto
-                MessageDialogMemberComunity.newInstance(
-                                "Miembro de la Comunidad",
-                                member.getNameMember(),
-                                member.getRango(),
-                                member.getLogros()+"")
-                        .show(main.getSupportFragmentManager(), null);
+                new Thread(new Runnable() {
+                    public void run() {
+                        //Aquí ejecutamos nuestras tareas costosas
+                        MessageDialogMemberComunity.newInstance(
+                                        member.getId_usuario(),
+                                        member.getId_comunidad())
+                                .show(main.getSupportFragmentManager(), null);
+                    }
+                }).start();
             }
         };
         //=======================================================
