@@ -10,10 +10,14 @@ public class PasswordException extends Exception{
 
     public PasswordException(Context context){
         this.context = context;
-        this.msg = "Complete todo los campos";
+        this.msg = "CONTRASEÑA NO VALIDA !!!" +
+                    "\n\n  * Tamaño minimo 8 caracteres" +
+                    "\n  * Usa caracteres especiales" +
+                    "\n  * Usa minusculas, mayusculas y numeros";
     }
 
     public void getMsg(){
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
+
 }

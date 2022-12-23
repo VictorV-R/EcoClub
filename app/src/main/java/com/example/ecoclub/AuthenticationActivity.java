@@ -26,6 +26,7 @@ import com.example.ecoclub.fragments.RegisterFragment;
 import com.example.ecoclub.interfaces.AuthenticationCognito;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class AuthenticationActivity extends AppCompatActivity implements AuthenticationCognito {
 
@@ -56,7 +57,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     @Override
     public void checkEmptyFields (ArrayList<EditText> fields) throws BlankFieldsException {
         for (EditText e: fields) {
-            if(e.getText().toString().equals("")) throw new BlankFieldsException(getApplicationContext());
+            if(e.getText().toString().isEmpty()) throw new BlankFieldsException(getApplicationContext());
         }
     }
 
@@ -69,16 +70,22 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
     @Override
     public void passwordValidation(EditText password) throws PasswordException {
-        if(password.getText().length() < 8); throw new PasswordException(getApplicationContext());
+        String COMPLEX_PASSWORD_REGEX =
+                "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$";
+
+        Pattern PASSWORD_PATTERN = Pattern.compile(COMPLEX_PASSWORD_REGEX);
+
+        String pass = password.getText().toString();
+        if( !PASSWORD_PATTERN.matcher(pass).matches() ) throw new PasswordException(getApplicationContext());
     }
 
     @Override
     public void signUp(Person person){
 
         ArrayList<AuthUserAttribute> attributes = new ArrayList<>();
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), person.getEmail()));
         attributes.add(new AuthUserAttribute(AuthUserAttributeKey.name(), person.getName()));
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.familyName(), person.getName()));
-        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.email(), person.getLastName()));
+        attributes.add(new AuthUserAttribute(AuthUserAttributeKey.familyName(), person.getLastName()));
         attributes.add(new AuthUserAttribute(AuthUserAttributeKey.phoneNumber(), person.getPhone()));
 
         Amplify.Auth.signUp(
@@ -86,35 +93,36 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                 person.getPassword(),
                 AuthSignUpOptions.builder().userAttributes(attributes).build(),
                 result -> {
-                    Log.i("Prueba de Registro", result.toString());
+                    Log.i("Registro Exitoso !!!", result.toString());
                     loadConfirmFragment(person.getEmail());
                 },
-                error -> Log.e("Prueba de registro", error.toString())
+                error -> Log.e("Error al registrase", error.toString())
         );
     }
     @Override
-    public void confirmSignUp(String username, String code){
+    public void confirmSignUp(String email, String code){
 
         Amplify.Auth.confirmSignUp(
-                username,
+                email,
                 code,
                 result -> {
-                    Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
+                    Log.i("Confirm Email info", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
+                    registerUserDB(email);
                     loadLoginFragment();
                 },
-                error -> Log.e("AuthQuickstart", error.toString())
+                error -> Log.e("Confirm Email info", error.toString())
         );
     }
     @Override
-    public void signIn(String username, String password){
+    public void signIn(String email, String password){
         Amplify.Auth.signIn(
-                username,
+                email,
                 password,
                 result -> {
-                    Log.i("AuthQuickstart", result.isSignedIn() ? "Sign in succeeded" : "Sign in not complete");
+                    Log.i("Login info", result.isSignedIn() ? "Sign in succeeded" : "Sign in not complete");
                     loadMainActivity();
                 },
-                error -> Log.e("AuthQuickstart", error.toString())
+                error -> Log.e("Login error", error.toString())
         );
     }
 
@@ -158,5 +166,9 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
                 },
                 error -> Log.e("AuthQuickStart", error.toString())
         );
+    }
+
+    public void registerUserDB(String email){
+        Log.i("Info Register", "Usuario Registrado exitosamente");
     }
 }

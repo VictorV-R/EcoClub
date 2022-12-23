@@ -26,25 +26,10 @@ public class ProfileDatosFragment extends Fragment {
         txt_email = view.findViewById(R.id.textViewEmail);
         txt_phone = view.findViewById(R.id.textViewCelular);
 
-        loadProfile();
-
         return view;
 
     }
 
-    public void loadProfile(){
-        Amplify.Auth.fetchUserAttributes(
-                result -> {
-                    Log.i("AuthQuickStart", "Array -> " + result.toString());
-                    txt_name.setText(result.get(2).getValue());
-                    txt_lastName.setText(result.get(3).getValue());
-                    txt_phone.setText(result.get(5).getValue());
-                    txt_email.setText(result.get(6).getValue());
-
-                },
-                error -> Log.e("AuthQuickStart", error.toString())
-        );
-    }
     /*[AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=sub}, value=ac1297fe-4d74-4c66-b3c1-42b43835f1a6},
     {key=AuthUserAttributeKey {attributeKey=email_verified}, value=true},
     AuthUserAttribute {key=AuthUserAttributeKey {attributeKey=name}, value=Walter Huaracha},

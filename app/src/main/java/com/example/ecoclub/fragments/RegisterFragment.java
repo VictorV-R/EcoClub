@@ -47,7 +47,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                //try {
+                try {
                     ArrayList<EditText> fields = new ArrayList<EditText>();
                     fields.add(edt_name);
                     fields.add(edt_lastName);
@@ -55,23 +55,23 @@ public class RegisterFragment extends Fragment {
                     fields.add(edt_phone);
                     fields.add(edt_password);
 
-                    //authenticationCognito.checkEmptyFields(fields);
-                    //authenticationCognito.passwordValidation(edt_password);
+                    authenticationCognito.checkEmptyFields(fields);
+                    authenticationCognito.passwordValidation(edt_password);
 
-                    person.setEmail(edt_name.getText().toString());
-                    person.setName(edt_lastName.getText().toString());
-                    person.setLastName(edt_email.getText().toString());
-                    person.setPhone(edt_phone.getText().toString());
+                    person.setEmail(edt_email.getText().toString());
+                    person.setName(edt_name.getText().toString());
+                    person.setLastName(edt_lastName.getText().toString());
+                    person.setPhone("+51" + edt_phone.getText().toString());
                     person.setPassword(edt_password.getText().toString());
 
                     authenticationCognito.signUp(person);
                     authenticationCognito.clearFields(fields);
 
-                //}catch (BlankFieldsException b){
-                    //b.getMsg();
-               /* }catch (PasswordException p){
+                }catch (BlankFieldsException b){
+                    b.getMsg();
+               }catch (PasswordException p){
                     p.getMsg();
-                }*/
+                }
             }
         });
 

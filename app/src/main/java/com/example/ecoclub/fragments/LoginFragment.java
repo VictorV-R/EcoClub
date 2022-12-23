@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment{
             public void onClick(View view) {
 
                 try {
-                    String username = edt_email.getText().toString();
+                    String email = edt_email.getText().toString();
                     String password = edt_password.getText().toString();
 
                     ArrayList<EditText> fields = new ArrayList<EditText>();
@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment{
                     fields.add(edt_password);
 
                     authenticationCognito.checkEmptyFields(fields);
-                    authenticationCognito.signIn(username, password);
+                    authenticationCognito.signIn(email, password);
                     authenticationCognito.clearFields(fields);
 
                 }catch (BlankFieldsException b){

@@ -9,9 +9,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
+import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.fragments.CollaborateFragment;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         //evento del bottom navigation view
         bottomNavigationView.setOnItemSelectedListener(eventoBottomNavigationView);
 
+        loadProfile();
     }
 
     //evento del bottom navigation view*****************************************
@@ -194,5 +197,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    // Fragmet para recurper datos ususario
+    public void loadProfile(){
+        Amplify.Auth.fetchUserAttributes(
+                result -> {
+                    Log.i("AuthQuickStart", "Array -> " + result.toString());
+                    /*txt_name.setText(result.get(2).getValue());
+                    txt_lastName.setText(result.get(3).getValue());
+                    txt_phone.setText(result.get(5).getValue());
+                    txt_email.setText(result.get(6).getValue());*/
+
+                },
+                error -> Log.e("AuthQuickStart", error.toString())
+        );
     }
 }
