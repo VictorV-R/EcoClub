@@ -16,7 +16,7 @@ public class DbViewsHelpers extends DataBaseHelper{
         ArrayList<Comunidad> listaComunidades=new ArrayList<Comunidad>();
         String query= "SELECT * FROM sys."+TABLE_COMUNIDADES
                 +"select * from sys."+TABLE_COMUNIDADES+" "+
-                "where id_comunidad = (select id_comunidad from sys."+TABLE_USUARIOS_COMUNIDADES+" where id_usuario = '"+id_usuario+"');";
+                "where id_comunidad in (select id_comunidad from sys."+TABLE_USUARIOS_COMUNIDADES+" where id_usuario = '"+id_usuario+"');";
 
         Thread t =  new Thread(new Runnable() {
             @Override
