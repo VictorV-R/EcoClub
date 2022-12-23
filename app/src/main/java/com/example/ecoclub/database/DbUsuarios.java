@@ -13,13 +13,13 @@ import java.util.ArrayList;
 public class DbUsuarios extends DataBaseHelper{
     private static final int cantidadCampos=3;
 
-    public void insertarUsuario(String nombre){
-        String query= "INSERT INTO sys."+TABLE_USUARIOS+" (nombre ) VALUES ('"+nombre+"')";
+    public void insertarUsuario(String email){
+        String query= "INSERT INTO sys."+TABLE_USUARIOS+" (email ) VALUES ('"+email+"')";
         ejecutarSentencia(query);
     }
 
-    public void modificarUsuario(int id,String nombre){
-        String query="UPDATE sys."+TABLE_USUARIOS+" SET nombre = '"+nombre+"'  " +
+    public void modificarUsuario(int id,String email){
+        String query="UPDATE sys."+TABLE_USUARIOS+" SET email = '"+email+"'  " +
                 "WHERE (id_usuario = '"+id+"')";
         ejecutarSentencia(query);
     }
@@ -92,4 +92,35 @@ public class DbUsuarios extends DataBaseHelper{
         } catch (Exception e){ Log.d("INFO",e.toString());}
         return usuario;
     }
+
+    public int recuperarUsuarioID(String email) {
+        ArrayList<Integer> id = new ArrayList<Integer>();
+        String query="SELECT id_usuario FROM sys."+TABLE_USUARIOS+" " + "WHERE (email = '"+email+"')";
+
+        Thread t =  new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection connection = DriverManager.getConnection(url, username, password);
+                    Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(query);
+
+                    //while (rs.next()) {
+                         id.add(rs.getInt(1));
+                    Log.d("INFO vase",id.toString());
+                    connection.close();
+                } catch (Exception e) {
+                    Log.d("INFO",e.toString());
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (Exception e){ Log.d("INFO",e.toString());}
+        return 0;
+    }
+
 }

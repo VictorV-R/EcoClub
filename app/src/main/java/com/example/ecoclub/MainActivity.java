@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import com.example.ecoclub.Entities.Usuario;
+import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.dialog.MessageDialogQuit;
 import com.amplifyframework.core.Amplify;
 import com.example.ecoclub.fragments.CollaborateFragment;
@@ -188,10 +189,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     @Override
     public void requestCurrentUserDataInMain(){
         currentUser = new Usuario();
+        DbUsuarios dbUsuarios = new DbUsuarios();
 
         Amplify.Auth.fetchUserAttributes(
                 result -> {
-
                     currentUser.setName(result.get(2).getValue());
                     currentUser.setLastName(result.get(5).getValue());
                     currentUser.setPhone(result.get(4).getValue());
@@ -199,6 +200,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
                 },
                 error -> Log.e("AuthQuickStart", error.toString())
         );
+
+        currentUser.setId(dbUsuarios.recuperarUsuarioID(currentUser.getEmail()));
+        Log.i("IDuser","-> "+currentUser.getId());
     }
 
     @Override
