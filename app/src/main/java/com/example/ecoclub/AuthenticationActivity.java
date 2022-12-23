@@ -172,9 +172,4 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         Log.i("Info Register", "Usuario Registrado exitosamente con correo "+email);
     }
 
-    /*ublic void registerUserDB(String nombre,String email){
-        DbUsuarios dbUsuarios = new DbUsuarios();
-        dbUsuarios.insertarUsuario(nombre,email);
-        Log.i("Info Register", "Usuario Registrado exitosamente con correo "+email);
-    }*/
 }

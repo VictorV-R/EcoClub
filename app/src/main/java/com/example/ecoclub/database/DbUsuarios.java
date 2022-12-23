@@ -18,8 +18,8 @@ public class DbUsuarios extends DataBaseHelper{
         ejecutarSentencia(query);
     }
 
-    public void modificarUsuario(int id,String nombre,String email){
-        String query="UPDATE sys."+TABLE_USUARIOS+" SET email = '"+email+"'  , nombre='"+nombre+"'" +
+    public void modificarUsuario(int id,String nombre){
+        String query="UPDATE sys."+TABLE_USUARIOS+" SET nombre='"+nombre+"'" +
                 "WHERE (id_usuario = '"+id+"')";
         ejecutarSentencia(query);
     }
