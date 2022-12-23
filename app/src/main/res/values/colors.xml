@@ -19,6 +19,7 @@
     <color name="gray">#808080</color>
     <color name="gray_light">#DADADA</color>
     <color name="transparent">#00DFDFDF</color>
+    <color name="colorbarstatus">#EE8B47</color>
 
     <!--Iconos de BottomNavigationView-->
     <color name="state_pressed">#009688</color>
