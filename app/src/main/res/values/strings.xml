@@ -76,5 +76,7 @@
     <string name="todo">TODO</string>
 
     <string name="descripcion">Imagen</string>
+    <string name="txt_btn_seleccionarUbi">Seleccionar Ubicacion</string>
+    <string name="seleccionar">Seleccionar</string>
 
 </resources>

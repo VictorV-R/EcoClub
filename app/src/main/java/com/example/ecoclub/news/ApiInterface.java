@@ -21,5 +21,11 @@ public interface ApiInterface {
             @Query("pageSize") int pagesize,
             @Query("apiKey") String apikey
     );
+    @GET("everything")
+    Call<mainNews> getNoticiasPollution(
+            @Query("q") String tema,
+            @Query("pageSize") int pagesize,
+            @Query("apiKey") String apikey
+    );
 
 }

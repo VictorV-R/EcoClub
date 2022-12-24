@@ -28,6 +28,7 @@ import com.example.ecoclub.fragments.MapsViewFragment;
 import com.example.ecoclub.fragments.MyComunityFragment;
 import com.example.ecoclub.fragments.ProfileFragment;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -249,4 +250,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
     }
 
+    public void enviarUbicacion(String fragment, LatLng dato){
+        collaborateFragment.recuperarUbicacion(dato);
+    }
 }
