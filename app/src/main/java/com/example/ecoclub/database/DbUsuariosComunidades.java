@@ -16,6 +16,7 @@ public class DbUsuariosComunidades extends DataBaseHelper{
     public void insertarUsuarioComunidad(int id_usuario, int id_comunidad,String tipo_usuario,int id_rango){
         String query= "INSERT INTO sys."+TABLE_USUARIOS_COMUNIDADES+" (id_usuario, id_comunidad,tipo_usuario,id_rango ) VALUES ('"+id_usuario+"' , '"+id_comunidad+"'" +
                 ", '"+tipo_usuario+"', '"+id_rango+"')";
+        Log.d("Query", query);
         ejecutarSentencia(query);
     }
 

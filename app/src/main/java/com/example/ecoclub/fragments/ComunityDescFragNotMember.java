@@ -1,7 +1,9 @@
 package com.example.ecoclub.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterComunityDescription;
 import com.example.ecoclub.database.DbUsuariosComunidades;
+import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class ComunityDescFragNotMember extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String idComunidad;
+    private MainActivityCallbacks mainActivity;
 
     //Recycler View================================
     private ArrayList<Usuario_Comunidad> listMembersComunity;
@@ -87,6 +91,10 @@ public class ComunityDescFragNotMember extends Fragment {
                             Toast.LENGTH_LONG).show();
 
                     //Todo:Utilizar la base de datos aqui para unirse****************
+                    DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
+                    dbUsuariosComunidades.insertarUsuarioComunidad(
+                            mainActivity.sendCurrentUserDataFragment().getId(), Integer.parseInt(idComunidad),
+                            "Activo", 3);
                     //**********************************************************
 
                     //para cambiar de interface a no miembro
@@ -133,5 +141,12 @@ public class ComunityDescFragNotMember extends Fragment {
         DbUsuariosComunidades dbUsuariosComunidades=new DbUsuariosComunidades();
         listMembersComunity = dbUsuariosComunidades.obtenerUsuariosComunidad(
                 Integer.parseInt(idComunidad));
+    }
+
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivityCallbacks){
+            mainActivity = (MainActivityCallbacks) context;
+        }
     }
 }
