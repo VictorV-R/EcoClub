@@ -116,6 +116,10 @@ public class ComunityDescFragMember extends Fragment {
         //Referenciamos el RecyclerView del layout
         recyclerComunityDescMember = view.findViewById(
                 R.id.recyclerListaMiembrosMiComunidad);
+
+        //desactivando scroll del recyclerview
+        recyclerComunityDescMember.setNestedScrollingEnabled(false);
+
         //para cargar una lista vertical
         recyclerComunityDescMember.setLayoutManager(new LinearLayoutManager(getActivity(),
                 RecyclerView.VERTICAL, false));

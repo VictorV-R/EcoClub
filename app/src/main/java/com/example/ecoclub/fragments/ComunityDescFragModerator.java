@@ -19,6 +19,8 @@ import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterComunityDescription;
 import com.example.ecoclub.database.DbUsuariosComunidades;
+import com.example.ecoclub.dialog.MessageDialogAddUserToComunity;
+import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
@@ -128,8 +130,16 @@ public class ComunityDescFragModerator extends Fragment {
                     Toast.makeText(getActivity(), "Agregando miembro",
                             Toast.LENGTH_LONG).show();
 
-                    //Todo:Utilizar la base de datos aqui para agregar miembro
+                    //Todo:Dialogo para agregar miembro
                     // Todo: a traves de un correo electronico
+                    new Thread(new Runnable() {
+                        public void run() {
+                            //Aquí ejecutamos nuestras tareas costosas
+                            MessageDialogAddUserToComunity.newInstance(
+                                    idComunidad).show(getActivity().
+                                    getSupportFragmentManager(), null);
+                        }
+                    }).start();
 
                 }
             };
@@ -165,6 +175,9 @@ public class ComunityDescFragModerator extends Fragment {
         //Referenciamos el RecyclerView del layout
         recyclerComunityDescModerator = view.findViewById(
                 R.id.recyclerListaMiembrosComunidadModerator);
+
+        //desactivando scroll del recyclerview
+        recyclerComunityDescModerator.setNestedScrollingEnabled(false);
         //para cargar una lista vertical
         recyclerComunityDescModerator.setLayoutManager(new LinearLayoutManager(getActivity(),
                 RecyclerView.VERTICAL, false));
