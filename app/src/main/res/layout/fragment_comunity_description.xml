@@ -1,98 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.ComunityDescriptionFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageDescriptionComunity"
-        android:layout_width="225dp"
-        android:layout_height="225dp"
-        android:layout_marginTop="28dp"
-
-        android:background="@color/color_content"
-        android:padding="7dp"
-        android:scaleType="centerCrop"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:shapeAppearanceOverlay="@style/ImageViewRedonda"
-        app:srcCompat="@drawable/idnp_person_8"
-        app:strokeColor="@color/teal_700"
-        app:strokeWidth="7dp" />
-
-    <TextView
-        android:id="@+id/msgComunityDescription"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/string_comunity_description"
-        android:textSize="18dp"
-        android:textAlignment="center"
-        android:fontFamily="@font/bhavuka_regular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msgComunityDescriptionName" />
+        android:layout_marginBottom="20dp">
 
-    <TextView
-        android:id="@+id/msgComunityDescriptionName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:text="@string/string_comunity_name"
-        android:textAlignment="center"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/bhavuka_regular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageDescriptionComunity" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageDescriptionComunity"
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            android:layout_marginTop="28dp"
+
+            android:background="@color/color_content"
+            android:padding="7dp"
+            android:scaleType="centerCrop"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:shapeAppearanceOverlay="@style/ImageViewRedonda"
+            app:srcCompat="@drawable/idnp_person_8"
+            app:strokeColor="@color/teal_700"
+            app:strokeWidth="7dp" />
+
+        <TextView
+            android:id="@+id/msgComunityDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/string_comunity_description"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/bhavuka_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/msgComunityDescriptionName" />
+
+        <TextView
+            android:id="@+id/msgComunityDescriptionName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:text="@string/string_comunity_name"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bhavuka_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageDescriptionComunity" />
+
+        <com.example.ecoclub.View.ViewTransparente
+            android:id="@+id/imgDesCom"
+            android:layout_width="227dp"
+            android:layout_height="228dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageDescriptionComunity"
+            app:layout_constraintEnd_toEndOf="@+id/imageDescriptionComunity"
+            app:layout_constraintStart_toStartOf="@+id/imageDescriptionComunity"
+            app:layout_constraintTop_toTopOf="@+id/imageDescriptionComunity" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAtrasDescriptionComunity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_boton_atras"
+            android:text="Atras"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/bhavuka_regular"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageDescriptionComunity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.078" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <FrameLayout
         android:id="@+id/fragmentLayoutComunityDesc"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msgComunityDescription"
         app:layout_constraintVertical_bias="0.311" />
 
-    <com.example.ecoclub.View.ViewTransparente
-        android:id="@+id/imgDesCom"
-        android:layout_width="227dp"
-        android:layout_height="228dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageDescriptionComunity"
-        app:layout_constraintEnd_toEndOf="@+id/imageDescriptionComunity"
-        app:layout_constraintStart_toStartOf="@+id/imageDescriptionComunity"
-        app:layout_constraintTop_toTopOf="@+id/imageDescriptionComunity" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAtrasDescriptionComunity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_boton_atras"
-        android:text="Atras"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/bhavuka_regular"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageDescriptionComunity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
