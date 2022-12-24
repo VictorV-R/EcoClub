@@ -4,14 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
+import com.example.ecoclub.interfaces.MainActivityCallbacks;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,6 +24,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsFragment extends Fragment {
+
+    private LatLng ubicacion;
+    private View view;
+    private MainActivityCallbacks mainActivity;
 
     final private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -47,9 +55,14 @@ public class MapsFragment extends Fragment {
                     // Remove all marker
                     googleMap.clear();
                     // Animating to zoom the marker
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
                     // Add marker on map
                     googleMap.addMarker(markerOptions);
+                    // Ubicacion
+                    ubicacion = latLng;
+
+                    mainActivity.enviarUbicacion("Mapa", ubicacion);
+
                 }
             });
             LatLng sydney = new LatLng(-16.4008114, -71.5346801);
@@ -76,7 +89,8 @@ public class MapsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps, container, false);
+        view = inflater.inflate(R.layout.fragment_maps, container, false);
+        return view;
     }
 
     @Override
@@ -86,6 +100,14 @@ public class MapsFragment extends Fragment {
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
+        }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivityCallbacks){
+            mainActivity = (MainActivityCallbacks) context;
         }
     }
 }
