@@ -18,6 +18,30 @@ public class DbViewsHelpers extends DataBaseHelper{
                 "select * from sys."+TABLE_COMUNIDADES+" "+
                 "where id_comunidad in (select id_comunidad from sys."+TABLE_USUARIOS_COMUNIDADES+" where id_usuario = '"+id_usuario+"');";
 
+        listaComunidades = ejecutarSentenciaComunidades(query);
+        return listaComunidades;
+    }
+
+
+    //aqui se buscan todas las comunidades no asociadas al usuario
+    public ArrayList<Comunidad> obtenerComunidadesNoAsociadasPorUsuarioID(int id_usuario){
+        ArrayList<Comunidad> listaComunidades=new ArrayList<Comunidad>();
+        String query=
+                "select * from sys."+TABLE_COMUNIDADES+ " where id_comunidad not in ("+
+                "select id_comunidad from sys."+TABLE_COMUNIDADES+" "+
+                        "where id_comunidad in (select id_comunidad from sys."+
+                        TABLE_USUARIOS_COMUNIDADES+" where id_usuario = '"+id_usuario+"'));";
+
+
+        listaComunidades = ejecutarSentenciaComunidades(query);
+        return listaComunidades;
+    }
+
+
+    private ArrayList<Comunidad> ejecutarSentenciaComunidades(String query){
+
+        ArrayList<Comunidad> listaComunidades=new ArrayList<Comunidad>();
+
         Thread t =  new Thread(new Runnable() {
             @Override
             public void run() {
@@ -44,6 +68,7 @@ public class DbViewsHelpers extends DataBaseHelper{
             }
         });
         t.start();
+
         try {
             t.join();
         } catch (Exception e){ Log.d("INFO",e.toString());}

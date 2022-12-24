@@ -24,6 +24,7 @@ import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterComunity;
 import com.example.ecoclub.comunity.AdapterMyComunity;
 import com.example.ecoclub.database.DbComunidades;
+import com.example.ecoclub.database.DbViewsHelpers;
 import com.example.ecoclub.dialog.MessageDialogComunityNotExist;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
@@ -170,9 +171,15 @@ public class ComunityFragment extends Fragment {
                     nombresComunidades.get(i),
                     "Descripción de comunidad "+ (i+1)));
         }*/
-        DbComunidades dbComunidades=new DbComunidades();
+
+        //DbComunidades dbComunidades=new DbComunidades();
+        //listComunity = new ArrayList<>();
+        //listComunity=dbComunidades.obtenerComunidades();
+
+        DbViewsHelpers dbViewsHelpers=new DbViewsHelpers();
         listComunity = new ArrayList<>();
-        listComunity=dbComunidades.obtenerComunidades();
+        listComunity=dbViewsHelpers.obtenerComunidadesNoAsociadasPorUsuarioID(
+                mainActivity.sendCurrentUserDataFragment().getId());
     }
 
     public void onAttach(@NonNull Context context) {
