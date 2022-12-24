@@ -4,6 +4,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +21,13 @@ import retrofit2.Response;
 
 
 public class HomeNoticiasFragment extends Fragment {
-    String api="18f1b34a081148119e242db1fb37a8e9";
+    String api="470ef48c77514e4b82c3ffbda421c1ef";
     ArrayList<NewsShowClass> modelClassArrayList;
     Adapter adapter;
     String country="in";
     private RecyclerView recyclerViewofHome;
     private String category="science";
-
+    String filtros[]={"plastic","environment","nature","pollution","contamination","ecology"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,15 @@ public class HomeNoticiasFragment extends Fragment {
             public void onResponse(Call<mainNews> call, Response<mainNews> response) {
                 if(response.isSuccessful())
                 {
-                    modelClassArrayList.addAll(response.body().getArticles());
+                    ArrayList<NewsShowClass> listaNoticias=response.body().getArticles();
+                    Log.d("INFO",response.body().getTotalResults());
+                    for (NewsShowClass aux:listaNoticias) {
+                        Log.d("INFO","-");
+                        if(contienePalabrasAmbiente(aux.getTitle()) || contienePalabrasAmbiente(aux.getDescription())){
+                            modelClassArrayList.add(aux);
+                        }
+                    }
+                    //modelClassArrayList.addAll(response.body().getArticles());
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -66,5 +76,43 @@ public class HomeNoticiasFragment extends Fragment {
 
             }
         });
+        ApiUtilities.getApiInterface().getCategoryNews(country,category,100,api).enqueue(new Callback<mainNews>() {
+            @Override
+            public void onResponse(Call<mainNews> call, Response<mainNews> response) {
+                if(response.isSuccessful())
+                {
+                    ArrayList<NewsShowClass> listaNoticias=response.body().getArticles();
+                    Log.d("INFO",response.body().getTotalResults());
+                    for (NewsShowClass aux:listaNoticias) {
+                        Log.d("INFO","-");
+                        if(contienePalabrasAmbiente(aux.getTitle()) || contienePalabrasAmbiente(aux.getDescription())){
+                            modelClassArrayList.add(aux);
+                        }
+                    }
+                    //modelClassArrayList.addAll(response.body().getArticles());
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<mainNews> call, Throwable t) {
+
+            }
+        });
+
+    }
+    private boolean contienePalabrasAmbiente(String texto) {
+        if (texto == null ) {
+            return false;
+        } else {
+            texto = texto.toLowerCase();
+            Log.d("INFO",texto);
+            for (int i = 0; i < filtros.length; i++) {
+                if (texto.contains(filtros[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
