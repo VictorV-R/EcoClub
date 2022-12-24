@@ -22,6 +22,7 @@ import com.example.ecoclub.dialog.MessageDialogQuit;
 import com.example.ecoclub.fragments.CollaborateFragment;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
+import com.example.ecoclub.fragments.FragmentCreateActivity;
 import com.example.ecoclub.fragments.HomeFragment;
 import com.example.ecoclub.fragments.MapsFragment;
 import com.example.ecoclub.fragments.MapsViewFragment;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     private ProfileFragment profileFragment = new ProfileFragment();
     //Otros-Fragments
     private MyComunityFragment myComunityFragment = new MyComunityFragment();
-    private ComunityDescriptionFragment comunityDescriptionFragment = new ComunityDescriptionFragment();
+    private FragmentCreateActivity fragmentCreateActivity = new FragmentCreateActivity();
 
     String api="18f1b34a081148119e242db1fb37a8e9";
     @Override
@@ -252,5 +253,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
     public void enviarUbicacion(String fragment, LatLng dato){
         collaborateFragment.recuperarUbicacion(dato);
+        fragmentCreateActivity.recuperarUbicacion(dato);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ecoclub.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,8 +18,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.database.DbComunidades;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -65,6 +68,9 @@ public class CollaborateFragment extends Fragment {
         btnCrearComunidad.setOnClickListener(view -> {
             DbComunidades dbComunidades = new DbComunidades();
             dbComunidades.insertarComunidad(nombreComunidad.getText().toString(), descripcionComunidad.getText().toString(), ubicacion.latitude, ubicacion.longitude );
+
+            Toast.makeText(getActivity(), "Se creo comunidad",
+                    Toast.LENGTH_LONG).show();
         });
         return view;
     }

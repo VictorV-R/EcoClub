@@ -2,6 +2,7 @@ package com.example.ecoclub.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
+import com.example.ecoclub.database.DbActividades;
+import com.example.ecoclub.database.DbComunidades;
+import com.google.android.gms.maps.model.LatLng;
 
 public class FragmentCreateActivity extends Fragment {
 
@@ -21,6 +28,11 @@ public class FragmentCreateActivity extends Fragment {
     private EditText fechaActividad;
     private Button btnAtrasActividad;
     private Button btnCrearActividad;
+
+    private Fragment mapsFragment;
+    FragmentTransaction transaction;
+    private static LatLng ubicacion;
+    private String resultado = "NAda";
 
     private static final String ARG_PARAM1 = "idComunidad";
 
@@ -38,6 +50,17 @@ public class FragmentCreateActivity extends Fragment {
         args.putString(ARG_PARAM1, idComunidad);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //como asignar el mapa al formulario de crear actividad
+        mapsFragment = new MapsFragment();
+        transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.maps_select_frame_activity, mapsFragment)
+                .addToBackStack(null).commit();
     }
 
     @Override
@@ -83,14 +106,29 @@ public class FragmentCreateActivity extends Fragment {
         @Override
         public void onClick(View view) {
 
-            //Todo: agregar activity a la base de datos(idComunidad)
-            //todo=========================================
+            //Todo: agregando activity a la base de datos==============
+            //Todo: Tiene que ser moderador para crear actividad
+            //Todo: el activity no guarda el nombre de quien creo la
+            //Todo: actividad
+
+            DbActividades dbActividades = new DbActividades();
+            dbActividades.insertarActividad(
+                    nombreActividad.getText().toString(),
+                    Integer.parseInt(idComunidad),
+                    fechaActividad.getText().toString(),
+                    descripcionActividad.getText().toString(),
+                    ubicacion.latitude, ubicacion.longitude);
+
+            Log.d("Crear Actividad", "Actividad: "+ ubicacion.latitude +"  "+ ubicacion.longitude);
+            //todo===================================================
+
             Toast.makeText(getActivity(), "Se creo su actividad",
                     Toast.LENGTH_LONG).show();
-
-            //para no poder retroceder al formulario
-            Intent intent = new Intent(getContext(), MainActivity.class);
-            startActivity(intent);
         }
     };
+
+
+    public static void recuperarUbicacion(LatLng dato){
+        ubicacion = dato;
+    }
 }

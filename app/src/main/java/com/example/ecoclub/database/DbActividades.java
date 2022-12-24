@@ -17,7 +17,7 @@ public class DbActividades extends DataBaseHelper{
     public void insertarActividad(String nombre, int id_comunidad, String fecha,String descripcion,double latitud, double longitud){
         String query= "INSERT INTO sys."+TABLE_ACTIVIDADES+" " +
                 "(nombre,id_comunidad,fecha, descripcion, latitud, longitud ) VALUES " +
-                "('"+nombre+"' , '"+id_comunidad+"','"+fecha+"' ,'"+descripcion+"', , '"+latitud+"' , '"+longitud+"')";
+                "('"+nombre+"' , '"+id_comunidad+"','"+fecha+"' ,'"+descripcion+"', '"+latitud+"' , '"+longitud+"')";
         ejecutarSentencia(query);
     }
 

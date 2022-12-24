@@ -122,13 +122,12 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Unirse a Comunidad", Toast.LENGTH_LONG).show();
+                //Todo: unir a usuario en la comunidad en la base de datos====
+                //Todo: AQUI LE DAMOS SOLO EL RANGO DE MIEMBRO
                 DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
                 dbUsuariosComunidades.insertarUsuarioComunidad(
                         id_usuario, itemComunity.getId(),
                         "Activo", 3);
-                //Todo: unir a usuario en la comunidad en la base de datos====
-                //Todo: AQUI LE DAMOS SOLO EL RANGO DE MIEMBRO para que habra
-                //Todo: la interface de miembro en la descripcion de comunidad
                 //Todo:========================================================
                 comuDescFrag = ComunityDescriptionFragment.newInstance(
                         String.valueOf(itemComunity.getId()),

@@ -83,10 +83,10 @@ public class ComunityDescFragMember extends Fragment {
         public void onClick(View view) {
             Toast.makeText(getActivity(), "Saliendo de mi comunidad",
                     Toast.LENGTH_LONG).show();
+            //Todo:Utilizar la base de datos aqui para salir****************
             DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
             dbUsuariosComunidades.eliminarUsuarioComunidad(
                     mainActivity.sendCurrentUserDataFragment().getId(), Integer.parseInt(idComunidad));
-            //Todo:Utilizar la base de datos aqui para salir****************
             //**********************************************************
 
             //para cambiar de interface a no miembro

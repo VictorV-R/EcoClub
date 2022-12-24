@@ -14,116 +14,142 @@
         android:layout_width="229dp"
         android:layout_height="155dp"
         android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="36dp"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="Creando actividad"
-        android:textColor="@color/color_primary"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAtrasCrearActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/custom_boton_atras"
-        android:fontFamily="@font/bhavuka_regular"
-        android:text="Atras"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btnCrearActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombre de la Actividad"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editNomComCrearActividad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Ingresar nombre de comunidad"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripcion"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editDesComCrearActividad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Ingresar descripcion"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fecha para la actividad"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editFechaComCrearActividad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="dd/mm/aaaa"
-            android:inputType="date" />
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCrearActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
-        android:background="@drawable/custom_button_my_comunity"
-        android:text="Crear Actividad"
-        android:fontFamily="@font/bhavuka_regular"
-        android:textSize="20dp"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
+        android:layout_height="504dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/bhavuka_regular"
+                    android:text="Creando actividad"
+                    android:textColor="@color/color_primary"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAtrasCrearActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/custom_boton_atras"
+                    android:fontFamily="@font/bhavuka_regular"
+                    android:text="Atras"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/btnCrearActivity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewLogo"
+                app:layout_constraintVertical_bias="1.0">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de la Actividad"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editNomComCrearActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Ingresar nombre de comunidad"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripcion"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editDesComCrearActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Ingresar descripcion"
+                    android:inputType="textPersonName"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha para la actividad"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editFechaComCrearActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="dd/mm/aaaa"
+                    android:inputType="date"
+                    android:textSize="16sp" />
+
+                <FrameLayout
+                    android:id="@+id/maps_select_frame_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCrearActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/custom_button_my_comunity"
+                    android:fontFamily="@font/bhavuka_regular"
+                    android:text="Crear Actividad"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
