@@ -1,8 +1,10 @@
 package com.example.ecoclub.comunity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ecoclub.Entities.Comunidad;
 import com.example.ecoclub.R;
 import com.example.ecoclub.View.ViewTransparente;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
+import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
 
@@ -26,11 +30,16 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
     private FragmentActivity main; //para cambiar de fragments
     private ComunityDescriptionFragment comuDescFrag;
     private ArrayList<Comunidad> listComunity;
+    private int id_usuario;
 
     public AdapterComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity) {
         this.listComunity = listComunity;
         this.main = activity;
-
+    }
+    public AdapterComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity,int id_usuario) {
+        this.listComunity = listComunity;
+        this.main = activity;
+        this.id_usuario=id_usuario;
     }
 
     //Enlaza esta clase adaptador con el item(Comunity)
@@ -113,7 +122,10 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Unirse a Comunidad", Toast.LENGTH_LONG).show();
-
+                DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
+                dbUsuariosComunidades.insertarUsuarioComunidad(
+                        id_usuario, itemComunity.getId(),
+                        "Activo", 3);
                 //Todo: unir a usuario en la comunidad en la base de datos====
                 //Todo: AQUI LE DAMOS SOLO EL RANGO DE MIEMBRO para que habra
                 //Todo: la interface de miembro en la descripcion de comunidad

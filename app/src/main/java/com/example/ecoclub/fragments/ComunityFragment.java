@@ -1,8 +1,10 @@
 package com.example.ecoclub.fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +25,7 @@ import com.example.ecoclub.comunity.AdapterComunity;
 import com.example.ecoclub.comunity.AdapterMyComunity;
 import com.example.ecoclub.database.DbComunidades;
 import com.example.ecoclub.dialog.MessageDialogComunityNotExist;
+import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
 
@@ -33,7 +36,7 @@ public class ComunityFragment extends Fragment {
     //Recycler View
     private ArrayList<Comunidad> listComunity;
     private RecyclerView recycler;
-
+    private MainActivityCallbacks mainActivity;
     private ImageButton btnSearch;
     private Button btnMyComunity;
 
@@ -73,7 +76,7 @@ public class ComunityFragment extends Fragment {
 
         //enviamos los datos al adaptador de Comunidad
         //le damos el getActivity para que se pueda cambiar de fragment en el adapter
-        AdapterComunity adapter = new AdapterComunity(listComunity, getActivity());
+        AdapterComunity adapter = new AdapterComunity(listComunity, getActivity(),mainActivity.sendCurrentUserDataFragment().getId());
         //por ultimo al recycler le enviamos el adaptador de la Comunidad
         recycler.setAdapter(adapter);
         ///===================================
@@ -170,5 +173,12 @@ public class ComunityFragment extends Fragment {
         DbComunidades dbComunidades=new DbComunidades();
         listComunity = new ArrayList<>();
         listComunity=dbComunidades.obtenerComunidades();
+    }
+
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivityCallbacks){
+            mainActivity = (MainActivityCallbacks) context;
+        }
     }
 }

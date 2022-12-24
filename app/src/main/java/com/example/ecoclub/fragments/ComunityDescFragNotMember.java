@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,7 @@ public class ComunityDescFragNotMember extends Fragment {
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), "Uniendo a comunidad",
                             Toast.LENGTH_LONG).show();
-
+                    Log.d("INFO","CLICK:"+mainActivity.sendCurrentUserDataFragment().getId()+": "+idComunidad);
                     //Todo:Utilizar la base de datos aqui para unirse****************
                     DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
                     dbUsuariosComunidades.insertarUsuarioComunidad(
