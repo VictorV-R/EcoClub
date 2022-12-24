@@ -24,10 +24,8 @@ public class HomeNoticiasFragment extends Fragment {
     String api="470ef48c77514e4b82c3ffbda421c1ef";
     ArrayList<NewsShowClass> modelClassArrayList;
     Adapter adapter;
-    String country="in";
     private RecyclerView recyclerViewofHome;
-    private String category="science";
-    String filtros[]={"plastic","environment","nature","pollution","contamination","ecology"};
+    private String tema="reciclaje";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,43 +51,13 @@ public class HomeNoticiasFragment extends Fragment {
     }
 
     private void findNews() {
-        ApiUtilities.getApiInterface().getCategoryNews(country,category,100,api).enqueue(new Callback<mainNews>() {
+        ApiUtilities.getApiInterface().getNoticiasPollution(tema,100,api).enqueue(new Callback<mainNews>() {
             @Override
             public void onResponse(Call<mainNews> call, Response<mainNews> response) {
                 if(response.isSuccessful())
                 {
-                    ArrayList<NewsShowClass> listaNoticias=response.body().getArticles();
-                    Log.d("INFO",response.body().getTotalResults());
-                    for (NewsShowClass aux:listaNoticias) {
-                        Log.d("INFO","-");
-                        if(contienePalabrasAmbiente(aux.getTitle()) || contienePalabrasAmbiente(aux.getDescription())){
-                            modelClassArrayList.add(aux);
-                        }
-                    }
-                    //modelClassArrayList.addAll(response.body().getArticles());
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<mainNews> call, Throwable t) {
-
-            }
-        });
-        ApiUtilities.getApiInterface().getCategoryNews(country,category,100,api).enqueue(new Callback<mainNews>() {
-            @Override
-            public void onResponse(Call<mainNews> call, Response<mainNews> response) {
-                if(response.isSuccessful())
-                {
-                    ArrayList<NewsShowClass> listaNoticias=response.body().getArticles();
-                    Log.d("INFO",response.body().getTotalResults());
-                    for (NewsShowClass aux:listaNoticias) {
-                        Log.d("INFO","-");
-                        if(contienePalabrasAmbiente(aux.getTitle()) || contienePalabrasAmbiente(aux.getDescription())){
-                            modelClassArrayList.add(aux);
-                        }
-                    }
-                    //modelClassArrayList.addAll(response.body().getArticles());
+                    modelClassArrayList.addAll(response.body().getArticles());
+                    removeNoticias();
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -101,18 +69,12 @@ public class HomeNoticiasFragment extends Fragment {
         });
 
     }
-    private boolean contienePalabrasAmbiente(String texto) {
-        if (texto == null ) {
-            return false;
-        } else {
-            texto = texto.toLowerCase();
-            Log.d("INFO",texto);
-            for (int i = 0; i < filtros.length; i++) {
-                if (texto.contains(filtros[i])) {
-                    return true;
-                }
-            }
-            return false;
-        }
+    //Noticias q no tienen que ver con reciclaje
+    public void removeNoticias(){
+        modelClassArrayList.remove(1);
+        modelClassArrayList.remove(3);
+        modelClassArrayList.remove(3);
+        modelClassArrayList.remove(3);
+        modelClassArrayList.remove(3);
     }
 }
