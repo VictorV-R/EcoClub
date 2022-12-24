@@ -51,7 +51,13 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             android:exported="true">
+            <!--
+            La siguiente linea hace que el teclado no mueva el fragmento
+            lo cual desordenaria la interface
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            -->
 
             <meta-data
                 android:name="android.app.lib_name"
