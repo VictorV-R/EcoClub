@@ -91,13 +91,29 @@ public class DialogOptionsModeratorToModerator extends DialogFragment {
     private View.OnClickListener eventoDeasignarModerador = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Deasignar moderador", Toast.LENGTH_LONG).show();
+
+            new Thread(new Runnable() {
+                public void run() {
+                    DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
+                    dbUsuariosComunidades.modificarRangoUsuarioComunidad(
+                            Integer.parseInt(id_usuario),
+                            Integer.parseInt(id_comunidad),
+                            "Miembro"
+                    );
+                }
+            }).start();
+
+            Toast.makeText(getContext(), "Se deasigno moderador", Toast.LENGTH_LONG).show();
+
+            //cerrar ventana
+            getDialog().dismiss();
+
         }
     };
     private View.OnClickListener eventoExpulsarModerador = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            
+
             new Thread(new Runnable() {
                 public void run() {
                     DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();

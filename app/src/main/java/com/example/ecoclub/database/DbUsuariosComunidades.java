@@ -38,6 +38,13 @@ public class DbUsuariosComunidades extends DataBaseHelper{
         ejecutarSentencia(query);
     }
 
+    public void modificarRangoUsuarioComunidad(int id_usuario,int id_comunidad,String rango){
+        String query="UPDATE sys."+TABLE_USUARIOS_COMUNIDADES+" SET id_rango  = " +
+                "(SELECT id_rango FROM sys."+TABLE_RANGOS+" WHERE nombre='"+rango+"')" +
+                " WHERE (id_usuario = '"+id_usuario+"') and (id_comunidad = '"+id_comunidad+"')";
+        ejecutarSentencia(query);
+    }
+
     public void eliminarUsuarioComunidad (int id_usuario,int id_comunidad){
         String query="DELETE FROM sys."+TABLE_USUARIOS_COMUNIDADES+" " +
                 "WHERE (id_usuario = '"+id_usuario+"') and (id_comunidad = '"+id_comunidad+"')";

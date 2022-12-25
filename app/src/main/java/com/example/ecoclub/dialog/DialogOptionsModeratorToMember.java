@@ -90,7 +90,23 @@ public class DialogOptionsModeratorToMember extends DialogFragment {
     private View.OnClickListener eventoAsignarMiembro = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Asignar miembro", Toast.LENGTH_LONG).show();
+
+            new Thread(new Runnable() {
+                public void run() {
+                    DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
+                    dbUsuariosComunidades.modificarRangoUsuarioComunidad(
+                            Integer.parseInt(id_usuario),
+                            Integer.parseInt(id_comunidad),
+                            "Moderador"
+                    );
+                }
+            }).start();
+
+            Toast.makeText(getContext(), "Se asigno moderador", Toast.LENGTH_LONG).show();
+
+            //cerrar ventana
+            getDialog().dismiss();
+
         }
     };
     private View.OnClickListener eventoExpulsarMiembro = new View.OnClickListener() {
