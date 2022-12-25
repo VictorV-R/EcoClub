@@ -16,6 +16,9 @@ import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
 import com.example.ecoclub.database.DbUsuarios;
+import com.example.ecoclub.dialog.DialogOptionsModerator;
+import com.example.ecoclub.dialog.DialogOptionsModeratorToMember;
+import com.example.ecoclub.dialog.DialogOptionsModeratorToModerator;
 import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 
 import java.util.ArrayList;
@@ -105,7 +108,38 @@ public class AdapterComuDescModerator extends RecyclerView.Adapter<AdapterComuDe
         private View.OnClickListener eventMemberConfi = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Configuraciones", Toast.LENGTH_LONG).show();
+                
+                new Thread(new Runnable() {
+                    public void run() {
+
+                        //Todo: opciones de configuraciones segun el rango=============
+                        if(member.getId_usuario() == you_id){
+                            //Todo: este usuario es el que inicio sesion
+                            DialogOptionsModerator.newInstance(
+                                    member.getId_usuario(),
+                                    member.getId_comunidad()
+                            ).show(main.getSupportFragmentManager(), null);
+                        }else{
+                            if (member.getId_rango() == 3){
+                                //Todo: miembro
+                                DialogOptionsModeratorToMember.newInstance(
+                                        member.getId_usuario(),
+                                        member.getId_comunidad()
+                                ).show(main.getSupportFragmentManager(), null);
+                            }else{
+                                if (member.getId_rango() == 2) {
+                                    //Todo: moderador
+                                    DialogOptionsModeratorToModerator.newInstance(
+                                        member.getId_usuario(),
+                                        member.getId_comunidad()
+                                    ).show(main.getSupportFragmentManager(), null);
+                                }
+                            }
+                        }
+                        //===============================================
+                    }
+                }).start();
+
             }
         };
     }

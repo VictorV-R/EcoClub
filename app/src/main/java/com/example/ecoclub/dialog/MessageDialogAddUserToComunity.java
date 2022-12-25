@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.ecoclub.R;
 import com.example.ecoclub.database.DbUsuariosComunidades;
+import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 
 public class MessageDialogAddUserToComunity extends DialogFragment {
 
@@ -24,6 +25,8 @@ public class MessageDialogAddUserToComunity extends DialogFragment {
     private Button btnAgregarUsuario;
     private Button btnCancelar;
 
+    private ComunityDescriptionFragment comunityDescriptionFragment =
+            new ComunityDescriptionFragment();
 
     public MessageDialogAddUserToComunity(){
     }
@@ -85,6 +88,7 @@ public class MessageDialogAddUserToComunity extends DialogFragment {
             );
 
             getDialog().dismiss();
+
         }
     };
     private View.OnClickListener eventCancelar = new View.OnClickListener() {

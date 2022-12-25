@@ -87,11 +87,9 @@ public class AdapterComunityDescription extends
         View.OnClickListener eventMemberComunity = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Ver miembro", Toast.LENGTH_LONG).show();
                 //como se tiene el id se puede hacer consultas
                 new Thread(new Runnable() {
                     public void run() {
-                        //Aquí ejecutamos nuestras tareas costosas
                         MessageDialogMemberComunity.newInstance(
                                         member.getId_usuario(),
                                         member.getId_comunidad())

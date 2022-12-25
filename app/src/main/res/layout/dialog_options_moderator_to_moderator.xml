@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginLeft="60dp"
+    android:layout_marginRight="60dp"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOpcionInfoModerador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:fontFamily="@font/bhavuka_regular"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Info del moderador"
+        android:background="@color/color_primary"
+        android:textAllCaps="false" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOpcionAsignarRangoModerador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:fontFamily="@font/bhavuka_regular"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Desasignar moderador"
+        android:background="@color/color_primary"
+        android:textAllCaps="false" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOpcionExpulsarModerador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:fontFamily="@font/bhavuka_regular"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Expulsar de comunidad"
+        android:background="@color/color_primary"
+        android:textAllCaps="false" />
+</LinearLayout>
