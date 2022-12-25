@@ -19,11 +19,13 @@ import com.example.ecoclub.R;
 import com.example.ecoclub.comunity.AdapterComuDescModerator;
 import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.dialog.MessageDialogAddUserToComunity;
+import com.example.ecoclub.interfaces.ComunityDescriptionCallbacks;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
 
-public class ComunityDescFragModerator extends Fragment {
+public class ComunityDescFragModerator extends Fragment
+        implements ComunityDescriptionCallbacks {
 
     private static final String ARG_PARAM1 = "idComunidad";
     private MainActivityCallbacks mainActivity;
@@ -32,8 +34,9 @@ public class ComunityDescFragModerator extends Fragment {
     private String idComunidad;
 
     //Recycler View================================
-    private ArrayList<Usuario_Comunidad> listMembersComunity;
+    private ArrayList<Usuario_Comunidad> listMembersComunity = new ArrayList<>();
     private RecyclerView recyclerComunityDescModerator;
+    private AdapterComuDescModerator adapter = null;
     //=============================================
     private Button btnSalirComunidad;
     private Button btnAgregarMiembro;
@@ -179,6 +182,13 @@ public class ComunityDescFragModerator extends Fragment {
         //para cargar una lista vertical
         recyclerComunityDescModerator.setLayoutManager(new LinearLayoutManager(getActivity(),
                 RecyclerView.VERTICAL, false));
+
+        actualizarAdaptador();
+
+    }
+
+    @Override
+    public void actualizarAdaptador(){
         //llenando datos de miembros de comunidad
         llenarDatosMiembrosComunity();
 
@@ -188,7 +198,7 @@ public class ComunityDescFragModerator extends Fragment {
         new Thread(new Runnable() {
             public void run() {
                 //Aquí ejecutamos nuestras tareas costosas
-                AdapterComuDescModerator adapter = new AdapterComuDescModerator(
+                adapter = new AdapterComuDescModerator(
                         listMembersComunity, getActivity(), id_usuario);
                 //por ultimo al recycler le enviamos el adaptador de miembros de la Comunidad
                 recyclerComunityDescModerator.setAdapter(adapter);

@@ -41,6 +41,7 @@ public class ComunityDescriptionFragment extends Fragment {
     private ComunityDescFragNotMember comunityDescFragNotMember;
     private ComunityDescFragModerator comunityDescFragModerator;
     //=============================================
+    public static int idFrameLayout;
 
     //Comunidad datos
     private static final String ARG_PARAM1 = "id";
@@ -126,6 +127,7 @@ public class ComunityDescriptionFragment extends Fragment {
                 Integer.parseInt(id)
         );
 
+        idFrameLayout = R.id.fragmentLayoutComunityDesc; //para actulizar adaptador
         //se ve que fragments hijos abrir dependiendo del rango
         switch (rangoUsuarioComunidad.getId()){
             case 1:

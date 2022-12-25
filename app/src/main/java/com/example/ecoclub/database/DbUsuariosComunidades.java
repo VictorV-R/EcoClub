@@ -80,6 +80,22 @@ public class DbUsuariosComunidades extends DataBaseHelper{
     public Usuario_Comunidad obtenerUsuarioComunidad(int id_comunidad,int id_usuario){
         Usuario_Comunidad aux=new Usuario_Comunidad();
         String query= "SELECT * FROM sys."+TABLE_USUARIOS_COMUNIDADES+" WHERE (id_comunidad='"+id_comunidad+"') and (id_usuario='"+id_usuario+"')";
+        aux = ejecutarSentenciaMostrarUsuarioComunidad(query);
+        return aux;
+    }
+
+    public Usuario_Comunidad obtenerUsuarioComunidadPorEmail(int id_comunidad,String email){
+        Usuario_Comunidad aux=new Usuario_Comunidad();
+        String query= "SELECT * FROM sys."+TABLE_USUARIOS_COMUNIDADES+
+                " WHERE (id_comunidad='"+id_comunidad+"') and" +
+                " (id_usuario in (SELECT id_usuario FROM sys."+TABLE_USUARIOS+"" +
+                " WHERE (email='"+email+"')))";
+        aux = ejecutarSentenciaMostrarUsuarioComunidad(query);
+        return aux;
+    }
+
+    public Usuario_Comunidad ejecutarSentenciaMostrarUsuarioComunidad(String query){
+        Usuario_Comunidad aux = new Usuario_Comunidad();
         Thread t =  new Thread(new Runnable() {
             @Override
             public void run() {

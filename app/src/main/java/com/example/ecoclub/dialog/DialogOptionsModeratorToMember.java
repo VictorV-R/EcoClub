@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.ecoclub.R;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 
 public class DialogOptionsModeratorToMember extends DialogFragment {
     //Data
@@ -95,7 +96,22 @@ public class DialogOptionsModeratorToMember extends DialogFragment {
     private View.OnClickListener eventoExpulsarMiembro = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Expulsar miembro", Toast.LENGTH_LONG).show();
+
+            new Thread(new Runnable() {
+                public void run() {
+                    DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
+                    dbUsuariosComunidades.eliminarUsuarioComunidad(
+                            Integer.parseInt(id_usuario),
+                            Integer.parseInt(id_comunidad));
+                }
+            }).start();
+
+
+            Toast.makeText(getContext(), "Se expulso miembro", Toast.LENGTH_LONG).show();
+
+            //cerrar ventana
+            getDialog().dismiss();
+
         }
     };
 }

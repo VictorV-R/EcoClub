@@ -12,9 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
 import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
+import com.example.ecoclub.interfaces.ComunityDescriptionCallbacks;
 
 public class MessageDialogAddUserToComunity extends DialogFragment {
 
@@ -24,9 +26,6 @@ public class MessageDialogAddUserToComunity extends DialogFragment {
     private EditText editCorreoUsuario;
     private Button btnAgregarUsuario;
     private Button btnCancelar;
-
-    private ComunityDescriptionFragment comunityDescriptionFragment =
-            new ComunityDescriptionFragment();
 
     public MessageDialogAddUserToComunity(){
     }
