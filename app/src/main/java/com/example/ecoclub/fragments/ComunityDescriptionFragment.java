@@ -1,6 +1,9 @@
 package com.example.ecoclub.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ecoclub.Entities.Participante_Actividad;
+import com.example.ecoclub.Entities.Rango;
 import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
@@ -21,6 +25,8 @@ import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.comunity.AdapterComunityDescription;
 import com.example.ecoclub.database.DbParticipantesActividades;
 import com.example.ecoclub.database.DbUsuariosComunidades;
+import com.example.ecoclub.database.DbViewsHelpers;
+import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
 
@@ -34,14 +40,16 @@ public class ComunityDescriptionFragment extends Fragment {
     private ViewTransparente imgDesCom;
     private Button btnAtras;
 
-    //Fragments hijos================================
     private FragmentTransaction fragmentTransaction;
+    private MainActivityCallbacks mainActivity;
+    //Fragmentos Hijos
     //inicializarlos con newInstance es necesario para pasar parametros
     private ComunityDescFragMember comunityDescFragMember;
     private ComunityDescFragNotMember comunityDescFragNotMember;
     private ComunityDescFragModerator comunityDescFragModerator;
     //=============================================
 
+    //Comunidad datos
     private static final String ARG_PARAM1 = "id";
     private static final String ARG_PARAM2 = "name";
     private static final String ARG_PARAM3 = "description";
@@ -83,7 +91,6 @@ public class ComunityDescriptionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_comunity_description, container, false);
 
-        ///////se colocaron nombres por defecto por ahora//////////////////////
         //name comunity
         this.msgDesFragName = view.findViewById(R.id.msgComunityDescriptionName);
         this.msgDesFragName.setText(this.nombre);
@@ -112,36 +119,51 @@ public class ComunityDescriptionFragment extends Fragment {
     }
 
     private void fragmentSegunRangoMiembro(View view) {
-        //como se tiene el id de usuario y comunidad se podria filtrar
-        //el rango para aperturar los siguientes fragments hijos
-/*
-        //Todo: Miembro
-        //por default dejaremos el de miembro por mientras
-        //le pasamos el id de la comunidad
-        comunityDescFragMember = ComunityDescFragMember.newInstance(id);
-        fragmentTransaction = getChildFragmentManager().beginTransaction();
 
-        //para mostrarlo en la interface
-        fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
-                comunityDescFragMember).commit();
-*/
-/*
-        //Todo: No miembro
-        comunityDescFragNotMember = ComunityDescFragNotMember.newInstance(id);
-        fragmentTransaction = getChildFragmentManager().beginTransaction();
+        //se obtiene el rango del usuario en la comunidad
+        //para aperturar los siguientes fragments hijos
 
-        //para mostrarlo en la interface
-        fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
-                comunityDescFragNotMember).commit();
-*/
+        DbViewsHelpers dbViewsHelpers = new DbViewsHelpers();
+        Rango rangoUsuarioComunidad = dbViewsHelpers.obtenerRangoMedianteUsuarioComunidad(
+                mainActivity.sendCurrentUserDataFragment().getId(),
+                Integer.parseInt(id)
+        );
 
-        //Todo: Moderador
-        comunityDescFragModerator = ComunityDescFragModerator.newInstance(id);
-        fragmentTransaction = getChildFragmentManager().beginTransaction();
+        //se ve que fragments hijos abrir dependiendo del rango
+        switch (rangoUsuarioComunidad.getId()){
+            case 1:
+                //Todo:Admin de momento no se considera
+                break;
+            case 2:
+                //Todo: Moderador
+                comunityDescFragModerator = ComunityDescFragModerator.newInstance(id);
+                fragmentTransaction = getChildFragmentManager().beginTransaction();
 
-        //para mostrarlo en la interface
-        fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
-                comunityDescFragModerator).commit();
+                //para mostrarlo en la interface
+                fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
+                        comunityDescFragModerator).commit();
+                break;
+            case 3:
+                //Todo: Miembro
+                //por default dejaremos el de miembro por mientras
+                //le pasamos el id de la comunidad
+                comunityDescFragMember = ComunityDescFragMember.newInstance(id);
+                fragmentTransaction = getChildFragmentManager().beginTransaction();
+
+                //para mostrarlo en la interface
+                fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
+                        comunityDescFragMember).commit();
+                break;
+            default:
+                //Todo: No miembro
+                comunityDescFragNotMember = ComunityDescFragNotMember.newInstance(id);
+                fragmentTransaction = getChildFragmentManager().beginTransaction();
+
+                //para mostrarlo en la interface
+                fragmentTransaction.replace(R.id.fragmentLayoutComunityDesc,
+                        comunityDescFragNotMember).commit();
+                break;
+        }
 
     }
 
@@ -160,4 +182,12 @@ public class ComunityDescriptionFragment extends Fragment {
             getActivity().onBackPressed();
         }
     };
+
+
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivityCallbacks){
+            mainActivity = (MainActivityCallbacks) context;
+        }
+    }
 }

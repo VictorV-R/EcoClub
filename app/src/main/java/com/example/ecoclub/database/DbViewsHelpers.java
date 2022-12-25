@@ -3,6 +3,7 @@ package com.example.ecoclub.database;
 import android.util.Log;
 
 import com.example.ecoclub.Entities.Comunidad;
+import com.example.ecoclub.Entities.Rango;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class DbViewsHelpers extends DataBaseHelper{
 
+    //Todo:Comunidades
     public ArrayList<Comunidad> obtenerComunidadesPorUsuarioID(int id_usuario){
         ArrayList<Comunidad> listaComunidades=new ArrayList<Comunidad>();
         String query=
@@ -36,8 +38,6 @@ public class DbViewsHelpers extends DataBaseHelper{
         listaComunidades = ejecutarSentenciaComunidades(query);
         return listaComunidades;
     }
-
-
     private ArrayList<Comunidad> ejecutarSentenciaComunidades(String query){
 
         ArrayList<Comunidad> listaComunidades=new ArrayList<Comunidad>();
@@ -73,5 +73,43 @@ public class DbViewsHelpers extends DataBaseHelper{
             t.join();
         } catch (Exception e){ Log.d("INFO",e.toString());}
         return listaComunidades;
+    }
+
+    //Todo: Rangos
+    public Rango obtenerRangoMedianteUsuarioComunidad(int id_usuario, int id_comunidad){
+        Rango rango = new Rango();
+        String query= "SELECT * FROM sys."+TABLE_RANGOS+" WHERE id_rango in (" +
+                "SELECT id_rango FROM sys."+TABLE_USUARIOS_COMUNIDADES
+                +" WHERE (id_usuario='"+id_usuario+"') and (id_comunidad ='"+id_comunidad+"'))";
+        rango = ejecutarSentenciaRango(query);
+        return rango;
+    }
+
+    public Rango ejecutarSentenciaRango(String query){
+        Rango rango = new Rango();
+        Thread t =  new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection connection = DriverManager.getConnection(url, username, password);
+                    Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(query);
+                    while (rs.next()) {
+                        rango.setId(rs.getInt(1));
+                        rango.setNombre(rs.getString(2));
+                    }
+                    connection.close();
+                } catch (Exception e) {
+                    Log.d("INFO",e.toString());
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (Exception e){ Log.d("INFO",e.toString());}
+        return rango;
     }
 }

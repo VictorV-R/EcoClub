@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.ecoclub.R;
+import com.example.ecoclub.database.DbUsuariosComunidades;
 
 public class MessageDialogAddUserToComunity extends DialogFragment {
 
@@ -75,6 +76,13 @@ public class MessageDialogAddUserToComunity extends DialogFragment {
 
             //Todo: agregar usuario a base de datos
             //todo: ya vez si puedes crear una notificacion tambien
+            DbUsuariosComunidades dbUsuariosComunidades = new DbUsuariosComunidades();
+            dbUsuariosComunidades.insertarUsuarioComunidadConEmail(
+                    editCorreoUsuario.getText().toString(),
+                    Integer.parseInt(idComunidad),
+                    "Activo",
+                    3
+            );
 
             getDialog().dismiss();
         }

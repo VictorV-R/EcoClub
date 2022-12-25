@@ -20,6 +20,18 @@ public class DbUsuariosComunidades extends DataBaseHelper{
         ejecutarSentencia(query);
     }
 
+    public void insertarUsuarioComunidadConEmail(String email, int id_comunidad
+            ,String tipo_usuario,int id_rango){
+        String query= "INSERT INTO sys."+TABLE_USUARIOS_COMUNIDADES+
+                " (id_usuario, id_comunidad, tipo_usuario, id_rango )" +
+                " SELECT  id_usuario, '"+id_comunidad+"'" +
+                ", '"+tipo_usuario+"', '"+id_rango+"'" +
+                " FROM sys."+TABLE_USUARIOS + " WHERE (email = '" +
+                email + "')";
+        Log.d("Query", query);
+        ejecutarSentencia(query);
+    }
+
     public void modificarUsuarioComunidad(int id_usuario,int id_comunidad,String tipo_usuario,int id_rango){
         String query="UPDATE sys."+TABLE_USUARIOS_COMUNIDADES+" SET tipo_usuario = '"+tipo_usuario+"' , id_rango  = '"+id_rango+"'" +
                 "WHERE (id_usuario = '"+id_usuario+"') and (id_comunidad = '"+id_comunidad+"')";
