@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/onClickComunityMember"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageMember"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="20dp"
+
+                android:padding="7dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_person"
+                app:shapeAppearanceOverlay="@style/ImageViewRedonda"/>
+
+            <TextView
+                android:id="@+id/textNameMemberComunity"
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/nombre_miembro_comunidad"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/bhavuka_regular"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnConfigMember"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/color_content"
+                app:srcCompat="@drawable/icono_configurations_small" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onClickComunityMember"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

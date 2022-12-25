@@ -23,6 +23,7 @@
                 android:id="@+id/recyclerListaMiembrosComunidadModerator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,9 +41,10 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSalirMiComunidadModerator"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
                     android:layout_marginTop="25dp"
                     android:fontFamily="@font/bhavuka_regular"
                     android:textSize="20dp"
@@ -54,9 +56,10 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnAgregarMiembrosModerator"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/bhavuka_regular"
                     android:textSize="20dp"
@@ -68,9 +71,10 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnCrearActividadModerator"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/bhavuka_regular"
                     android:textSize="20dp"

@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,10 +16,9 @@ import android.widget.Toast;
 
 import com.example.ecoclub.Entities.Usuario_Comunidad;
 import com.example.ecoclub.R;
-import com.example.ecoclub.comunity.AdapterComunityDescription;
+import com.example.ecoclub.comunity.AdapterComuDescModerator;
 import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.dialog.MessageDialogAddUserToComunity;
-import com.example.ecoclub.dialog.MessageDialogMemberComunity;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
@@ -181,15 +179,22 @@ public class ComunityDescFragModerator extends Fragment {
         //para cargar una lista vertical
         recyclerComunityDescModerator.setLayoutManager(new LinearLayoutManager(getActivity(),
                 RecyclerView.VERTICAL, false));
-        //llenando datos de comunidad
+        //llenando datos de miembros de comunidad
         llenarDatosMiembrosComunity();
 
-        //enviamos los datos al adaptador de Comunidad
-        AdapterComunityDescription adapter = new AdapterComunityDescription(
-                listMembersComunity, getActivity());
-        //por ultimo al recycler le enviamos el adaptador de la Comunidad
-        recyclerComunityDescModerator.setAdapter(adapter);
-        ///===================================
+        //enviamos los datos al adaptador de miembros de Comunidad
+        int id_usuario = mainActivity.sendCurrentUserDataFragment().getId();
+
+        new Thread(new Runnable() {
+            public void run() {
+                //Aquí ejecutamos nuestras tareas costosas
+                AdapterComuDescModerator adapter = new AdapterComuDescModerator(
+                        listMembersComunity, getActivity(), id_usuario);
+                //por ultimo al recycler le enviamos el adaptador de miembros de la Comunidad
+                recyclerComunityDescModerator.setAdapter(adapter);
+                ///===================================
+            }
+        }).start();
     }
 
     private void llenarDatosMiembrosComunity() {

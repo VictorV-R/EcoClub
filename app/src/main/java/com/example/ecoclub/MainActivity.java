@@ -117,7 +117,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
         //ingresar fragment My Comunity
         if (destiny.equalsIgnoreCase(MyComunityFragment.DESTINY)){
             ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container, myComunityFragment);
+            ft.setCustomAnimations(
+                    R.anim.fade_in,  // enter
+                    R.anim.fade_out   // exit
+            ).replace(R.id.container, myComunityFragment);
             ft.addToBackStack(null);
             ft.commit();
         }

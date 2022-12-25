@@ -62,14 +62,20 @@ public class ProfileFragment extends Fragment {
                 rbRight.setTextColor(Color.GRAY);
                 profileDatosFragment = new ProfileDatosFragment();
                 transaction = getChildFragmentManager().beginTransaction();
-                transaction.replace(R.id.child_fragment_container, profileDatosFragment).addToBackStack(null).commit();
+                transaction.setCustomAnimations(
+                                R.anim.slide_in_rigth,  // enter
+                                R.anim.slide_out  // exit
+                        ).replace(R.id.child_fragment_container, profileDatosFragment).addToBackStack(null).commit();
             }
             else if(rbRight.isChecked()) {
                 rbRight.setTextColor(Color.BLACK);
                 rbLeft.setTextColor(Color.GRAY);
                 profileLogrosFragment = new ProfileLogrosFragment();
                 transaction = getChildFragmentManager().beginTransaction();
-                transaction.replace(R.id.child_fragment_container, profileLogrosFragment).addToBackStack(null).commit();
+                transaction.setCustomAnimations(
+                        R.anim.slide_in_left,  // enter
+                        R.anim.slide_out  // exit
+                ).replace(R.id.child_fragment_container, profileLogrosFragment).addToBackStack(null).commit();
             }
         }
     }

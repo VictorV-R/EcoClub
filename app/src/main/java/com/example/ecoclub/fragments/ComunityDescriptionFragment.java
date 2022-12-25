@@ -6,29 +6,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ecoclub.Entities.Participante_Actividad;
 import com.example.ecoclub.Entities.Rango;
-import com.example.ecoclub.Entities.Usuario_Comunidad;
-import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
 import com.example.ecoclub.View.ViewTransparente;
-import com.example.ecoclub.comunity.AdapterComunityDescription;
-import com.example.ecoclub.database.DbParticipantesActividades;
-import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.database.DbViewsHelpers;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
-
-import java.util.ArrayList;
 
 
 public class ComunityDescriptionFragment extends Fragment {
@@ -100,6 +93,10 @@ public class ComunityDescriptionFragment extends Fragment {
         this.msgDesFrag.setText(this.descripcion);
 
         //event image description comunity
+        ImageView imageView = view.findViewById(R.id.imageDescriptionComunity);
+        Animation hyperspaceJump = AnimationUtils.loadAnimation(
+                getContext(), R.anim.hyperspace_jump);
+        imageView.startAnimation(hyperspaceJump);
         this.imgDesCom = view.findViewById(R.id.imgDesCom);
         this.imgDesCom.setOnClickListener(eventImgDesCom);
         //boton Atras

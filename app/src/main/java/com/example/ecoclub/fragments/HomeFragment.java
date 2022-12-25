@@ -52,14 +52,21 @@ public class HomeFragment extends Fragment {
                 rbRight.setTextColor(Color.GRAY);
                 homeNoticiasFragment = new HomeNoticiasFragment();
                 transaction = getChildFragmentManager().beginTransaction();
-                transaction.replace(R.id.child_fragment_container, homeNoticiasFragment).addToBackStack(null).commit();
+                transaction
+                        .setCustomAnimations(
+                                R.anim.slide_in_slow_left,  // enter
+                                R.anim.fade_out  // exit
+                        ).replace(R.id.child_fragment_container, homeNoticiasFragment).addToBackStack(null).commit();
             }
             else if(rbRight.isChecked()) {
                 rbRight.setTextColor(Color.BLACK);
                 rbLeft.setTextColor(Color.GRAY);
                 homeActividadesFragment = new HomeActividadesFragment();
                 transaction = getChildFragmentManager().beginTransaction();
-                transaction.replace(R.id.child_fragment_container, homeActividadesFragment).addToBackStack(null).commit();
+                transaction.setCustomAnimations(
+                        R.anim.slide_in_slow_left,  // enter
+                        R.anim.fade_out  // exit
+                ).replace(R.id.child_fragment_container, homeActividadesFragment).addToBackStack(null).commit();
             }
         }
     }
