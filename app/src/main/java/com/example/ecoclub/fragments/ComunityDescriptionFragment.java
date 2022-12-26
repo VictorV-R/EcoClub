@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.transition.TransitionInflater;
@@ -15,6 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.example.ecoclub.R;
 import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.database.DbViewsHelpers;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
+
+import java.util.ArrayList;
 
 
 public class ComunityDescriptionFragment extends Fragment {
@@ -33,6 +37,7 @@ public class ComunityDescriptionFragment extends Fragment {
     //img description comunity
     private ViewTransparente imgDesCom;
     private Button btnAtras;
+    private static ProgressBar progressBar;
 
     private FragmentTransaction fragmentTransaction;
     private MainActivityCallbacks mainActivity;
@@ -41,8 +46,6 @@ public class ComunityDescriptionFragment extends Fragment {
     private ComunityDescFragMember comunityDescFragMember;
     private ComunityDescFragNotMember comunityDescFragNotMember;
     private ComunityDescFragModerator comunityDescFragModerator;
-    //=============================================
-    public static int idFrameLayout;
 
     //Comunidad datos
     private static final String ARG_PARAM1 = "id";
@@ -104,6 +107,8 @@ public class ComunityDescriptionFragment extends Fragment {
         //boton Atras
         btnAtras = view.findViewById(R.id.btnAtrasDescriptionComunity);
         btnAtras.setOnClickListener(eventAtras);
+        //progressbar
+        progressBar = view.findViewById(R.id.progress_circular_comunity_description);
 
         //para aliviar el fragment utilizamos un hilo
         new Thread(new Runnable() {
@@ -113,8 +118,11 @@ public class ComunityDescriptionFragment extends Fragment {
                 fragmentSegunRangoMiembro(view);
             }
         }).start();
-
         return view;
+    }
+
+    public static void ocultarProgressBar() {
+        progressBar.setVisibility(View.GONE);
     }
 
     private void fragmentSegunRangoMiembro(View view) {
@@ -128,7 +136,6 @@ public class ComunityDescriptionFragment extends Fragment {
                 Integer.parseInt(id)
         );
 
-        idFrameLayout = R.id.fragmentLayoutComunityDesc; //para actulizar adaptador
         //se ve que fragments hijos abrir dependiendo del rango
         switch (rangoUsuarioComunidad.getId()){
             case 1:

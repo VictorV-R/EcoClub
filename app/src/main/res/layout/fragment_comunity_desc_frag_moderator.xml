@@ -7,6 +7,7 @@
     tools:context=".fragments.ComunityDescFragModerator">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,50 +45,49 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="70dp"
-                    android:layout_marginRight="70dp"
                     android:layout_marginTop="25dp"
-                    android:fontFamily="@font/bhavuka_regular"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_marginRight="70dp"
                     android:background="@drawable/custom_button_my_comunity"
+                    android:fontFamily="@font/bhavuka_regular"
                     android:text="Salir de la comunidad"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnAgregarMiembrosModerator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="70dp"
-                    android:layout_marginRight="70dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/bhavuka_regular"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_marginRight="70dp"
                     android:background="@drawable/custom_button_my_comunity"
+                    android:fontFamily="@font/bhavuka_regular"
                     android:text="Agregar miembro"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnCrearActividadModerator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="70dp"
-                    android:layout_marginRight="70dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/bhavuka_regular"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_marginRight="70dp"
                     android:background="@drawable/custom_button_my_comunity"
+                    android:fontFamily="@font/bhavuka_regular"
                     android:text="Crear actividad"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

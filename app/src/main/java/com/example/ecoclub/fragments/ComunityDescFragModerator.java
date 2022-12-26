@@ -67,6 +67,9 @@ public class ComunityDescFragModerator extends Fragment
         if (getArguments() != null) {
             this.idComunidad = getArguments().getString(ARG_PARAM1);
         }
+        //ocultamos el progress bar
+        ((ComunityDescriptionFragment)
+                ComunityDescFragModerator.this.getParentFragment()).ocultarProgressBar();
     }
 
     @Override
