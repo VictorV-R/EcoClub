@@ -44,7 +44,7 @@ public class MessageDialogMemberComunity extends DialogFragment {
         Rango rangoInfo=dbRangos.obtenerRango(aux.getId_rango());
 
         DbLogrosUsuarios dbLogrosUsuarios=new DbLogrosUsuarios();
-        Logro logro=new DbLogros().obtenerLogro(dbLogrosUsuarios.obtenerLogrosUsuario(usuarioInfo.getId()).get(0).getId());
+        Logro logro=new DbLogros().obtenerLogro(dbLogrosUsuarios.obtenerLogrosUsuario(usuarioInfo.getId()).get(0).getId_logro());
 
 
         //se referencia asi mismo

@@ -3,6 +3,7 @@ package com.example.ecoclub.database;
 import android.util.Log;
 
 import com.example.ecoclub.Entities.Logro;
+import com.example.ecoclub.Entities.Logro_Usuario;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,8 +30,8 @@ public class DbLogrosUsuarios extends DataBaseHelper{
                 "WHERE (id_usuario = '"+id_usuario+"') and (id_logro = '"+id_logro+"')";
         ejecutarSentencia(query);
     }
-    public ArrayList<Logro> obtenerLogrosUsuario(int id_usuario){
-        ArrayList<Logro> listaLogros=new ArrayList<Logro>();
+    public ArrayList<Logro_Usuario> obtenerLogrosUsuario(int id_usuario){
+        ArrayList<Logro_Usuario> listaLogros=new ArrayList<>();
         String query= "SELECT * FROM sys."+TABLE_LOGROS_USUARIOS+" WHERE id_usuario='"+id_usuario+"' ";
         Thread t =  new Thread(new Runnable() {
             @Override
@@ -41,9 +42,9 @@ public class DbLogrosUsuarios extends DataBaseHelper{
                     Statement statement = connection.createStatement();
                     ResultSet rs = statement.executeQuery(query);
                     while (rs.next()) {
-                        Logro aux=new Logro();
-                        aux.setId(rs.getInt(1));
-                        aux.setNombre(rs.getString(2));
+                        Logro_Usuario aux=new Logro_Usuario();
+                        aux.setId_usuario(rs.getInt(1));
+                        aux.setId_logro(rs.getInt(2));
                         listaLogros.add(aux);
                     }
                     connection.close();
