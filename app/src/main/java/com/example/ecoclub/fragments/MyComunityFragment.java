@@ -39,7 +39,6 @@ public class MyComunityFragment extends Fragment {
 
     private RecyclerView recyclerMyComunity;
     private ImageButton btnSearchMyComunity;
-    private Button btnAtras;
 
     MainActivityCallbacks mainActivity;
 
@@ -60,9 +59,6 @@ public class MyComunityFragment extends Fragment {
 
         btnSearchMyComunity = view.findViewById(R.id.imgBtnSearchMyComunity);
         btnSearchMyComunity.setOnClickListener(eventSearchMyComunity);
-
-        btnAtras = view.findViewById(R.id.btnAtrasMyComunity);
-        btnAtras.setOnClickListener(eventAtras);
 
         referenciarAdaptadorMyComunity(view);
         return view;
@@ -136,14 +132,6 @@ public class MyComunityFragment extends Fragment {
         }
     };
 
-
-    private View.OnClickListener eventAtras = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //para retroceder en el back stack
-            getActivity().onBackPressed();
-        }
-    };
 
     private void llenarDatosComunidades(){
         /*listMyComunity = new ArrayList<>();

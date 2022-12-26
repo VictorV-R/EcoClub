@@ -20,8 +20,8 @@ import com.example.ecoclub.Entities.Usuario;
 import com.example.ecoclub.database.DbUsuarios;
 import com.example.ecoclub.dialog.MessageDialogQuit;
 import com.example.ecoclub.fragments.CollaborateFragment;
-import com.example.ecoclub.fragments.ComunityDescriptionFragment;
 import com.example.ecoclub.fragments.ComunityFragment;
+import com.example.ecoclub.fragments.ComunityOthersFragment;
 import com.example.ecoclub.fragments.FragmentCreateActivity;
 import com.example.ecoclub.fragments.HomeFragment;
 import com.example.ecoclub.fragments.MapsFragment;
@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
         ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container, homeFragment);
-        ft.addToBackStack(null); //agregado para que se pueda retroceder en los fragments
         ft.commit();
 
         //evento del bottom navigation view
@@ -70,12 +69,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
     }
 
+    //para que el item se actualice cada vez que se vuelva a mostrar el activity
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bottomNavigationView.setSelectedItemId(R.id.home);
+    }
+
     //evento del bottom navigation view*****************************************
     private NavigationBarView.OnItemSelectedListener eventoBottomNavigationView =
             new NavigationBarView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
-            //limpiando back stack
+
             clearBackStack();
 
             ft = getSupportFragmentManager().beginTransaction();
@@ -130,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
     private void clearBackStack() {
         FragmentManager manager = getSupportFragmentManager();
         //solo dejamos el Home Fragment(index 1)
-        if (manager.getBackStackEntryCount() > 1) {
-            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(1);
+        if (manager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
             manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
 
@@ -139,30 +145,34 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
 
     //boton de atras
     // dialogo para salir de la app
-    // y actualizacion de icono de bottom navigation view
+    @Override
+    public void onBackPressed() {
+        if (bottomNavigationView.getSelectedItemId() == R.id.home) {
+
+            //Dialogo para salir de la app o no
+            MessageDialogQuit dialogoSalir= new MessageDialogQuit();
+            dialogoSalir.show(getSupportFragmentManager()
+                    .beginTransaction(), null);
+        }else {
+            super.onBackPressed();
+        }
+    }
+
+    //actualizacion de icono de bottom navigation view
+    //y limpieza del back stack si see trabaja con el bottom view
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         Fragment fragmentCurrent;
 
-        if (keyCode == event.KEYCODE_BACK)
+        if (keyCode == event.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN)
         {
-            //cambiamos el icono del bottom navigation================================
-
-            if (bottomNavigationView.getSelectedItemId() == R.id.home) {
-                //Dialogo para salir de la app o no
-
-                //Dialogo para salir de la app o no
-                MessageDialogQuit dialogoSalir= new MessageDialogQuit();
-                dialogoSalir.show(getSupportFragmentManager()
-                        .beginTransaction(), null);
-            }
-
 
             //ACTIVAMOS EL ICONO DE HOME EN EL BOTTOM NAVIGATION
             //con el boton de atras se limpia el back stack
             fragmentCurrent = getSupportFragmentManager()
                     .findFragmentById(R.id.container);
+
             //Estos framgents se abren con el bottom navigation
             //En caso de que se cambie algun fragment en el menu cambiar tambien este
             if (fragmentCurrent instanceof ComunityFragment
@@ -170,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityCallb
                     || fragmentCurrent instanceof CollaborateFragment
                     || fragmentCurrent instanceof ProfileFragment) {
                 bottomNavigationView.setSelectedItemId(R.id.home);
+                clearBackStack();
             }
 
         }

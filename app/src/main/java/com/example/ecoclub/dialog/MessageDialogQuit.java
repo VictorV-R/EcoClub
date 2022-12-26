@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.ecoclub.MainActivity;
 import com.example.ecoclub.R;
+import com.example.ecoclub.fragments.HomeFragment;
 
 public class MessageDialogQuit extends DialogFragment {
     private Button btnSi;

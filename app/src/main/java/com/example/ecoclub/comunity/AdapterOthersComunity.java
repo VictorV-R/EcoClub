@@ -1,10 +1,5 @@
 package com.example.ecoclub.comunity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,22 +16,21 @@ import com.example.ecoclub.R;
 import com.example.ecoclub.View.ViewTransparente;
 import com.example.ecoclub.database.DbUsuariosComunidades;
 import com.example.ecoclub.fragments.ComunityDescriptionFragment;
-import com.example.ecoclub.interfaces.MainActivityCallbacks;
 
 import java.util.ArrayList;
 
-public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHolderData> {
+public class AdapterOthersComunity extends RecyclerView.Adapter<AdapterOthersComunity.ViewHolderData> {
 
     private FragmentActivity main; //para cambiar de fragments
     private ComunityDescriptionFragment comuDescFrag;
     private ArrayList<Comunidad> listComunity;
     private int id_usuario;
 
-    public AdapterComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity) {
+    public AdapterOthersComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity) {
         this.listComunity = listComunity;
         this.main = activity;
     }
-    public AdapterComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity,int id_usuario) {
+    public AdapterOthersComunity(ArrayList<Comunidad> listComunity, FragmentActivity activity, int id_usuario) {
         this.listComunity = listComunity;
         this.main = activity;
         this.id_usuario=id_usuario;
@@ -47,7 +41,7 @@ public class AdapterComunity extends RecyclerView.Adapter<AdapterComunity.ViewHo
     public ViewHolderData onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflamos el view y lo retornamos
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_comunity, null, false);
+                .inflate(R.layout.item_other_comunity, null, false);
         return new ViewHolderData(view);
     }
 
