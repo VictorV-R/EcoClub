@@ -86,10 +86,8 @@ public class AdapterMyComunity extends RecyclerView.Adapter<AdapterMyComunity.Vi
                 );
 
                 //no lo guardamos en el back stack
-                main.getSupportFragmentManager().beginTransaction().setCustomAnimations(
-                        R.anim.fade_in,  // enter
-                        R.anim.fade_out   // exit
-                ).replace(R.id.container, comunityDescriptionFragment)
+                main.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, comunityDescriptionFragment)
                         .addToBackStack(null).commit();
             }
         };

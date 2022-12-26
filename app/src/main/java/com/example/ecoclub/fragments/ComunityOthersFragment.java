@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionInflater;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,17 @@ public class ComunityOthersFragment extends Fragment {
     private ImageButton btnSearch;
 
     private EditText textComunitySearch;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //fragment saliente
+        //TransitionInflater inflater = TransitionInflater.from(requireContext());
+        //setExitTransition(inflater.inflateTransition(R.transition.fade_description));
+
+        //fragment entrante
+        //setEnterTransition(inflater.inflateTransition(R.transition.slide_rigth_description));
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +97,7 @@ public class ComunityOthersFragment extends Fragment {
             ArrayList<Comunidad> listaComBuscados = new ArrayList<>();
             String nombreBuscado = textComunitySearch.getText().toString();
 
+            //TODO: buscando comunidades
             //en caso el texto este vacio
             if(nombreBuscado.equalsIgnoreCase("")){
                 //enviamos los datos al adaptador de Comunidades
@@ -121,10 +134,7 @@ public class ComunityOthersFragment extends Fragment {
                                     .beginTransaction(),null);
                     //=========================================================
                 }
-
             }
-
-
         }
     };
 

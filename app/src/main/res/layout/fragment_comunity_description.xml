@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg_design_profile"
+    android:background="@drawable/bg_design_comunity"
     tools:context=".fragments.ComunityDescriptionFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -77,7 +77,7 @@
             android:id="@+id/btnAtrasDescriptionComunity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_boton_atras"
+            android:background="@drawable/custom_boton_atras_opcion_2"
             android:text="Atras"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"

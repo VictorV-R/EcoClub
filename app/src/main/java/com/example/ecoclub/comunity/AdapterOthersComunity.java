@@ -129,10 +129,8 @@ public class AdapterOthersComunity extends RecyclerView.Adapter<AdapterOthersCom
                         itemComunity.getInformacion()
                 );
                 //cambiando de fragment
-                main.getSupportFragmentManager().beginTransaction().setCustomAnimations(
-                        R.anim.fade_in,  // enter
-                        R.anim.fade_out   // exit
-                ).replace(R.id.container, comuDescFrag).addToBackStack(null).commit();
+                main.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, comuDescFrag).addToBackStack(null).commit();
 
 
             }

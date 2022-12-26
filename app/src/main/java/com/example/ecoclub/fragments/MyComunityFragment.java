@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionInflater;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,17 @@ public class MyComunityFragment extends Fragment {
 
     public MyComunityFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //fragment saliente
+        //TransitionInflater inflater = TransitionInflater.from(requireContext());
+        //setExitTransition(inflater.inflateTransition(R.transition.fade_description));
+
+        //fragment entrante
+        //setEnterTransition(inflater.inflateTransition(R.transition.slide_rigth_description));
     }
 
     @Override
@@ -89,6 +101,7 @@ public class MyComunityFragment extends Fragment {
             ArrayList<Comunidad> listaMisComBuscados = new ArrayList<>();
             String nombreBuscado = textMyComunitySearch.getText().toString();
 
+            //Todo: buscando comunidad
             //en caso el texto este vacio
             if(nombreBuscado.equalsIgnoreCase("")){
                 //enviamos los datos al adaptador de Mis Comunidades
@@ -105,7 +118,7 @@ public class MyComunityFragment extends Fragment {
                         listaMisComBuscados.add(listMyComunity.get(i)); //agregandolo a nueva lista
                     }
                 }
-                //======================================================================
+                //====================================================================
 
                 //en caso de que se encontro
                 if (listaMisComBuscados.size() > 0){
@@ -127,8 +140,6 @@ public class MyComunityFragment extends Fragment {
                 }
 
             }
-
-
         }
     };
 

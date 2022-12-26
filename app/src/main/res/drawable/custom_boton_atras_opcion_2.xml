@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--En caso se presione el boton-->
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/button_press_atras_opcion_2"/>
+    <!--Si no se presiona el boton-->
+    <item
+        android:drawable="@drawable/button_default_atras_opcion_2"/>
+
+</selector>
