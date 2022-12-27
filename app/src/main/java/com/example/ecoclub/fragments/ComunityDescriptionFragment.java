@@ -179,6 +179,9 @@ public class ComunityDescriptionFragment extends Fragment {
         @Override
         public void onClick(View view) {
             Toast.makeText(view.getContext(), "Esta es una imagen con click", Toast.LENGTH_LONG).show();
+            ComunityMapFragment comunityMapFragment = new ComunityMapFragment();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, comunityMapFragment).addToBackStack(null).commit();
         }
     };
 
