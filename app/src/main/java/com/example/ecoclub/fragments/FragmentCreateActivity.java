@@ -123,11 +123,13 @@ public class FragmentCreateActivity extends Fragment {
             Log.d("Crear Actividad", "Actividad: "+ ubicacion.latitude +"  "+ ubicacion.longitude);
             //todo===================================================
 
+            Toast.makeText(getContext(), "Se creo actividad", Toast.LENGTH_SHORT).show();
+
             //todo:  enviamos una notificacion
-            NotificacionConfirmation notificacionConfirmation =
+            /*NotificacionConfirmation notificacionConfirmation =
                     new NotificacionConfirmation(getActivity(), "Actividad de Comunidad",
                             "Felicidades creaste una actividad de comunidad");
-            notificacionConfirmation.enviarNotificacion();
+            notificacionConfirmation.enviarNotificacion();*/
         }
     };
 

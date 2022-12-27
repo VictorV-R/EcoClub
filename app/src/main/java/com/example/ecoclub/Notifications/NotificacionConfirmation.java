@@ -8,7 +8,6 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorSpace;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
@@ -36,7 +35,7 @@ public class NotificacionConfirmation {
             //es android sdk 26 o superior
             showNotifications();
         }else{
-            showNewNotifications();       
+            //showNewNotifications();
         }
     }
 

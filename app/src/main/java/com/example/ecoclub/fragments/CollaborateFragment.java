@@ -70,11 +70,12 @@ public class CollaborateFragment extends Fragment {
                     ,"Activo", nombreComunidad.getText().toString(), descripcionComunidad.getText().toString(),
                     ubicacion.latitude, ubicacion.longitude, 2);
 
+            Toast.makeText(getContext(), "Se creo comunidad", Toast.LENGTH_SHORT).show();
             //todo:  enviamos una notificacion
-            NotificacionConfirmation notificacionConfirmation =
+            /*NotificacionConfirmation notificacionConfirmation =
                     new NotificacionConfirmation(getActivity(), "Comunidad",
                     "Felicidades creaste una comunidad");
-            notificacionConfirmation.enviarNotificacion();
+            notificacionConfirmation.enviarNotificacion();*/
 
         });
         return view;
