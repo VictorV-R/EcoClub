@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecoclub.MainActivity;
+import com.example.ecoclub.Notifications.NotificacionConfirmation;
 import com.example.ecoclub.R;
 import com.example.ecoclub.database.DbActividades;
 import com.example.ecoclub.database.DbComunidades;
@@ -122,8 +123,11 @@ public class FragmentCreateActivity extends Fragment {
             Log.d("Crear Actividad", "Actividad: "+ ubicacion.latitude +"  "+ ubicacion.longitude);
             //todo===================================================
 
-            Toast.makeText(getActivity(), "Se creo su actividad",
-                    Toast.LENGTH_LONG).show();
+            //todo:  enviamos una notificacion
+            NotificacionConfirmation notificacionConfirmation =
+                    new NotificacionConfirmation(getActivity(), "Actividad de Comunidad",
+                            "Felicidades creaste una actividad de comunidad");
+            notificacionConfirmation.enviarNotificacion();
         }
     };
 

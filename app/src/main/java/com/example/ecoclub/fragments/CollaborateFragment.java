@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ecoclub.Notifications.NotificacionConfirmation;
 import com.example.ecoclub.R;
 import com.example.ecoclub.database.DBProcedures;
 import com.example.ecoclub.interfaces.MainActivityCallbacks;
@@ -69,8 +70,12 @@ public class CollaborateFragment extends Fragment {
                     ,"Activo", nombreComunidad.getText().toString(), descripcionComunidad.getText().toString(),
                     ubicacion.latitude, ubicacion.longitude, 2);
 
-            Toast.makeText(getActivity(), "Se creo comunidad",
-                    Toast.LENGTH_LONG).show();
+            //todo:  enviamos una notificacion
+            NotificacionConfirmation notificacionConfirmation =
+                    new NotificacionConfirmation(getActivity(), "Comunidad",
+                    "Felicidades creaste una comunidad");
+            notificacionConfirmation.enviarNotificacion();
+
         });
         return view;
     }
